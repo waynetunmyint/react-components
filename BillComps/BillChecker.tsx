@@ -161,78 +161,62 @@ const BillChecker: React.FC<Props> = ({ pageId = PAGE_ID }) => {
     if (loading || !showModal) return null;
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-[100] px-4">
-            <div className="bg-white/95 backdrop-blur-xl w-full max-w-md rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-300">
-                {/* Header - Using theme primary colors from variables.css */}
-                <div
-                    className="p-6 relative overflow-hidden"
-                    style={{ background: 'linear-gradient(to bottom right, var(--theme-primary-bg), var(--theme-secondary-bg))' }}
-                >
-                    {/* Decorative elements */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16" />
-                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full -ml-12 -mb-12" />
+        <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm z-[100] px-4 animate-in fade-in duration-300">
+            <div className="bg-white w-full max-w-sm rounded-[2rem] overflow-hidden shadow-2xl animate-in zoom-in-95 slide-in-from-bottom-5 duration-300 relative">
 
-                    <div className="relative flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                                <AlertCircle className="w-7 h-7 text-white" />
-                            </div>
-                            <div>
-                                <h2 className="text-xl font-bold text-white">Payment Notice</h2>
-                                <p className="text-white/80 text-sm">You have an outstanding bill</p>
-                            </div>
+                {/* Header with Premium Gradient */}
+                <div className="bg-gradient-to-br from-[#8CC63F] to-[#004D25] p-8 text-center relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-full blur-2xl -ml-10 -mb-10 pointer-events-none" />
+
+                    <div className="relative z-10 flex flex-col items-center">
+                        <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-4 shadow-inner ring-1 ring-white/30">
+                            <Receipt className="w-8 h-8 text-white drop-shadow-md" />
                         </div>
-                        <button
-                            onClick={handleClose}
-                            className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm hover:bg-white/30 active:scale-90 transition-all"
-                            aria-label="Close modal"
-                        >
-                            <X className="w-5 h-5 text-white" />
-                        </button>
+                        <h2 className="text-2xl font-bold text-white tracking-tight mb-1">Payment Notice</h2>
+                        <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold text-white/90 border border-white/10">
+                            Outstanding Bill
+                        </span>
                     </div>
+
+                    <button
+                        onClick={handleClose}
+                        className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white/80 hover:text-white transition-all backdrop-blur-sm"
+                    >
+                        <X size={20} />
+                    </button>
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
-                    {/* Simple Message - Using theme text colors */}
-                    <p
-                        className="text-center text-lg mb-6"
-                        style={{ color: 'var(--theme-text-primary)' }}
-                    >
-                        You have an outstanding balance. Please settle your payment at your earliest convenience.
-                    </p>
+                <div className="p-6 md:p-8 space-y-6">
+                    <div className="text-center space-y-2">
+                        <div className="bg-[#f2f9f2] rounded-xl p-4 border border-[#e6f5e6]">
+                            <p className="text-[#004D25] font-medium leading-relaxed">
+                                You have an outstanding balance.<br />
+                                <span className="text-sm opacity-80">Please settle your payment to enable full access.</span>
+                            </p>
+                        </div>
+                    </div>
 
-                    {/* Action Buttons */}
                     <div className="space-y-3">
-                        {/* View Bill Button - Using theme primary colors */}
                         <button
                             onClick={handleViewBill}
-                            className="w-full py-4 text-white font-semibold text-base rounded-2xl shadow-lg hover:shadow-xl active:scale-[0.98] transition-all flex items-center justify-center gap-2"
-                            style={{
-                                background: 'linear-gradient(to right, var(--theme-primary-bg), var(--theme-secondary-bg))'
-                            }}
+                            className="w-full py-3.5 bg-[#004D25] text-white font-bold text-lg rounded-xl shadow-lg shadow-green-900/20 hover:bg-[#00381b] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group"
                         >
-                            <FileText className="w-5 h-5" />
-                            View Bill
+                            <FileText className="w-5 h-5 group-hover:rotate-3 transition-transform" />
+                            View Bill Details
                         </button>
 
-                        {/* Close / Pay Later Button */}
                         <button
                             onClick={handleClose}
-                            className="w-full py-4 bg-gray-100 font-semibold text-base rounded-2xl hover:bg-gray-200 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
-                            style={{ color: 'var(--theme-text-primary)' }}
+                            className="w-full py-3.5 bg-gray-50 text-gray-600 font-semibold text-base rounded-xl border border-gray-100 hover:bg-gray-100 hover:text-gray-900 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
                         >
-                            <X className="w-5 h-5" />
-                            Close (Pay Later)
+                            I'll Pay Later
                         </button>
                     </div>
 
-                    {/* Footer Note */}
-                    <p
-                        className="text-xs text-center mt-4"
-                        style={{ color: 'var(--theme-text-muted)' }}
-                    >
-                        This reminder will appear once per day until the bill is settled.
+                    <p className="text-[10px] text-center text-gray-400 uppercase tracking-widest font-semibold">
+                        Daily Reminder
                     </p>
                 </div>
             </div>
