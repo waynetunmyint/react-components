@@ -90,7 +90,7 @@ const RegistrationForm = memo(function RegistrationForm({
                                 ? 'border-[var(--accent-500)]/50 ring-2 ring-[var(--accent-500)]/20'
                                 : guestName && !isNameValid
                                     ? 'border-red-500/50'
-                                    : 'border-[var(--theme-text-primary)]/10 hover:border-[var(--theme-text-primary)]/20'
+                                    : 'border-[var(--theme-border-primary)] hover:border-[var(--theme-border-primary)]'
                                 }`}
                             aria-required="true"
                             aria-invalid={guestName.length > 0 && !isNameValid}
@@ -130,7 +130,7 @@ const RegistrationForm = memo(function RegistrationForm({
                                 ? 'border-[var(--accent-500)] ring-4 ring-[var(--accent-500)]/10'
                                 : guestPhone && !isPhoneValid
                                     ? 'border-red-500/50'
-                                    : 'border-transparent hover:border-[var(--theme-border-primary)]'
+                                    : 'border-[var(--theme-border-primary)] hover:border-[var(--theme-border-primary)]'
                                 }`}
                             aria-required="true"
                             aria-invalid={guestPhone.length > 0 && !isPhoneValid}
@@ -169,7 +169,7 @@ const RegistrationForm = memo(function RegistrationForm({
                                 ? 'border-[var(--accent-500)] ring-4 ring-[var(--accent-500)]/10'
                                 : guestEmail && !isEmailValid
                                     ? 'border-red-500/50'
-                                    : 'border-transparent hover:border-[var(--theme-border-primary)]'
+                                    : 'border-[var(--theme-border-primary)] hover:border-[var(--theme-border-primary)]'
                                 }`}
                             aria-invalid={guestEmail.length > 0 && !isEmailValid}
                         />
@@ -205,7 +205,7 @@ const RegistrationForm = memo(function RegistrationForm({
                             placeholder="Your company name"
                             className={`w-full bg-white border text-[var(--theme-text-primary)] rounded-2xl px-5 py-3.5 text-xs focus:outline-none transition-all placeholder:text-[var(--theme-text-muted)]/40 ${focusedField === 'company'
                                 ? 'border-[var(--accent-500)] ring-4 ring-[var(--accent-500)]/10'
-                                : 'border-transparent hover:border-[var(--theme-border-primary)]'
+                                : 'border-[var(--theme-border-primary)] hover:border-[var(--theme-border-primary)]'
                                 }`}
                         />
                         {guestCompany && (

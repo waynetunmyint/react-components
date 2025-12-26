@@ -41,11 +41,11 @@ export default function HeaderSix({
               onClick={() => navigate("/")}
               className="flex items-center gap-2 sm:gap-3 hover:opacity-90 transition-opacity"
             >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden bg-[var(--theme-text-primary)] flex items-center justify-center p-1">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden flex items-center justify-center p-1">
                 {contactData?.Thumbnail ? (
                   <img
                     src={`${IMAGE_URL}/uploads/${contactData.Thumbnail}`}
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain rounded-full"
                     alt="Logo"
                   />
                 ) : (
