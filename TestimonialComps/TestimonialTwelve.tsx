@@ -2,7 +2,7 @@
 import React, { useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight, ImageIcon } from "lucide-react";
 import { IMAGE_URL } from "../../../config";
-import BlockHeader from "../HelperComps/BlockHeader";
+import BlockHeader from "../BlockComps/BlockHeader";
 
 interface Props {
     dataSource?: string;

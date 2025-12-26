@@ -31,14 +31,19 @@ export const CartButton: React.FC = () => {
       <button
         onClick={() => setOpen(true)}
         style={{
-          backgroundColor: 'var(--theme-primary-bg)',
-          color: 'var(--theme-primary-text)'
+          background: 'var(--accent-500)',
+          color: 'white',
+          boxShadow: '0 8px 30px rgba(0,0,0,0.12)'
         }}
-        className="fixed right-6 bottom-6 z-50 p-3 rounded-full shadow-lg flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all"
+        className="fixed right-6 bottom-6 z-50 w-14 h-14 rounded-full flex items-center justify-center transition-all group hover:scale-110 active:scale-95"
         aria-label="Open cart"
       >
-        <ShoppingCart size={18} />
-        <span className="text-sm font-medium">{totalQty}</span>
+        <ShoppingCart size={24} className="group-hover:rotate-12 transition-transform" />
+        {totalQty > 0 && (
+          <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white shadow-sm ring-2 ring-[var(--accent-500)]">
+            {totalQty}
+          </span>
+        )}
       </button>
       <BookCartDrawer open={open} onClose={() => setOpen(false)} />
     </>

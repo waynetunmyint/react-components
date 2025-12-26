@@ -17,8 +17,6 @@ import ArticleOne from "../BlockComps/ArticleOne";
 import AuthorBlockNineOne from "../BlockComps/AuthorBlockNineOne";
 import AuthorOne from "../BlockComps/AuthorOne";
 import BookBlockNineOne from "../BlockComps/BookBlockNineOne";
-import Book_BlockOne from "../BlockComps/Book_BlockOne";
-import Common_BlockOne from "../BlockComps/Common_BlockOne";
 import Display_Block_Nine from "../BlockComps/Display_Block_Nine";
 import GridBlockNineOne from "../BlockComps/GridBlockNineOne";
 import GridBlockNineTwo from "../BlockComps/GridBlockNineTwo";
@@ -33,6 +31,7 @@ import CourseTwelve from "../CourseComps/CourseTwelve";
 import AddressSixteen from "../AddressComps/AddressSixteen";
 import SliderSix from "../SliderComps/SliderSix";
 import ArticleEleven from "../ArticleComps/ArticleEleven";
+import BlockOne from "../BlockComps/BlockOne";
 
 interface Props {
   dataSource: string;
@@ -153,9 +152,6 @@ export default function BlockSwitcherComp({
   const variants: Record<string, React.ReactNode> = {
     // Advantage
     advantage1: <AdvantageOne {...common} />,
-    //Article
-    article1: <ArticleOne {...common} />,
-    article11: <ArticleEleven {...common} />,
 
     // Address
     address16: <AddressSixteen {...common} />,
@@ -190,8 +186,6 @@ export default function BlockSwitcherComp({
     // Brand
     brand1: <BrandOne {...common} />,
 
-    // Grid Blocks
-    article91: <ArticleOne {...common} />,
     author91: <AuthorBlockNineOne {...common} />,
     book91: <BookBlockNineOne {...common} />,
     display91: <Display_Block_Nine {...common} />,
@@ -214,5 +208,5 @@ export default function BlockSwitcherComp({
     return <div className="animate-pulse"><div className="h-40 bg-gray-100 rounded-md" /></div>;
   }
 
-  return <>{variants[key] ?? <CommonOne {...common} />}</>;
+  return <>{variants[key] ?? <BlockOne {...common} />}</>;
 }

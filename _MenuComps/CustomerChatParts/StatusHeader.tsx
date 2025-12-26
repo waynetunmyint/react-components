@@ -39,7 +39,8 @@ const StatusHeader = memo(function StatusHeader({
             <div className="flex items-center gap-3">
                 {/* Avatar */}
                 <div
-                    className="w-8 h-8 rounded-xl bg-gradient-to-br from-[var(--theme-accent)] to-[var(--theme-accent)]/70 flex items-center justify-center text-[var(--theme-primary-text)] font-bold text-[10px] shadow-lg border border-[var(--theme-text-primary)]/10"
+                    className="w-10 h-10 rounded-[1.25rem] flex items-center justify-center text-white font-black text-xs shadow-lg border-2 border-white/20 transform hover:rotate-3 transition-transform"
+                    style={{ background: 'var(--theme-accent-gradient)' }}
                     aria-hidden="true"
                 >
                     {getInitials(guestName)}
@@ -101,11 +102,11 @@ const StatusHeader = memo(function StatusHeader({
                 ) : (
                     <button
                         onClick={onEndChat}
-                        className="flex items-center gap-1.5 text-[9px] font-bold text-[var(--theme-accent)]/80 hover:text-[var(--theme-accent)] transition-all px-2.5 py-1.5 hover:bg-[var(--theme-accent)]/10 rounded-xl uppercase tracking-wider"
+                        className="flex items-center gap-1.5 text-[10px] font-bold text-white bg-[var(--accent-500)] hover:bg-[var(--accent-600)] transition-all px-3 py-1.5 rounded-xl uppercase tracking-wider shadow-md hover:shadow-lg active:scale-95"
                         aria-label="End chat session"
                     >
-                        <LogOut size={11} />
-                        End
+                        <LogOut size={12} />
+                        End Chat
                     </button>
                 )}
             </div>

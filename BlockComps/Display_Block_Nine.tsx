@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { IMAGE_URL } from "../../../config";
-import BlockHeader from "../HelperComps/BlockHeader";
+import BlockHeader from "../BlockComps/BlockHeader";
 
 interface GridItem extends Record<string, any> {
   Id?: string;

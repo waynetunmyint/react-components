@@ -24,7 +24,9 @@ export default function BlockHeader({
         <div className="flex flex-col items-center justify-center mb-12 px-4 gap-6 text-center">
             <div className="max-w-3xl">
                 {headingTitle && (
-                    <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+                    <h2
+                        style={{ color: 'var(--accent-500)' }}
+                        className="text-3xl sm:text-4xl font-bold leading-tight">
                         {headingTitle}
                     </h2>
                 )}
@@ -47,7 +49,7 @@ export default function BlockHeader({
                                 key={mode}
                                 onClick={() => onViewModeChange?.(mode as any)}
                                 className={`p-2 rounded-lg transition-all duration-300 ${viewMode === mode
-                                    ? "text-[var(--theme-primary-bg)] bg-white shadow-md scale-105"
+                                    ? "text-[var(--accent-500)] bg-white shadow-md scale-105"
                                     : "text-gray-400 hover:text-gray-600 hover:bg-gray-200"
                                     }`}
                                 title={mode.charAt(0).toUpperCase() + mode.slice(1)}

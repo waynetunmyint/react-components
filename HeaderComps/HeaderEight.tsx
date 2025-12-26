@@ -51,11 +51,8 @@ export default function HeaderEight({
     return (
         <>
             <header
-                className={`sticky top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? "shadow-lg" : ""}`}
-                style={{
-                    backgroundColor: 'var(--scolor)',
-                    borderBottom: '2px solid var(--scolor)'
-                }}
+                style={{ background: 'var(--accent-500)' }}
+                className={`sticky top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? "shadow-2xl" : "shadow-lg"}`}
             >
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="flex flex-col">
@@ -69,7 +66,7 @@ export default function HeaderEight({
                                             {contactData?.Thumbnail ? (
                                                 <img
                                                     src={`${IMAGE_URL}/uploads/${contactData.Thumbnail}`}
-                                                    className="w-full h-full object-contain p-1"
+                                                    className="w-full h-full rounded-full"
                                                     alt="Logo"
                                                 />
                                             ) : (
@@ -89,8 +86,7 @@ export default function HeaderEight({
                             {/* Mobile Menu Button */}
                             {showRightButtons && (
                                 <button
-                                    className="md:hidden p-2 text-[var(--scolor-contrast)] rounded-lg transition-all absolute right-0 top-2"
-                                    style={{ color: 'var(--scolor-contrast)' }}
+                                    className="md:hidden p-2 text-white/80 hover:text-white rounded-lg transition-all absolute right-0 top-2"
                                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                                 >
                                     {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -175,7 +171,9 @@ export default function HeaderEight({
                                             </button>
 
                                             {opened && (
-                                                <div className={`p-3 bg-black/10 rounded-b-xl -mt-1 mx-2 ${!cfg.isMegaMenu ? 'space-y-1' : 'grid grid-cols-3 gap-3'}`}>
+                                                <div
+                                                    style={{ background: 'var(--accent-500)' }}
+                                                    className={`p-3 rounded-b-xl -mt-1 mx-2 ${!cfg.isMegaMenu ? 'space-y-1' : 'grid grid-cols-3 gap-3'}`}>
                                                     {dropdownLoading[cfg.key] && (!dropdownData[cfg.key] || dropdownData[cfg.key].length === 0) ? (
                                                         [...Array(6)].map((_, i) => (
                                                             <div key={i} className="animate-pulse flex flex-col items-center">
@@ -192,18 +190,18 @@ export default function HeaderEight({
                                                                     setIsMenuOpen(false);
                                                                 }}
                                                                 className={`${!cfg.isMegaMenu
-                                                                    ? "w-full text-left px-3, py-2.5 text-sm font-medium text-white hover:bg-white/10 rounded-lg transition-colors border border-transparent shadow-none"
-                                                                    : "bg-[var(--theme-text-primary)] text-center rounded-lg shadow-sm p-2 flex flex-col items-center hover:bg-[var(--theme-text-secondary)] opacity-10 active:opacity-20 transition-colors"
+                                                                    ? "w-full text-left px-3 py-2.5 text-sm font-medium text-white hover:bg-white/10 rounded-lg transition-colors border border-white/5"
+                                                                    : "bg-white/10 text-center rounded-lg shadow-sm p-2 flex flex-col items-center hover:bg-white/20 transition-colors"
                                                                     }`}
                                                             >
                                                                 {cfg.isMegaMenu && (
                                                                     <img
                                                                         alt={item[cfg.titleField] || "Item"}
                                                                         src={`${IMAGE_URL}/uploads/${item[cfg.thumbnailField]}`}
-                                                                        className="w-full rounded-md object-cover ring-1 ring-gray-100"
+                                                                        className="w-full rounded-md object-cover ring-1 ring-white/20 mb-2"
                                                                     />
                                                                 )}
-                                                                <p className={`${!cfg.isMegaMenu ? 'truncate text-white' : 'mt-2 text-xs font-semibold text-gray-900 text-center line-clamp-2'}`}>
+                                                                <p className="text-white text-xs font-bold text-center line-clamp-2 uppercase tracking-tighter">
                                                                     {item[cfg.titleField]}
                                                                 </p>
                                                             </button>
@@ -247,8 +245,8 @@ export default function HeaderEight({
                     <div className="hidden md:block fixed left-0 right-0 top-28 z-40 animate-in slide-in-from-top-2">
                         <div className={`${!finalDropdowns.find(d => d.key === openDropdown)?.isMegaMenu ? 'max-w-sm' : 'max-w-7xl'} mx-auto px-4`}>
                             <div
-                                className="bg-[var(--theme-text-primary)] backdrop-blur-xl rounded-2xl shadow-2xl p-6 max-h-[75vh] overflow-y-auto"
-                                style={{ border: '1px solid var(--theme-border-primary)' }}
+                                className="backdrop-blur-3xl rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-8 max-h-[75vh] overflow-y-auto border border-white/20"
+                                style={{ background: 'var(--accent-500)' }}
                             >
                                 {dropdownLoading[openDropdown] && (!dropdownData[openDropdown] || dropdownData[openDropdown].length === 0) ? (
                                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
@@ -274,10 +272,10 @@ export default function HeaderEight({
                                                             navigate(cfg.urlPattern.replace("{id}", item[cfg.idField]))
                                                             setOpenDropdown(null);
                                                         }}
-                                                        className="w-full text-left py-2 px-3 rounded-lg hover:bg-gray-50 text-gray-700 hover:text-[var(--scolor-contrast)] transition-colors flex items-center gap-2 group break-inside-avoid"
+                                                        className="w-full text-left py-3 px-4 rounded-xl hover:bg-white/10 text-white transition-all flex items-center gap-3 group border border-transparent hover:border-white/10"
                                                     >
-                                                        <div className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-[var(--scolor-contrast)] transition-colors" />
-                                                        <span className="font-semibold text-sm truncate">{item[cfg.titleField]}</span>
+                                                        <div className="w-1.5 h-1.5 rounded-full bg-white/40 group-hover:bg-white transition-colors" />
+                                                        <span className="font-bold text-sm uppercase tracking-tight">{item[cfg.titleField]}</span>
                                                     </button>
                                                 )
                                             }
@@ -289,20 +287,20 @@ export default function HeaderEight({
                                                         navigate(cfg.urlPattern.replace("{id}", item[cfg.idField]))
                                                         setOpenDropdown(null);
                                                     }}
-                                                    className="group bg-[var(--theme-text-primary)] rounded-xl shadow-sm p-4 hover:shadow-lg transition-all border border-[var(--theme-text-secondary)] opacity-10 hover:opacity-100 hover:-translate-y-1 text-left"
+                                                    className="group bg-white/10 rounded-2xl shadow-sm p-4 hover:bg-white/20 hover:scale-[1.02] active:scale-95 transition-all text-left border border-white/10"
                                                 >
-                                                    <div className="relative overflow-hidden rounded-lg aspect-[16/9] mb-3 bg-gray-100">
+                                                    <div className="relative overflow-hidden rounded-xl aspect-[16/9] mb-3 bg-white/5 border border-white/10">
                                                         {item[cfg.thumbnailField] ? (
                                                             <img
                                                                 src={`${IMAGE_URL}/uploads/${item[cfg.thumbnailField]}`}
-                                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                                                 alt={item[cfg.titleField] || "Item"}
                                                             />
                                                         ) : (
-                                                            <div className="w-full h-full flex items-center justify-center text-gray-300">No Image</div>
+                                                            <div className="w-full h-full flex items-center justify-center text-white/20 text-xs">No Image</div>
                                                         )}
                                                     </div>
-                                                    <p className="font-bold text-gray-900 line-clamp-2 leading-tight group-hover:text-[var(--scolor-contrast)] transition-colors">
+                                                    <p className="font-black text-white line-clamp-2 leading-tight uppercase tracking-tighter text-sm">
                                                         {item[cfg.titleField]}
                                                     </p>
                                                 </button>

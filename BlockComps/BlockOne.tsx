@@ -1,68 +1,32 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { LayoutGrid, List, Package, ArrowRight } from "lucide-react";
-import { BASE_URL, IMAGE_URL, PAGE_ID, PAGE_TYPE } from "../../../config";
+import React, { useState, useCallback } from "react";
+import { List, LayoutGrid, ArrowRight, X } from "lucide-react";
+import { IMAGE_URL } from "../../../config";
 import { priceFormatter } from "../HelperComps/TextCaseComp";
+import BlockHeader from "../BlockComps/BlockHeader";
 
 interface Props {
     dataSource: string;
     headingTitle?: string | null;
     subHeadingTitle?: string | null;
-    customAPI?: string;
+    items?: any[];
+    loading?: boolean;
+    error?: string | null;
 }
 
-export default function BlockOne({ dataSource, headingTitle, subHeadingTitle, customAPI }: Props) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [items, setItems] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-    const [viewMode, setViewMode] = useState<"list" | "small" | "medium" | "large">("medium");
+export default function BlockOne({
+    dataSource,
+    headingTitle,
+    subHeadingTitle,
+    items: prefetchedItems,
+    loading: prefetchedLoading,
+    error: prefetchedError,
+}: Props) {
+    const items = prefetchedItems ?? [];
+    const loading = prefetchedLoading ?? false;
+    const error = prefetchedError ?? null;
+
+    const [viewMode, setViewMode] = useState<"list" | "grid" | "largeGrid">("grid");
     const [modalImage, setModalImage] = useState<string | null>(null);
-
-    const getData = useCallback(async () => {
-        if (!dataSource) {
-            setError("No data source provided");
-            setLoading(false);
-            return;
-        }
-
-        try {
-            setLoading(true);
-            setError(null);
-            {
-                if (customAPI) {
-                    const response = await fetch(`${BASE_URL}${customAPI}`);
-                    const result = await response.json();
-                    const data = Array.isArray(result) ? result : [];
-                    setItems(data);
-                } else {
-                    const url = PAGE_TYPE === "standalone"
-                        ? (dataSource === "article"
-                            ? `${BASE_URL}/${dataSource}/api/byPage/isInteresting/1`
-                            : `${BASE_URL}/${dataSource}/api/byPageId/byPage/`)
-                        : `${BASE_URL}/${dataSource}/api/byPageId/byPage/${PAGE_ID}/1`;
-                    const response = await fetch(url);
-                    const result = await response.json();
-                    const data = Array.isArray(result) ? result : [];
-                    setItems(data);
-                }
-            }
-
-
-
-
-        } catch (err) {
-            const message = err instanceof Error ? err.message : "Error fetching data";
-            console.error(message, err);
-            setError(message);
-            setItems([]);
-        } finally {
-            setLoading(false);
-        }
-    }, [dataSource]);
-
-    useEffect(() => {
-        getData();
-    }, [getData]);
 
     const getImageUrl = useCallback((thumbnail: string | undefined) => {
         return thumbnail
@@ -80,16 +44,13 @@ export default function BlockOne({ dataSource, headingTitle, subHeadingTitle, cu
     );
 
     const getGridClass = () => {
-        if (viewMode === "list") return "flex flex-col";
         switch (viewMode) {
-            case "small":
-                return "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6";
-            case "medium":
-                return "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4";
-            case "large":
-                return "grid-cols-1 sm:grid-cols-2";
+            case "grid":
+                return "grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4";
+            case "largeGrid":
+                return "grid-cols-2 sm:grid-cols-2";
             default:
-                return "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4";
+                return "grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4";
         }
     };
 
@@ -105,148 +66,55 @@ export default function BlockOne({ dataSource, headingTitle, subHeadingTitle, cu
 
     if (error) {
         return (
-            <div className="max-w-7xl mx-auto px-4 py-12">
-                <div className="relative overflow-hidden bg-gradient-to-r from-red-50 to-rose-50 border-l-4 border-red-500 rounded-2xl p-8 shadow-xl">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-red-100/30 rounded-full blur-3xl" />
-                    <div className="relative flex items-center gap-4">
-                        <div className="flex-shrink-0 w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center shadow-lg">
-                            <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 className="text-red-900 font-bold text-lg">Error Loading Data</h3>
-                            <p className="text-red-700 mt-1">{error}</p>
-                        </div>
-                    </div>
-                </div>
+            <div className="max-w-7xl mx-auto px-4 py-12 text-center text-red-500">
+                <p>{error}</p>
             </div>
         );
     }
 
     return (
-        <div className="py-12 px-4 bg-page text-page transition-colors duration-300">
+        <div className="py-8 sm:py-12 px-2 sm:px-4 bg-page text-page transition-colors duration-300">
             <div className="max-w-7xl mx-auto">
-                {/* Header Row with Everything */}
-                <div className="flex items-center justify-between mb-8 px-4">
-                    {/* Left: Heading & Subheading */}
-                    <div className="flex-1">
-                        <h2 id="page-heading-title-color" className="text-3xl font-bold tracking-tight text-[var(--theme-primary-bg)]">
-                            {headingTitle}
-                        </h2>
-                        {subHeadingTitle && (
-                            <p id="page-heading-subtitle-color" className="mt-1 text-base text-gray-900 font-medium">
-                                {subHeadingTitle}
-                            </p>
-                        )}
-                    </div>
+                <BlockHeader
+                    headingTitle={headingTitle}
+                    subHeadingTitle={subHeadingTitle}
+                    viewMode={viewMode}
+                    onViewModeChange={setViewMode}
+                    dataSource={dataSource}
+                    showViewAll={!loading && items.length > 0}
+                />
 
-
-                    {/* Right: View Switcher & View All */}
-                    <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
-                        {/* View Switcher */}
-                        <button
-                            onClick={() => setViewMode("list")}
-                            className={`p-1.5 rounded-md transition-all ${viewMode === "list" ? "text-[var(--theme-primary-bg)]" : "text-gray-500 hover:text-gray-700"
-                                }`}
-                        >
-                            <List size={18} strokeWidth={viewMode === "list" ? 2.5 : 2} />
-                        </button>
-
-                        <button
-                            onClick={() => setViewMode("medium")}
-                            className={`p-1.5 rounded-md transition-all ${viewMode === "medium" ? "text-[var(--theme-primary-bg)]" : "text-gray-500 hover:text-gray-700"
-                                }`}
-                        >
-                            <LayoutGrid size={18} strokeWidth={viewMode === "medium" ? 2.5 : 2} />
-                        </button>
-
-                        <button
-                            onClick={() => setViewMode("large")}
-                            className={`p-1.5 rounded-md transition-all ${viewMode === "large" ? "text-[var(--theme-primary-bg)]" : "text-gray-500 hover:text-gray-700"
-                                }`}
-                        >
-                            <LayoutGrid size={22} strokeWidth={viewMode === "large" ? 2.5 : 2} />
-                        </button>
-
-                        {/* View All Button */}
-                        {!loading && items.length > 0 && (
-                            <>
-                                <div className="w-px h-6 bg-gray-300 mx-1" />
-                                <button
-                                    onClick={() => (window.location.href = `/${dataSource}`)}
-                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium text-gray-700 hover:bg-white hover:shadow-sm transition-all"
-                                >
-                                    View All
-                                    <ArrowRight size={14} />
-                                </button>
-                            </>
-                        )}
-                    </div>
-                </div>
-
-                <div className={viewMode === "list" ? "flex flex-col gap-4 md:gap-5" : `grid ${getGridClass()} gap-4 md:gap-5`}>
+                <div className={viewMode === "list" ? "flex flex-col gap-4" : `grid ${getGridClass()} gap-3 sm:gap-6`}>
                     {loading ? (
-                        viewMode === "list" ? (
-                            Array.from({ length: 4 }).map((_, idx) => (
-                                <div key={idx} className="flex gap-4 bg-white rounded-2xl p-4 shadow-sm border border-gray-200/60 animate-pulse">
-                                    <div className="w-32 h-32 bg-gray-200 rounded-xl flex-shrink-0" />
-                                    <div className="flex-1 flex flex-col justify-center gap-3">
-                                        <div className="h-5 bg-gray-200 rounded-lg w-3/4" />
-                                        <div className="h-4 bg-gray-200 rounded-lg w-full" />
-                                        <div className="h-4 bg-gray-200 rounded-lg w-5/6" />
-                                    </div>
-                                    <div className="flex items-center">
-                                        <div className="w-6 h-6 bg-gray-200 rounded-full" />
-                                    </div>
-                                </div>
-                            ))
-                        ) : (
-                            Array.from({ length: 4 }).map((_, idx) => <Skeleton key={idx} />)
-                        )
+                        Array.from({ length: 4 }).map((_, idx) => <Skeleton key={idx} />)
                     ) : items.length === 0 ? (
-                        <div className="col-span-full flex flex-col items-center justify-center py-24">
-                            <div className="w-20 h-20 bg-gray-100 rounded-2xl flex items-center justify-center mb-5">
-                                <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-                                </svg>
-                            </div>
-                            <h3 className="text-xl font-semibold text-gray-900 mb-2">No items found</h3>
-                            <p className="text-gray-500 text-center text-sm max-w-xs">
-                                No items are available at the moment.
-                            </p>
+                        <div className="col-span-full flex flex-col items-center justify-center py-24 bg-gray-50 rounded-3xl border border-dashed border-gray-200">
+                            <h3 className="text-lg font-semibold text-gray-900">No items found</h3>
+                            <p className="text-gray-500 mt-1">Check back later for updates.</p>
                         </div>
                     ) : (
                         items.map((item, idx) => {
                             const imageUrl = getImageUrl(item.Thumbnail);
                             const title = item.Title || "Untitled";
-                            const description = item.Description || "No description available";
+                            const description = item.Description || "";
 
                             if (viewMode === "list") {
                                 return (
                                     <div
                                         key={item.Id || idx}
-                                        className="group bg-white rounded-2xl p-4 shadow-sm hover:shadow-md border border-gray-200/60 transition-all duration-200 ease-out cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-primary-bg)] focus-visible:ring-offset-2"
+                                        className="group bg-white rounded-3xl p-4 shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 cursor-pointer flex gap-6 items-center"
                                         onClick={() => handleNavigation(item.Id)}
-                                        role="button"
-                                        tabIndex={0}
-                                        aria-label={`View ${title}`}
-                                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleNavigation(item.Id); }}
                                     >
-                                        <div className="flex gap-4">
-                                            <div className="flex-1 flex flex-col gap-2 min-w-0">
-                                                <h3 className="font-semibold text-gray-900 text-lg line-clamp-1 group-hover: transition-colors duration-150">
-                                                    {title}
-                                                </h3>
-
-                                                {description && (
-                                                    <div className="mt-3 pt-3 border-t border-gray-100">
-                                                        <p className="text-gray-600 text-sm line-clamp-2 leading-relaxed">
-                                                            {description}
-                                                        </p>
-                                                    </div>
-                                                )}
-                                            </div>
+                                        <div className="relative w-32 h-32 sm:w-48 sm:h-32 flex-shrink-0 rounded-2xl overflow-hidden bg-gray-100">
+                                            <img src={imageUrl} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                        </div>
+                                        <div className="flex-1 py-1 min-w-0">
+                                            <h3 className="font-bold text-xl text-gray-900 mb-2 group-hover:text-[var(--accent-500)] transition-colors truncate">
+                                                {title}
+                                            </h3>
+                                            {description && (
+                                                <p className="text-gray-500 text-sm line-clamp-2">{description}</p>
+                                            )}
                                         </div>
                                     </div>
                                 );
@@ -255,65 +123,37 @@ export default function BlockOne({ dataSource, headingTitle, subHeadingTitle, cu
                             return (
                                 <div
                                     key={item.Id || idx}
-                                    className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg border border-gray-200/60 transition-all duration-200 ease-out hover:-translate-y-1 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-primary-bg)] focus-visible:ring-offset-2"
+                                    className="group relative bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl border border-gray-100 transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col"
                                     onClick={() => handleNavigation(item.Id)}
-                                    role="button"
-                                    tabIndex={0}
-                                    aria-label={`View ${title}`}
-                                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleNavigation(item.Id); }}
                                 >
-                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-200 z-10 pointer-events-none" />
-
-                                    <div className="relative overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 aspect-[4/3]">
+                                    <div className="relative overflow-hidden bg-gray-100 aspect-[4/3]">
                                         <img
                                             src={imageUrl}
                                             alt={title}
-                                            className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-200 ease-out"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                setModalImage(imageUrl);
-                                            }}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-
-                                        <div className="absolute inset-0 flex items-center justify-center">
-                                            <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-sm">
-                                                <svg className="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </div>
+                                        <div className="absolute inset-x-0 bottom-0 p-2 flex justify-end">
+                                            <button
+                                                onClick={(e) => { e.stopPropagation(); setModalImage(imageUrl); }}
+                                                className="p-2 bg-white/90 backdrop-blur-md rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                                            >
+                                                <X size={16} className="rotate-45" />
+                                            </button>
                                         </div>
                                     </div>
-
-                                    <div className="p-5 relative z-20">
-                                        <h3 className="font-semibold text-gray-900 text-lg mb-2 line-clamp-2 group-hover: transition-colors duration-150">
+                                    <div className="p-3 sm:p-5 flex-1 flex flex-col">
+                                        <h3 className="font-bold text-sm sm:text-lg text-gray-900 mb-1 sm:mb-2 line-clamp-2 group-hover:text-[var(--accent-500)] transition-colors">
                                             {title}
                                         </h3>
-                                        <p className="text-gray-600 text-sm line-clamp-3 leading-relaxed mb-3">
-                                            {description}
-                                        </p>
-                                        {
-                                            item.BookAuthorTitle && (
-                                                <p className=" font-semibold text-lg mb-3">
-                                                    {item.BookAuthorTitle}
-                                                </p>
-                                            )
-                                        }
+                                        <p className="text-gray-500 text-xs sm:text-sm line-clamp-2 mb-2 sm:mb-4">{description}</p>
                                         {item.Price && (
-                                            <div className="inline-flex items-baseline gap-2 px-4 py-2.5 rounded-xl bg-[rgba(var(--theme-primary-bg-rgb),0.1)] border border-[rgba(var(--theme-primary-bg-rgb),0.2)] shadow-sm mb-3">
-                                                <span className="text-xs font-semibold text-[var(--theme-primary-bg)] uppercase tracking-wide">Price</span>
-                                                <span className="font-bold text-2xl text-[var(--theme-primary-bg)]">
+                                            <div className="mt-auto pt-2 sm:pt-4 border-t border-gray-50 flex items-center justify-between">
+                                                <span className="text-sm sm:text-lg font-bold text-[var(--accent-500)]">
                                                     {priceFormatter(item.Price)}
                                                 </span>
+                                                <ArrowRight size={16} className="text-gray-400 group-hover:text-[var(--accent-500)]" />
                                             </div>
                                         )}
-
-                                        <div className="flex items-center gap-2  font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-150">
-                                            <span>View details</span>
-                                            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-150" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                            </svg>
-                                        </div>
                                     </div>
                                 </div>
                             );
@@ -324,26 +164,16 @@ export default function BlockOne({ dataSource, headingTitle, subHeadingTitle, cu
 
             {modalImage && (
                 <div
-                    className="fixed inset-0 bg-black/95 backdrop-blur-md flex items-center justify-center z-50 p-4 animate-in fade-in duration-300"
+                    className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-in fade-in duration-300"
                     onClick={() => setModalImage(null)}
                 >
                     <button
                         onClick={() => setModalImage(null)}
-                        className="absolute top-6 right-6 text-white bg-white/10 hover:bg-white/20 rounded-full p-3 transition-all duration-300 hover:rotate-90 shadow-xl backdrop-blur-sm"
+                        className="absolute top-6 right-6 p-2 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full transition-all"
                     >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
+                        <X size={24} />
                     </button>
-                    <div className="relative">
-                        <img
-                            src={modalImage}
-                            alt="Preview"
-                            className="max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl"
-                            onClick={(e) => e.stopPropagation()}
-                        />
-                        <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-3xl -z-10" />
-                    </div>
+                    <img src={modalImage} alt="Preview" className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl" onClick={(e) => e.stopPropagation()} />
                 </div>
             )}
         </div>

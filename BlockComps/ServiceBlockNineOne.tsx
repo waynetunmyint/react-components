@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { List, LayoutGrid, ArrowRight, Briefcase, ChevronRight } from "lucide-react";
-import BlockHeader from "../HelperComps/BlockHeader";
+import BlockHeader from "../BlockComps/BlockHeader";
 
 interface Props {
     dataSource: string;

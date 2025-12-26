@@ -47,12 +47,12 @@ const RegistrationForm = memo(function RegistrationForm({
             aria-label="Chat registration form"
         >
             {/* Animated Icon */}
-            <div className="relative mb-5">
-                <div className="w-14 h-14 bg-gradient-to-br from-[var(--theme-accent)] to-[var(--scolor-contrast)] rounded-2xl flex items-center justify-center shadow-2xl shadow-[var(--theme-accent)]/20 transform -rotate-3 animate-float">
-                    <User size={26} className="text-[var(--theme-text-primary)]" />
+            <div className="relative mb-6">
+                <div className="w-16 h-16 rounded-[2rem] flex items-center justify-center text-white shadow-xl animate-float" style={{ background: 'var(--accent-500)' }}>
+                    <User size={30} />
                 </div>
-                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[var(--scolor)] rounded-full flex items-center justify-center border-2 border-[var(--theme-secondary-bg)]">
-                    <CheckCircle size={12} className="text-[var(--theme-text-primary)]" />
+                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-[var(--accent-500)] rounded-full flex items-center justify-center border-4 border-[var(--theme-secondary-bg)] shadow-md">
+                    <CheckCircle size={14} className="text-white" />
                 </div>
             </div>
 
@@ -62,9 +62,9 @@ const RegistrationForm = memo(function RegistrationForm({
             </p>
 
             {/* Security Badge */}
-            <div className="flex items-center gap-1.5 mb-4 px-3 py-1.5 bg-[var(--theme-text-secondary)]/10 rounded-full border border-[var(--theme-text-secondary)]/20">
-                <Lock size={10} className="text-[var(--scolor)]" />
-                <span className="text-[9px] text-[var(--theme-text-muted)] font-medium">Your data is secure & encrypted</span>
+            <div className="flex items-center gap-1.5 mb-6 px-4 py-2 bg-[var(--accent-500)]/10 rounded-full border border-[var(--accent-500)]/20">
+                <Lock size={10} className="text-[var(--accent-500)]" />
+                <span className="text-[9px] text-[var(--scolor-contrast)] font-black uppercase tracking-widest">Secure & Encrypted</span>
             </div>
 
             <form onSubmit={handleSubmit} className="w-full space-y-3 max-w-[280px]">
@@ -86,11 +86,11 @@ const RegistrationForm = memo(function RegistrationForm({
                             onFocus={() => setFocusedField('name')}
                             onBlur={() => setFocusedField(null)}
                             placeholder="Your full name"
-                            className={`w-full bg-[var(--theme-text-secondary)]/10 border text-[var(--theme-text-primary)] rounded-xl px-4 py-3 text-xs focus:outline-none transition-all placeholder:text-[var(--theme-text-muted)]/50 ${focusedField === 'name'
-                                ? 'border-[var(--theme-accent)]/50 ring-2 ring-[var(--theme-accent)]/20'
+                            className={`w-full bg-white border text-[var(--theme-text-primary)] rounded-xl px-4 py-3 text-xs focus:outline-none transition-all placeholder:text-[var(--theme-text-muted)]/50 ${focusedField === 'name'
+                                ? 'border-[var(--accent-500)]/50 ring-2 ring-[var(--accent-500)]/20'
                                 : guestName && !isNameValid
-                                    ? 'border-[var(--theme-accent)]/50'
-                                    : 'border-[var(--theme-text-primary)]/5 hover:border-[var(--theme-text-primary)]/10'
+                                    ? 'border-red-500/50'
+                                    : 'border-[var(--theme-text-primary)]/10 hover:border-[var(--theme-text-primary)]/20'
                                 }`}
                             aria-required="true"
                             aria-invalid={guestName.length > 0 && !isNameValid}
@@ -108,13 +108,13 @@ const RegistrationForm = memo(function RegistrationForm({
                 </div>
 
                 {/* Phone Field */}
-                <div className="space-y-1.5 text-left">
+                <div className="space-y-2 text-left">
                     <label
                         htmlFor="guest-phone"
-                        className="text-[9px] font-bold text-slate-500 uppercase px-1 tracking-wider flex items-center gap-1"
+                        className="text-[10px] font-black text-[var(--theme-text-muted)] uppercase px-1 tracking-[0.1em] flex items-center gap-2"
                     >
-                        <Phone size={10} />
-                        Phone Number <span className="text-red-400">*</span>
+                        <Phone size={11} className="text-[var(--scolor)]" />
+                        Phone Number <span className="text-[var(--accent-500)]">*</span>
                     </label>
                     <div className="relative">
                         <input
@@ -126,21 +126,21 @@ const RegistrationForm = memo(function RegistrationForm({
                             onFocus={() => setFocusedField('phone')}
                             onBlur={() => setFocusedField(null)}
                             placeholder="e.g. +1 234 567 8900"
-                            className={`w-full bg-slate-800/60 border text-white rounded-xl px-4 py-3 text-xs focus:outline-none transition-all placeholder:text-slate-600 ${focusedField === 'phone'
-                                ? 'border-blue-500/50 ring-2 ring-blue-500/20'
+                            className={`w-full bg-white border text-[var(--theme-text-primary)] rounded-2xl px-5 py-3.5 text-xs focus:outline-none transition-all placeholder:text-[var(--theme-text-muted)]/40 ${focusedField === 'phone'
+                                ? 'border-[var(--accent-500)] ring-4 ring-[var(--accent-500)]/10'
                                 : guestPhone && !isPhoneValid
                                     ? 'border-red-500/50'
-                                    : 'border-white/5 hover:border-white/10'
+                                    : 'border-transparent hover:border-[var(--theme-border-primary)]'
                                 }`}
                             aria-required="true"
                             aria-invalid={guestPhone.length > 0 && !isPhoneValid}
                         />
                         {guestPhone && (
-                            <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                            <div className="absolute right-4 top-1/2 -translate-y-1/2">
                                 {isPhoneValid ? (
-                                    <CheckCircle size={14} className="text-green-400" />
+                                    <CheckCircle size={16} className="text-[var(--accent-500)]" />
                                 ) : (
-                                    <AlertCircle size={14} className="text-red-400" />
+                                    <AlertCircle size={16} className="text-red-500" />
                                 )}
                             </div>
                         )}
@@ -148,13 +148,13 @@ const RegistrationForm = memo(function RegistrationForm({
                 </div>
 
                 {/* Email Field */}
-                <div className="space-y-1.5 text-left">
+                <div className="space-y-2 text-left">
                     <label
                         htmlFor="guest-email"
-                        className="text-[9px] font-bold text-slate-500 uppercase px-1 tracking-wider flex items-center gap-1"
+                        className="text-[10px] font-black text-[var(--theme-text-muted)] uppercase px-1 tracking-[0.1em] flex items-center gap-2"
                     >
-                        <Mail size={10} />
-                        Email <span className="text-slate-600">(Optional)</span>
+                        <Mail size={11} className="text-[var(--scolor)]" />
+                        Email <span className="text-[var(--theme-text-muted)] font-bold italic">(Optional)</span>
                     </label>
                     <div className="relative">
                         <input
@@ -165,20 +165,20 @@ const RegistrationForm = memo(function RegistrationForm({
                             onFocus={() => setFocusedField('email')}
                             onBlur={() => setFocusedField(null)}
                             placeholder="your@email.com"
-                            className={`w-full bg-slate-800/60 border text-white rounded-xl px-4 py-3 text-xs focus:outline-none transition-all placeholder:text-slate-600 ${focusedField === 'email'
-                                ? 'border-blue-500/50 ring-2 ring-blue-500/20'
+                            className={`w-full bg-white border text-[var(--theme-text-primary)] rounded-2xl px-5 py-3.5 text-xs focus:outline-none transition-all placeholder:text-[var(--theme-text-muted)]/40 ${focusedField === 'email'
+                                ? 'border-[var(--accent-500)] ring-4 ring-[var(--accent-500)]/10'
                                 : guestEmail && !isEmailValid
                                     ? 'border-red-500/50'
-                                    : 'border-white/5 hover:border-white/10'
+                                    : 'border-transparent hover:border-[var(--theme-border-primary)]'
                                 }`}
                             aria-invalid={guestEmail.length > 0 && !isEmailValid}
                         />
                         {guestEmail && (
-                            <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                            <div className="absolute right-4 top-1/2 -translate-y-1/2">
                                 {isEmailValid ? (
-                                    <CheckCircle size={14} className="text-green-400" />
+                                    <CheckCircle size={16} className="text-[var(--accent-500)]" />
                                 ) : (
-                                    <AlertCircle size={14} className="text-red-400" />
+                                    <AlertCircle size={16} className="text-red-500" />
                                 )}
                             </div>
                         )}
@@ -186,13 +186,13 @@ const RegistrationForm = memo(function RegistrationForm({
                 </div>
 
                 {/* Company Field (Optional) */}
-                <div className="space-y-1.5 text-left">
+                <div className="space-y-2 text-left">
                     <label
                         htmlFor="guest-company"
-                        className="text-[9px] font-bold text-slate-500 uppercase px-1 tracking-wider flex items-center gap-1"
+                        className="text-[10px] font-black text-[var(--theme-text-muted)] uppercase px-1 tracking-[0.1em] flex items-center gap-2"
                     >
-                        <Building2 size={10} />
-                        Company <span className="text-slate-600">(Optional)</span>
+                        <Building2 size={11} className="text-[var(--scolor)]" />
+                        Company <span className="text-[var(--theme-text-muted)] font-bold italic">(Optional)</span>
                     </label>
                     <div className="relative">
                         <input
@@ -203,14 +203,14 @@ const RegistrationForm = memo(function RegistrationForm({
                             onFocus={() => setFocusedField('company')}
                             onBlur={() => setFocusedField(null)}
                             placeholder="Your company name"
-                            className={`w-full bg-slate-800/60 border text-white rounded-xl px-4 py-3 text-xs focus:outline-none transition-all placeholder:text-slate-600 ${focusedField === 'company'
-                                ? 'border-blue-500/50 ring-2 ring-blue-500/20'
-                                : 'border-white/5 hover:border-white/10'
+                            className={`w-full bg-white border text-[var(--theme-text-primary)] rounded-2xl px-5 py-3.5 text-xs focus:outline-none transition-all placeholder:text-[var(--theme-text-muted)]/40 ${focusedField === 'company'
+                                ? 'border-[var(--accent-500)] ring-4 ring-[var(--accent-500)]/10'
+                                : 'border-transparent hover:border-[var(--theme-border-primary)]'
                                 }`}
                         />
                         {guestCompany && (
-                            <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                                <CheckCircle size={14} className="text-green-400" />
+                            <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                                <CheckCircle size={16} className="text-[var(--accent-500)]" />
                             </div>
                         )}
                     </div>
@@ -221,7 +221,7 @@ const RegistrationForm = memo(function RegistrationForm({
                     type="submit"
                     disabled={!canSubmit || isSubmitting}
                     className={`w-full font-bold py-3.5 rounded-xl shadow-lg transition-all mt-3 flex items-center justify-center gap-2 text-sm ${canSubmit && !isSubmitting
-                        ? 'bg-gradient-to-r from-[var(--theme-accent)] to-[var(--scolor-contrast)] text-[var(--theme-primary-text)] shadow-[var(--theme-accent)]/20 hover:shadow-[var(--theme-accent)]/30 hover:scale-[1.02] active:scale-[0.98]'
+                        ? 'bg-[var(--accent-500)] text-white shadow-[var(--accent-500)]/20 hover:shadow-[var(--accent-500)]/30 hover:scale-[1.02] active:scale-[0.98]'
                         : 'bg-[var(--theme-text-secondary)]/10 text-[var(--theme-text-muted)] cursor-not-allowed'
                         }`}
                     aria-disabled={!canSubmit || isSubmitting}

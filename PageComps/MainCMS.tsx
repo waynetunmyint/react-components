@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { LayoutGrid, List } from "lucide-react";
+import { LayoutGrid, List, ArrowRight, Calendar, RefreshCw } from "lucide-react";
 import { BASE_URL, IMAGE_URL, PAGE_ID, PAGE_TYPE } from "../../../config";
 import { CommonOne } from "./CommonOne";
 import { useCachedPaginatedFetch } from "../_hooks/useCachedPaginatedFetch";
 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-interface item extends Record<string, any> {
+interface Item extends Record<string, any> {
   Id?: string;
   id?: string;
   Title?: string;
@@ -61,7 +61,7 @@ export default function MainCMS({
     currentPage,
     loadMore: handleLoadMore,
     refresh: getData,
-  } = useCachedPaginatedFetch<item>(url, {
+  } = useCachedPaginatedFetch<Item>(url, {
     cacheTime: 10 * 60 * 1000, // 10 minutes cache
     itemsPerPage,
   });
@@ -79,7 +79,7 @@ export default function MainCMS({
   const getImageUrl = (thumbnail: string | undefined) =>
     thumbnail ? `${IMAGE_URL}/uploads/${thumbnail}` : "https://via.placeholder.com/300x300?text=No+Image";
 
-  const handleItemClick = (item: item) => {
+  const handleItemClick = (item: Item) => {
     const id = item[idField] || item.id || item.Id;
     if (dataSource && id) {
       window.location.href = `/${dataSource}/view/${id}`;
@@ -136,15 +136,17 @@ export default function MainCMS({
     <section className="py-8 px-4 bg-page mt-20 min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* Hero Section - Enhanced */}
+        {/* Hero Section - Enhanced */}
         {(headingTitle || subHeadingTitle) && (
-          <div className="text-center mb-12 px-4 animate-fade-in">
+          <div className="text-center mb-16 px-4 animate-fade-in relative">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-r from-transparent via-gray-100/40 to-transparent blur-3xl -z-10 pointer-events-none" />
             {headingTitle && (
-              <h1 className="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight text-gray-900">
+              <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight text-gray-900 leading-tight drop-shadow-sm">
                 {headingTitle}
               </h1>
             )}
             {subHeadingTitle && (
-              <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed text-gray-600">
+              <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed text-gray-600 font-medium bg-white/50 backdrop-blur-sm rounded-xl p-2 inline-block">
                 {subHeadingTitle}
               </p>
             )}
@@ -152,43 +154,39 @@ export default function MainCMS({
         )}
 
         {/* Combined Page indicator and View Switcher */}
-        <div className="text-sm mb-8 bg-gradient-to-r from-white via-gray-50/30 to-white backdrop-blur-md rounded-2xl px-6 py-4 shadow-md border border-gray-100/40 transition-all duration-300 hover:shadow-lg" aria-live="polite">
+        <div className="sticky top-20 z-30 mb-8 bg-white/80 backdrop-blur-xl rounded-2xl px-6 py-3 shadow-sm border border-gray-200/60 transition-all duration-300 hover:shadow-md" aria-live="polite">
           <div className="flex items-center justify-between flex-wrap gap-4">
             {/* Left: Page info */}
-            <span className="inline-flex items-center gap-2.5 font-medium">
-              <svg className="w-4 h-4" style={{ color: 'var(--theme-primary-bg)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-              </svg>
-              <span className="text-gray-600">Showing</span>
-              <span className="px-2 py-0.5 rounded-md font-bold text-sm" style={{ backgroundColor: 'color-mix(in srgb, var(--theme-primary-bg), transparent 85%)', color: 'var(--theme-primary-bg)' }}>{displayedItems.length}</span>
-              <span className="text-gray-600">items</span>
-              <span className="w-1.5 h-1.5 bg-gray-300 rounded-full mx-1"></span>
-              <span className="text-gray-600">Page</span>
-              <span className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded-md font-bold text-sm">{currentPage}</span>
+            <span className="inline-flex items-center gap-2.5 font-medium text-sm">
+              <div className="p-1.5 rounded-lg bg-gray-50 text-gray-400">
+                <LayoutGrid size={16} />
+              </div>
+              <span className="text-gray-500">Showing</span>
+              <span className="px-2.5 py-1 rounded-md font-bold text-gray-900 bg-gray-100/80 border border-gray-200/50 min-w-[2rem] text-center" >{displayedItems.length}</span>
+              <span className="text-gray-500">items</span>
+              <span className="w-px h-4 bg-gray-200 mx-1"></span>
+              <span className="text-gray-500">Page</span>
+              <span className="px-2.5 py-1 bg-[var(--accent-500)] text-white rounded-md font-bold shadow-sm shadow-[var(--accent-500)]/20">{currentPage}</span>
               {loading && (
-                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ml-2" style={{ backgroundColor: 'color-mix(in srgb, var(--theme-primary-bg), transparent 90%)', color: 'var(--theme-primary-bg)' }}>
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ backgroundColor: 'var(--theme-primary-bg)' }}></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: 'var(--theme-primary-bg)' }}></span>
-                  </span>
-                  Loading…
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ml-2 text-[var(--accent-500)] bg-[color-mix(in_srgb,var(--accent-500),transparent_92%)] border border-[color-mix(in_srgb,var(--accent-500),transparent_85%)]">
+                  <RefreshCw size={12} className="animate-spin" />
+                  Updating
                 </span>
               )}
             </span>
 
             {/* Right: View Switcher */}
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-gray-500 hidden sm:inline">View:</span>
-              <div className="flex items-center gap-0.5">
+            <div className="flex items-center gap-3">
+              <span className="text-xs font-semibold text-gray-400 tracking-wide uppercase hidden sm:inline">Layout</span>
+              <div className="flex items-center p-1 bg-gray-100/80 rounded-xl border border-gray-200/50">
                 <button
                   onClick={() => setViewMode("list")}
                   aria-label="List view"
                   aria-pressed={viewMode === "list"}
-                  className={`p-1.5 rounded-md transition-all duration-200 ${viewMode === "list"
-                    ? "text-white"
-                    : "text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                  className={`p-2 rounded-lg transition-all duration-300 ${viewMode === "list"
+                    ? "text-white shadow-sm scale-100 bg-[var(--accent-500)]"
+                    : "text-gray-400 hover:text-gray-600 hover:bg-white/50 scale-95 hover:scale-100"
                     }`}
-                  style={viewMode === "list" ? { backgroundColor: 'var(--theme-primary-bg)' } : undefined}
                 >
                   <List size={16} strokeWidth={viewMode === "list" ? 2.5 : 2} />
                 </button>
@@ -197,11 +195,10 @@ export default function MainCMS({
                   onClick={() => setViewMode("medium")}
                   aria-label="Medium grid view"
                   aria-pressed={viewMode === "medium"}
-                  className={`p-1.5 rounded-md transition-all duration-200 ${viewMode === "medium"
-                    ? "text-white"
-                    : "text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                  className={`p-2 rounded-lg transition-all duration-300 ${viewMode === "medium"
+                    ? "text-white shadow-sm scale-100 bg-[var(--accent-500)]"
+                    : "text-gray-400 hover:text-gray-600 hover:bg-white/50 scale-95 hover:scale-100"
                     }`}
-                  style={viewMode === "medium" ? { backgroundColor: 'var(--theme-primary-bg)' } : undefined}
                 >
                   <LayoutGrid size={16} strokeWidth={viewMode === "medium" ? 2.5 : 2} />
                 </button>
@@ -210,11 +207,10 @@ export default function MainCMS({
                   onClick={() => setViewMode("large")}
                   aria-label="Large grid view"
                   aria-pressed={viewMode === "large"}
-                  className={`p-1.5 rounded-md transition-all duration-200 ${viewMode === "large"
-                    ? "text-white"
-                    : "text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                  className={`p-2 rounded-lg transition-all duration-300 ${viewMode === "large"
+                    ? "text-white shadow-sm scale-100 bg-[var(--accent-500)]"
+                    : "text-gray-400 hover:text-gray-600 hover:bg-white/50 scale-95 hover:scale-100"
                     }`}
-                  style={viewMode === "large" ? { backgroundColor: 'var(--theme-primary-bg)' } : undefined}
                 >
                   <LayoutGrid size={20} strokeWidth={viewMode === "large" ? 2.5 : 2} />
                 </button>
@@ -262,7 +258,7 @@ export default function MainCMS({
               onClick={() => getData()}
               aria-label="Retry fetching items"
               className="inline-flex items-center gap-2.5 px-8 py-4 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 focus:outline-none focus-visible:ring-4 active:scale-[0.98]"
-              style={{ backgroundColor: 'var(--theme-primary-bg)' }}
+              style={{ backgroundColor: 'var(--accent-500)' }}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -274,7 +270,7 @@ export default function MainCMS({
           <>
             {/* Enhanced card grid/list with improved interactions */}
             <div className={viewMode === "list" ? "flex flex-col gap-5 px-4 mb-12" : `grid ${getGridClass()} gap-6 px-4 mb-12`}>
-              {displayedItems.map((item: item, idx: number) => {
+              {displayedItems.map((item: Item, idx: number) => {
                 const label = item.Title || item.BrandName || `Item ${idx + 1}`;
 
                 // LIST VIEW - Enhanced
@@ -289,43 +285,40 @@ export default function MainCMS({
                       onKeyDown={(e) => {
                         if (e.key === "Enter" || e.key === " ") handleItemClick(item);
                       }}
-                      className="group card-page shadow-md hover:shadow-xl border-page transition-all duration-300 cursor-pointer overflow-hidden hover:scale-[1.01] focus-visible:ring-4 focus-visible:ring-blue-400/30 focus:outline-none"
+                      className="group bg-white rounded-3xl p-4 shadow-sm hover:shadow-xl border border-gray-100 transition-all duration-300 cursor-pointer flex flex-col sm:flex-row gap-6 items-center hover:border-gray-200"
                     >
-                      <div className="flex gap-5">
-                        <div className="relative overflow-hidden w-36 h-36 flex-shrink-0 bg-gray-100">
-                          <img
-                            src={getImageUrl(item.Thumbnail)}
-                            alt={label}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            decoding="async"
-                            loading="lazy"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        </div>
-                        <div className="flex-1 flex flex-col gap-2.5 py-3 pr-4">
-                          <h3 className="font-bold text-gray-900 text-xl line-clamp-2 transition-colors duration-200 group-hover:text-theme-primary">
+                      <div className="relative w-full sm:w-48 aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100 shadow-inner group-hover:shadow-md transition-all duration-300">
+                        <img
+                          src={getImageUrl(item.Thumbnail)}
+                          alt={label}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          decoding="async"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </div>
+                      <div className="flex-1 w-full flex flex-col gap-3 py-1 min-w-0">
+                        <div className="flex justify-between items-start gap-4">
+                          <h3 className="font-bold text-gray-900 text-xl leading-snug line-clamp-2 transition-colors duration-200 group-hover:text-[var(--accent-500)]">
                             {label}
                           </h3>
-                          {item.CreatedAt && (
-                            <div className="flex items-center gap-2 text-gray-500 text-sm">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                              </svg>
-                              {new Date(item.CreatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                            </div>
-                          )}
-                          {item.Description && (
-                            <p className="text-gray-600 text-sm line-clamp-3 leading-relaxed">
-                              {item.Description}
-                            </p>
-                          )}
-                          <div className="mt-auto flex items-center gap-2 font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200" style={{ color: 'var(--theme-primary-bg)' }}>
-                            <span>View details</span>
-                            <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
+                          <div className="p-2 rounded-full bg-gray-50 text-gray-400 group-hover:text-[var(--accent-500)] group-hover:bg-[color-mix(in_srgb,var(--accent-500),transparent_90%)] transition-colors duration-300 flex-shrink-0">
+                            <ArrowRight size={20} />
                           </div>
                         </div>
+
+                        {item.CreatedAt && (
+                          <div className="flex items-center gap-2 text-gray-500 text-sm font-medium">
+                            <Calendar size={14} className="text-gray-400" />
+                            {new Date(item.CreatedAt!).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                          </div>
+                        )}
+
+                        {item.Description && (
+                          <p className="text-gray-600 text-sm line-clamp-2 leading-relaxed flex-1">
+                            {item.Description}
+                          </p>
+                        )}
                       </div>
                     </div>
                   );
@@ -351,8 +344,8 @@ export default function MainCMS({
                   aria-label="Load more items"
                   className={`group w-full sm:w-auto px-10 py-4 font-bold text-base rounded-2xl shadow-lg hover:shadow-xl text-white ${prefersReducedMotion ? "" : "transition-all duration-300 ease-out hover:-translate-y-0.5 active:scale-[0.98]"} focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-3`}
                   style={{
-                    backgroundColor: 'var(--theme-primary-bg)',
-                    boxShadow: '0 10px 25px -5px color-mix(in srgb, var(--theme-primary-bg), transparent 70%)'
+                    backgroundColor: 'var(--accent-500)',
+                    boxShadow: '0 10px 25px -5px color-mix(in srgb, var(--accent-500), transparent 70%)'
                   }}
                 >
                   {loading ? (

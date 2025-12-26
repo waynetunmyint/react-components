@@ -1,6 +1,6 @@
 import React from "react";
 import * as LucideIcons from "lucide-react";
-import BlockHeader from "../HelperComps/BlockHeader";
+import BlockHeader from "../BlockComps/BlockHeader";
 
 interface Props {
     dataSource: string;

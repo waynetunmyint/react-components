@@ -24,7 +24,7 @@ export default function MessageInput({
     };
 
     return (
-        <div className="border-t border-slate-700 bg-slate-800 p-3">
+        <div className="border-t border-[var(--theme-border-primary)] bg-[var(--theme-secondary-bg)] p-4">
             <div className="flex items-end gap-2">
                 <textarea
                     ref={inputRef}
@@ -33,19 +33,20 @@ export default function MessageInput({
                     onKeyDown={handleKeyDown}
                     placeholder="Type a message..."
                     rows={1}
-                    className="flex-1 bg-slate-700 text-white placeholder-slate-400 rounded-xl px-4 py-2.5 text-xs resize-none focus:outline-none focus:ring-1 focus:ring-[var(--theme-primary-bg)] max-h-24 min-h-[40px]"
+                    className="flex-1 bg-[var(--bg-200)] text-[var(--theme-text-primary)] placeholder-[var(--theme-text-muted)] rounded-2xl px-4 py-3 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-[var(--scolor)] max-h-32 min-h-[44px] transition-all border border-transparent focus:border-[var(--scolor)]/20"
                     style={{
                         height: 'auto',
-                        overflow: value.split('\n').length > 3 ? 'auto' : 'hidden'
+                        overflow: value.split('\n').length > 4 ? 'auto' : 'hidden'
                     }}
                 />
                 <button
                     onClick={onSend}
                     disabled={!value.trim() || isSending}
-                    className={`p-2.5 rounded-xl transition-all shrink-0 ${value.trim() && !isSending
-                        ? "bg-[var(--theme-primary-bg)] text-[var(--theme-primary-text)] hover:opacity-90"
-                        : "bg-slate-700 text-slate-500 cursor-not-allowed"
+                    className={`p-3 rounded-2xl transition-all shrink-0 shadow-lg active:scale-90 ${value.trim() && !isSending
+                        ? "text-white shadow-[var(--scolor)]/20"
+                        : "bg-[var(--bg-300)] text-[var(--theme-text-muted)] cursor-not-allowed shadow-none"
                         }`}
+                    style={value.trim() && !isSending ? { background: 'var(--theme-accent-gradient)' } : {}}
                 >
                     {isSending ? (
                         <Loader2 className="w-5 h-5 animate-spin" />

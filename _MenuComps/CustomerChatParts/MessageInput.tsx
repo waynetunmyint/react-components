@@ -17,16 +17,12 @@ export default function MessageInput({
     isSending
 }: MessageInputProps) {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
-    const [showHint, setShowHint] = useState(true);
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
             onSendMessage();
         }
-
-        // Hide hint after first interaction
-        if (showHint) setShowHint(false);
     };
 
     // Auto-resize textarea
@@ -42,20 +38,9 @@ export default function MessageInput({
     const isOverLimit = charCount > MAX_MESSAGE_LENGTH;
 
     return (
-        <div className="p-3 bg-[var(--theme-secondary-bg)]/50 backdrop-blur-md border-t border-[var(--theme-border-primary)]/10 shrink-0">
-            {/* Keyboard Hint */}
-            {showHint && inputMessage.length === 0 && (
-                <div className="mb-2 px-2 py-1.5 bg-[var(--theme-text-secondary)]/10 rounded-lg flex items-center gap-2 animate-fadeIn">
-                    <Keyboard size={12} className="text-[var(--theme-text-muted)]" />
-                    <p className="text-[9px] text-[var(--theme-text-muted)] italic">
-                        Press <kbd className="px-1 py-0.5 bg-[var(--theme-text-secondary)]/20 rounded text-[8px] font-mono">Enter</kbd> to send,
-                        <kbd className="px-1 py-0.5 bg-[var(--theme-text-secondary)]/20 rounded text-[8px] font-mono ml-1">Shift+Enter</kbd> for new line
-                    </p>
-                </div>
-            )}
-
-            <div className="flex items-end gap-2">
-                <div className="flex-1 bg-[var(--theme-text-secondary)]/10 rounded-2xl px-4 py-2 border border-[var(--theme-text-primary)]/5 focus-within:border-[var(--theme-border-accent)]/50 transition-all shadow-inner">
+        <div className="p-3 bg-[var(--theme-secondary-bg)]/80 backdrop-blur-md border-t border-[var(--theme-border-primary)]/20 shrink-0">
+            <div className="flex items-end gap-3 relative">
+                <div className="flex-1 bg-white dark:bg-black/20 rounded-2xl px-4 py-3 border border-gray-200 dark:border-white/10 focus-within:border-[var(--accent-500)] focus-within:ring-2 focus-within:ring-[var(--accent-500)]/20 transition-all shadow-sm">
                     <textarea
                         ref={textareaRef}
                         value={inputMessage}
@@ -66,7 +51,7 @@ export default function MessageInput({
                         }}
                         onKeyDown={handleKeyDown}
                         placeholder="Type your message..."
-                        className="w-full bg-transparent text-[var(--theme-text-primary)] text-[13px] outline-none resize-none max-h-24 min-h-[24px] placeholder:text-[var(--theme-text-muted)]"
+                        className="w-full bg-transparent text-[var(--theme-text-primary)] text-sm outline-none resize-none max-h-32 min-h-[24px] placeholder:text-[var(--theme-text-muted)]/70 font-medium"
                         rows={1}
                         aria-label="Message input"
                         aria-describedby="char-counter"
@@ -76,11 +61,11 @@ export default function MessageInput({
                     {isNearLimit && (
                         <div
                             id="char-counter"
-                            className="mt-1 text-right animate-fadeIn"
+                            className="absolute -top-6 right-0 px-2 py-1 bg-black/70 text-white text-[10px] rounded-md animate-fadeIn backdrop-blur-sm"
                             role="status"
                             aria-live="polite"
                         >
-                            <span className={`text-[9px] font-medium ${isOverLimit ? 'text-[var(--theme-accent)]' : 'text-[var(--scolor)]'}`}>
+                            <span className={`font-bold ${isOverLimit ? 'text-red-400' : 'text-white'}`}>
                                 {charCount}/{MAX_MESSAGE_LENGTH}
                             </span>
                         </div>
@@ -90,12 +75,16 @@ export default function MessageInput({
                 <button
                     onClick={onSendMessage}
                     disabled={!inputMessage.trim() || isSending || isOverLimit}
-                    className="w-10 h-10 text-[var(--theme-primary-text)] rounded-xl flex items-center justify-center shadow-md active:scale-90 disabled:opacity-30 disabled:grayscale disabled:cursor-not-allowed transition-all shrink-0 hover:shadow-lg"
-                    style={{ backgroundColor: 'var(--theme-primary-bg)' }}
+                    className="w-12 h-12 text-white rounded-2xl flex items-center justify-center shadow-md active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed transition-all shrink-0 hover:shadow-lg hover:shadow-[var(--accent-500)]/30 hover:-translate-y-0.5 group"
+                    style={{ backgroundColor: 'var(--accent-500)' }}
                     aria-label="Send message"
                     title={isSending ? "Sending..." : "Send message (Enter)"}
                 >
-                    {isSending ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                    {isSending ? (
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                    ) : (
+                        <Send className="w-5 h-5 ml-0.5 group-hover:scale-110 transition-transform" />
+                    )}
                 </button>
             </div>
         </div>

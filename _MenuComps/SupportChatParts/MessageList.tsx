@@ -67,7 +67,7 @@ export default function MessageList({
                 <div className="flex justify-center pb-4 pt-2 shrink-0">
                     <button
                         onClick={onLoadMore}
-                        className="text-[10px] text-slate-500 hover:text-[var(--theme-primary-bg)] bg-slate-800/50 px-3 py-1 rounded-full transition-colors border border-slate-800"
+                        className="text-[10px] text-[var(--theme-text-muted)] hover:text-[var(--scolor)] bg-[var(--bg-200)] px-4 py-1.5 rounded-full transition-all border border-[var(--theme-border-primary)] shadow-sm"
                     >
                         Load previous messages
                     </button>
@@ -81,28 +81,28 @@ export default function MessageList({
             >
                 {isLoading ? (
                     <div className="flex flex-col items-center justify-center h-full gap-3">
-                        <Loader2 className="w-8 h-8 text-slate-400 animate-spin" />
-                        <span className="text-sm text-slate-400">Loading messages...</span>
+                        <Loader2 className="w-8 h-8 text-[var(--scolor)] animate-spin" />
+                        <span className="text-sm text-[var(--theme-text-muted)]">Loading messages...</span>
                     </div>
                 ) : messages.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center h-full gap-3 text-center px-8">
+                    <div className="flex flex-col items-center justify-center h-full gap-4 text-center px-8">
                         <div
-                            className="w-16 h-16 rounded-full flex items-center justify-center"
-                            style={{ backgroundColor: 'var(--theme-primary-bg)' }}
+                            className="w-20 h-20 rounded-[2rem] flex items-center justify-center shadow-xl rotate-3"
+                            style={{ background: 'var(--theme-accent-gradient)' }}
                         >
-                            <MessageCircle className="w-8 h-8" style={{ color: 'var(--theme-primary-text)' }} />
+                            <MessageCircle className="w-10 h-10 text-white" />
                         </div>
-                        <h4 className="font-semibold text-white">Start a Conversation</h4>
-                        <p className="text-sm text-slate-400">
-                            {isSupportPage ? "Send a message to the user." : "Send a message to our support team. We're here to help!"}
+                        <h4 className="font-black text-[var(--theme-text-primary)] text-xl uppercase tracking-tight">Start Typing</h4>
+                        <p className="text-sm text-[var(--theme-text-muted)] font-medium">
+                            {isSupportPage ? "No messages yet. Send a message to start helping your customers." : "Hello! Send us a message and we'll help you right away."}
                         </p>
                     </div>
                 ) : (
                     Object.entries(groupedMessages).map(([date, msgs]) => (
                         <div key={date}>
                             {/* Date Separator */}
-                            <div className="flex justify-center my-3">
-                                <span className="text-xs text-slate-500 bg-slate-800 px-3 py-1 rounded-full">
+                            <div className="flex justify-center my-6">
+                                <span className="text-[10px] font-black uppercase tracking-widest text-[var(--theme-text-muted)] bg-[var(--bg-200)] px-4 py-1 rounded-full border border-[var(--theme-border-primary)] shadow-sm">
                                     {date}
                                 </span>
                             </div>
@@ -120,15 +120,12 @@ export default function MessageList({
                                             className={`flex ${isMine ? "justify-end" : "justify-start"}`}
                                         >
                                             <div
-                                                className={`max-w-[85%] px-4 py-2.5 rounded-2xl shadow-xl ${isMine
-                                                    ? "rounded-br-sm"
-                                                    : "bg-slate-800 text-slate-100 border border-slate-700/50 rounded-bl-sm"
+                                                className={`max-w-[85%] px-4 py-3 rounded-2xl shadow-md ${isMine
+                                                    ? "rounded-br-sm text-white"
+                                                    : "bg-white text-[var(--theme-text-primary)] border border-[var(--theme-border-accent)]/10 rounded-bl-sm"
                                                     }`}
                                                 style={isMine ? {
-                                                    backgroundColor: 'var(--theme-primary-bg)',
-                                                    color: 'white',
-                                                    background: 'linear-gradient(to bottom right, var(--theme-primary-bg), #1e40af)',
-                                                    border: '1px solid rgba(255,255,255,0.2)'
+                                                    background: 'var(--theme-accent-gradient)',
                                                 } : {}}
                                             >
                                                 {/* User Icon for incoming messages */}
@@ -152,8 +149,8 @@ export default function MessageList({
                                                 </p>
 
                                                 {/* Timestamp */}
-                                                <div className={`flex items-center gap-1 justify-end mt-1.5 ${isMine ? "text-white/70" : "text-slate-500"}`}>
-                                                    <p className="text-[9px]">
+                                                <div className={`flex items-center gap-1 justify-end mt-2 ${isMine ? "text-white/60" : "text-[var(--theme-text-muted)]"}`}>
+                                                    <p className="text-[9px] font-medium">
                                                         {formatTime(msg.CreatedAt)}
                                                     </p>
                                                 </div>
@@ -172,9 +169,9 @@ export default function MessageList({
             {showScrollButton && (
                 <button
                     onClick={() => scrollToBottom(true)}
-                    className="absolute right-4 bottom-24 p-2 bg-slate-700 hover:bg-slate-600 rounded-full shadow-lg transition-all"
+                    className="absolute right-4 bottom-28 p-2.5 bg-white text-[var(--scolor-contrast)] hover:scale-110 rounded-full shadow-2xl transition-all border border-[var(--theme-border-primary)]"
                 >
-                    <ChevronDown className="w-5 h-5 text-white" />
+                    <ChevronDown className="w-5 h-5" />
                 </button>
             )}
         </>

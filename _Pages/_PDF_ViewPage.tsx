@@ -68,8 +68,9 @@ const PDFViewPage: React.FC = () => {
 
     return (
         <IonPage>
-            <HeaderSwitcher styleNo={8} headingField="Preview PDFs" />
+
             <IonContent fullscreen>
+                <HeaderSwitcher headingField="Preview PDFs" />
                 <div className='min-h-screen p-5 bg-gray-50'>
                     <div className="max-w-4xl mx-auto">
                         {/* Header */}

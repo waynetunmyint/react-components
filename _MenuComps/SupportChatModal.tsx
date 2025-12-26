@@ -255,7 +255,7 @@ export default function SupportChatModal({ isOpen, onClose }: SupportChatModalPr
             />
 
             {/* Modal Container */}
-            <div className="fixed inset-4 sm:inset-auto sm:right-4 sm:bottom-4 sm:w-[400px] sm:h-[600px] z-50 flex flex-col bg-slate-900 rounded-2xl shadow-2xl border border-slate-700 overflow-hidden animate-slideUp">
+            <div className="fixed inset-4 sm:inset-auto sm:right-4 sm:bottom-4 sm:w-[420px] sm:h-[650px] z-50 flex flex-col bg-[var(--theme-secondary-bg)] rounded-[2rem] shadow-2xl border border-[var(--theme-border-primary)] overflow-hidden animate-slideUp">
 
                 <ChatHeader
                     isSupportPage={isSupportPage}

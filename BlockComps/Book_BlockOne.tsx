@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { List, LayoutGrid, Package, ArrowRight } from "lucide-react";
 import { IMAGE_URL } from "../../../config";
 import { formatPrice, priceFormatter } from "../HelperComps/TextCaseComp";
-import BlockHeader from "../HelperComps/BlockHeader";
+import BlockHeader from "../BlockComps/BlockHeader";
 
 interface Props {
   dataSource: string;

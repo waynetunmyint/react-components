@@ -78,8 +78,8 @@ export default function BookViewOne({ item }: Props) {
           <h3 className="text-2xl font-bold text-gray-900 mb-3">Content Not Found</h3>
           <button
             onClick={() => window.history.back()}
-            className="px-6 py-2.5 text-white rounded-lg hover:opacity-90"
-            style={{ backgroundColor: 'var(--theme-primary-bg)' }}
+            className="px-6 py-2.5 text-white rounded-lg hover:shadow-lg active:scale-95 transition-all font-bold"
+            style={{ backgroundColor: 'var(--scolor-contrast)' }}
           >
             Go Back
           </button>
@@ -190,7 +190,7 @@ export default function BookViewOne({ item }: Props) {
                     <span className="w-32 text-gray-600 text-sm">စျေးနူန်:</span>
                     <span>
                       {item.Price === 0 ? (
-                        <span className="inline-flex items-center rounded-full text-sm font-medium" style={{ backgroundColor: 'var(--theme-accent)', color: 'var(--theme-primary-text)', padding: '2px 8px' }}>Free</span>
+                        <span className="inline-flex items-center rounded-full text-xs font-bold uppercase tracking-wider bg-[var(--accent-500)] text-white px-2.5 py-1">Free</span>
                       ) : (
                         <span id="page-text-color" className="inline-flex  text-gray-900 items-center  rounded-full  text-sm font-semibold">{formatPrice(item.Price)} MMK</span>
                       )}
@@ -217,23 +217,14 @@ export default function BookViewOne({ item }: Props) {
                 {item?.PreviewPDF && (
                   <button
                     onClick={() => handleOpenLink(`${IMAGE_URL}/uploads/${item.PreviewPDF}`)}
-                    className="inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded hover:opacity-90"
-                    style={{ backgroundColor: 'var(--theme-primary-bg)' }}
+                    style={{ background: 'var(--accent-500)' }}
+                    className="inline-flex items-center px-6 py-3 text-white text-sm font-bold rounded-xl hover:shadow-xl hover:-translate-y-0.5 active:scale-95 transition-all shadow-md"
                   >
-                    <ExternalLink className="inline-block mr-2" size={14} />
+                    <ExternalLink className="inline-block mr-2" size={16} />
                     စာမြည်းဖတ်ရန်
                   </button>
                 )}
 
-                {/* {data.ContactInfoPhoneOne && (
-                  <button
-                    onClick={() => handleOpenLink(`tel:${data.ContactInfoPhoneOne}`) }
-                    className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-700"
-                  >
-                    <Phone className="inline-block mr-2" size={14} />
-                    {data.ContactInfoPhoneOne}
-                  </button>
-                )} */}
 
 
                 {SHOW_SHOPPING_CART && (
@@ -243,10 +234,10 @@ export default function BookViewOne({ item }: Props) {
                       addItem({ Id: item.Id, Title: item.Title as string, Price: item.Price as number, Qty: 1, PriceTotal: Number(item.Price) });
                       show('Added to cart');
                     }}
-                    className="px-4 py-2 text-white text-sm font-medium rounded hover:opacity-90"
-                    style={{ backgroundColor: 'var(--theme-primary-bg)' }}
+                    style={{ background: 'var(--accent-500)' }}
+                    className="inline-flex items-center px-6 py-3 text-white text-sm font-bold rounded-xl hover:shadow-xl hover:-translate-y-0.5 active:scale-95 transition-all shadow-md"
                   >
-                    <ShoppingCart className="inline-block mr-2" size={14} />
+                    <ShoppingCart className="inline-block mr-2" size={16} />
                     Add to Cart
                   </button>
                 )}

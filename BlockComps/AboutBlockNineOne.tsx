@@ -13,7 +13,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { IMAGE_URL } from "../../../config";
-import BlockHeader from "../HelperComps/BlockHeader";
+import BlockHeader from "../BlockComps/BlockHeader";
 
 interface Props {
   dataSource?: string;

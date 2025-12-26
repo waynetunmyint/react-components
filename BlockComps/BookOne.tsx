@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { List, LayoutGrid, ArrowRight, BookOpen, Eye, X } from "lucide-react";
 import { IMAGE_URL } from "../../../config";
 import { formatPrice } from "../HelperComps/TextCaseComp";
-import BlockHeader from "../HelperComps/BlockHeader";
+import BlockHeader from "../BlockComps/BlockHeader";
 
 interface Props {
     dataSource: string;
@@ -46,11 +46,11 @@ export default function BookOne({
     const getGridClass = () => {
         switch (viewMode) {
             case "grid":
-                return "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6";
+                return "grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4";
             case "largeGrid":
-                return "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4";
+                return "grid-cols-2 sm:grid-cols-2";
             default:
-                return "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6";
+                return "grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4";
         }
     };
 
@@ -109,7 +109,7 @@ export default function BookOne({
                                             <img src={imageUrl} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                         </div>
                                         <div className="flex-1 py-2">
-                                            <h3 className="font-bold text-2xl text-gray-900 mb-2 group-hover:text-[var(--theme-primary-bg)] transition-colors">{title}</h3>
+                                            <h3 className="font-bold text-2xl text-gray-900 mb-2 group-hover:text-[var(--accent-500)] transition-colors">{title}</h3>
                                             {bookAuthorTitle && <p className="text-gray-500 font-medium mb-2">By {bookAuthorTitle}</p>}
                                             <p className="text-gray-600 line-clamp-2">{description}</p>
                                         </div>
@@ -133,16 +133,16 @@ export default function BookOne({
                                             >
                                                 <Eye size={20} />
                                             </button>
-                                            <div className="w-8 h-8 rounded-full bg-[var(--theme-primary-bg)] flex items-center justify-center text-white">
+                                            <div className="w-8 h-8 rounded-full bg-[var(--accent-500)] flex items-center justify-center text-white">
                                                 <ArrowRight size={16} />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="p-4 flex-1">
-                                        <h3 className="font-bold text-gray-900 mb-1 line-clamp-1 group-hover:text-[var(--theme-primary-bg)] transition-colors">{title}</h3>
+                                        <h3 className="font-bold text-gray-900 mb-1 line-clamp-1 group-hover:text-[var(--accent-500)] transition-colors">{title}</h3>
                                         {bookAuthorTitle && <p className="text-gray-500 text-sm line-clamp-1">{bookAuthorTitle}</p>}
                                         {item.Price && (
-                                            <div className="mt-3 pt-3 border-t border-gray-50 font-bold text-[var(--theme-primary-bg)]">
+                                            <div className="mt-3 pt-3 border-t border-gray-50 font-bold text-[var(--accent-500)]">
                                                 {formatPrice(item.Price)}
                                             </div>
                                         )}

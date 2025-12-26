@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-type StoredCartItem = {
+export type StoredCartItem = {
   Id?: string | number;
   Title?: string;
   Price: number;

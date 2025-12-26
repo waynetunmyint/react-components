@@ -30,7 +30,7 @@ const FloatingChatButton: React.FC = () => {
 
     return (
         <>
-            <div className="fixed right-6 bottom-[74px] z-[60] flex flex-col items-end gap-3 pointer-events-none">
+            <div className="fixed right-6 bottom-[90px] z-[60] flex flex-col items-end gap-3 pointer-events-none">
                 {/* Teaser Bubble */}
                 {showTeaser && !isOpen && (
                     <div className="bg-[var(--theme-text-primary)] text-[var(--theme-secondary-bg)] px-4 py-3 rounded-2xl shadow-2xl border border-[var(--theme-border-primary)] mb-2 animate-bounceIn pointer-events-auto relative mr-2 max-w-[200px]">
@@ -38,9 +38,9 @@ const FloatingChatButton: React.FC = () => {
                         <div className="absolute -bottom-1.5 right-6 w-3 h-3 bg-[var(--theme-text-primary)] border-r border-b border-[var(--theme-border-primary)] rotate-45" />
                         <button
                             onClick={(e) => { e.stopPropagation(); setShowTeaser(false); }}
-                            className="absolute -top-1 -right-1 w-4 h-4 bg-[var(--theme-text-secondary)]/20 rounded-full flex items-center justify-center text-[10px] hover:bg-[var(--theme-text-secondary)]/30 transition-colors"
+                            className="absolute -top-1 -right-1 w-4 h-4 bg-gray-200 rounded-full flex items-center justify-center text-[10px] hover:bg-gray-300 transition-colors"
                         >
-                            <X size={10} />
+                            <X size={10} className="text-gray-600" />
                         </button>
                     </div>
                 )}
@@ -50,20 +50,20 @@ const FloatingChatButton: React.FC = () => {
                     onClick={() => setIsOpen(!isOpen)}
                     className="w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all group overflow-hidden pointer-events-auto"
                     style={{
-                        backgroundColor: 'var(--theme-primary-bg)',
-                        color: 'var(--theme-primary-text)'
+                        backgroundColor: 'var(--accent-500)',
+                        boxShadow: '0 8px 30px rgba(0,0,0,0.12)'
                     }}
                 >
-                    <div className="absolute inset-0 bg-[var(--theme-primary-text)]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {isOpen ? (
-                        <X className="w-7 h-7 text-[var(--theme-primary-text)]" />
+                        <X className="w-7 h-7 text-white" />
                     ) : (
-                        <MessageCircle className="w-7 h-7 text-[var(--theme-primary-text)]" />
+                        <MessageCircle className="w-7 h-7 text-white" />
                     )}
 
                     {/* Notification Badge */}
                     {!isOpen && (
-                        <div className="absolute top-3 right-3 w-3 h-3 bg-[var(--theme-accent)] rounded-full border-2 border-[var(--theme-primary-bg)] animate-pulse" />
+                        <div className="absolute top-3 right-3 w-3 h-3 bg-red-500 rounded-full border-2 border-[var(--accent-500)] animate-pulse" />
                     )}
                 </button>
             </div>

@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { List, LayoutGrid, ArrowRight, X } from "lucide-react";
 import { IMAGE_URL } from "../../../config";
 import { priceFormatter } from "../HelperComps/TextCaseComp";
-import BlockHeader from "../HelperComps/BlockHeader";
+import BlockHeader from "../BlockComps/BlockHeader";
 
 interface Props {
     dataSource: string;
@@ -109,7 +109,7 @@ export default function CommonOne({
                                             <img src={imageUrl} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                         </div>
                                         <div className="flex-1 py-1 min-w-0">
-                                            <h3 className="font-bold text-xl text-gray-900 mb-2 group-hover:text-[var(--theme-primary-bg)] transition-colors truncate">
+                                            <h3 className="font-bold text-xl text-gray-900 mb-2 group-hover:text-[var(--accent-600)] transition-colors truncate">
                                                 {title}
                                             </h3>
                                             {description && (
@@ -142,7 +142,7 @@ export default function CommonOne({
                                         </div>
                                     </div>
                                     <div className="p-3 sm:p-5 flex-1 flex flex-col">
-                                        <h3 className="font-bold text-sm sm:text-lg text-gray-900 mb-1 sm:mb-2 line-clamp-2 group-hover:text-[var(--theme-primary-bg)] transition-colors">
+                                        <h3 className="font-bold text-sm sm:text-lg text-gray-900 mb-1 sm:mb-2 line-clamp-2 group-hover:text-[var(--accent-600)] transition-colors">
                                             {title}
                                         </h3>
                                         <p className="text-gray-500 text-xs sm:text-sm line-clamp-2 mb-2 sm:mb-4">{description}</p>
@@ -151,7 +151,7 @@ export default function CommonOne({
                                                 <span className="text-sm sm:text-lg font-bold text-[var(--theme-primary-bg)]">
                                                     {priceFormatter(item.Price)}
                                                 </span>
-                                                <ArrowRight size={16} className="text-gray-400 group-hover:text-[var(--theme-primary-bg)]" />
+                                                <ArrowRight size={16} className="text-gray-400 group-hover:text-[var(--accent-600)]" />
                                             </div>
                                         )}
                                     </div>
