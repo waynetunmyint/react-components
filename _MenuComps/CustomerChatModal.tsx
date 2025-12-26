@@ -22,12 +22,12 @@ export default function CustomerChatModal({ isOpen, onClose }: CustomerChatModal
     const chat = useChatLogic(isOpen, onClose);
     const [isMaximized, setIsMaximized] = React.useState(false); // Default to widget mode
 
-    // Auto-maximize on mobile screens
-    useEffect(() => {
-        if (typeof window !== 'undefined' && window.innerWidth < 640) {
-            setIsMaximized(true);
-        }
-    }, [isOpen]);
+    // Auto-maximize on mobile screens - REMOVED per user request
+    // useEffect(() => {
+    //     if (typeof window !== 'undefined' && window.innerWidth < 640) {
+    //         setIsMaximized(true);
+    //     }
+    // }, [isOpen]);
 
     if (!ENABLE_CUSTOMER_CHAT && !chat.isAdmin) return null;
     if (!isOpen) return null;
