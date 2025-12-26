@@ -171,8 +171,8 @@ const QuickReplies = memo(function QuickReplies({ onSelect }: QuickRepliesProps)
 
     if (isLoading) {
         return (
-            <div className="flex items-center justify-center py-4 shrink-0 bg-slate-900/50">
-                <Loader2 size={16} className="animate-spin text-slate-500" />
+            <div className="flex items-center justify-center py-4 shrink-0 bg-[var(--theme-secondary-bg)]/50">
+                <Loader2 size={16} className="animate-spin text-[var(--theme-text-muted)]" />
             </div>
         );
     }
@@ -181,16 +181,16 @@ const QuickReplies = memo(function QuickReplies({ onSelect }: QuickRepliesProps)
 
     return (
         <div
-            className="flex flex-col gap-2 py-3 shrink-0 animate-fadeIn group/replies bg-slate-950/20 backdrop-blur-md border-t border-white/[0.03]"
+            className="flex flex-col gap-2 py-3 shrink-0 animate-fadeIn group/replies bg-[var(--theme-secondary-bg)]/20 backdrop-blur-md border-t border-[var(--theme-text-primary)]/5"
             role="complementary"
             aria-label="Quick reply suggestions"
         >
             <div className="px-5 flex items-center gap-2 mb-1">
-                <span className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] flex items-center gap-1.5 shrink-0">
-                    <Sparkles size={10} className="text-amber-400 animate-pulse" />
+                <span className="text-[9px] font-black text-[var(--theme-text-muted)] uppercase tracking-[0.2em] flex items-center gap-1.5 shrink-0">
+                    <Sparkles size={10} className="text-[var(--scolor)] animate-pulse" />
                     Smart Suggestions
                 </span>
-                <div className="h-[1px] flex-1 bg-gradient-to-r from-white/[0.05] via-white/[0.02] to-transparent" />
+                <div className="h-[1px] flex-1 bg-gradient-to-r from-[var(--theme-text-primary)]/5 via-[var(--theme-text-primary)]/2 to-transparent" />
             </div>
 
             <div className="relative px-5">
@@ -203,12 +203,12 @@ const QuickReplies = memo(function QuickReplies({ onSelect }: QuickRepliesProps)
                         <button
                             key={i}
                             onClick={() => onSelect(q.text)}
-                            className="snap-start flex-none px-4 py-2.5 bg-slate-800/40 border border-white/[0.05] hover:border-blue-500/50 hover:bg-blue-600/10 rounded-xl text-[11px] font-semibold text-slate-300 hover:text-white whitespace-nowrap transition-all duration-300 flex items-center gap-2 group/btn active:scale-95 shadow-lg shadow-black/20"
+                            className="snap-start flex-none px-4 py-2.5 bg-[var(--theme-text-secondary)]/10 border border-[var(--theme-text-primary)]/5 hover:border-[var(--theme-accent)]/50 hover:bg-[var(--theme-accent)]/10 rounded-xl text-[11px] font-semibold text-[var(--theme-text-primary)] hover:text-[var(--theme-text-primary)] whitespace-nowrap transition-all duration-300 flex items-center gap-2 group/btn active:scale-95 shadow-lg shadow-black/20"
                             role="listitem"
                             aria-label={`Quick reply: ${q.text}`}
                         >
-                            <div className="w-5 h-5 rounded-lg bg-white/5 flex items-center justify-center group-hover/btn:bg-blue-500/20 transition-colors">
-                                <q.icon size={12} className="text-slate-400 group-hover/btn:text-blue-400 transition-colors" />
+                            <div className="w-5 h-5 rounded-lg bg-[var(--theme-text-primary)]/5 flex items-center justify-center group-hover/btn:bg-[var(--theme-accent)]/20 transition-colors">
+                                <q.icon size={12} className="text-[var(--theme-text-muted)] group-hover/btn:text-[var(--theme-accent)] transition-colors" />
                             </div>
                             {q.text}
                         </button>
@@ -219,14 +219,14 @@ const QuickReplies = memo(function QuickReplies({ onSelect }: QuickRepliesProps)
                 {/* Navigation (Desktop Hover) */}
                 <button
                     onClick={() => document.getElementById('quick-replies-scroll')?.scrollBy({ left: -200, behavior: 'smooth' })}
-                    className="absolute left-1 top-1/2 -translate-y-1/2 w-8 h-8 bg-slate-800/90 backdrop-blur-md border border-white/10 rounded-full shadow-2xl flex items-center justify-center text-white hover:bg-slate-700 opacity-0 group-hover/replies:opacity-100 transition-all duration-300 hidden sm:flex z-10"
+                    className="absolute left-1 top-1/2 -translate-y-1/2 w-8 h-8 bg-[var(--theme-secondary-bg)]/90 backdrop-blur-md border border-[var(--theme-text-primary)]/10 rounded-full shadow-2xl flex items-center justify-center text-[var(--theme-text-primary)] hover:bg-[var(--theme-text-secondary)] opacity-0 group-hover/replies:opacity-100 transition-all duration-300 hidden sm:flex z-10"
                     aria-label="Scroll left"
                 >
                     <ArrowLeft size={14} />
                 </button>
                 <button
                     onClick={() => document.getElementById('quick-replies-scroll')?.scrollBy({ left: 200, behavior: 'smooth' })}
-                    className="absolute right-1 top-1/2 -translate-y-1/2 w-8 h-8 bg-slate-800/90 backdrop-blur-md border border-white/10 rounded-full shadow-2xl flex items-center justify-center text-white hover:bg-slate-700 opacity-0 group-hover/replies:opacity-100 transition-all duration-300 hidden sm:flex z-10"
+                    className="absolute right-1 top-1/2 -translate-y-1/2 w-8 h-8 bg-[var(--theme-secondary-bg)]/90 backdrop-blur-md border border-[var(--theme-text-primary)]/10 rounded-full shadow-2xl flex items-center justify-center text-[var(--theme-text-primary)] hover:bg-[var(--theme-text-secondary)] opacity-0 group-hover/replies:opacity-100 transition-all duration-300 hidden sm:flex z-10"
                     aria-label="Scroll right"
                 >
                     <ArrowLeft size={14} className="rotate-180" />

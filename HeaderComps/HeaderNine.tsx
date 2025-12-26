@@ -73,8 +73,8 @@ export default function HeaderNine({
             <header
                 id="page-header-primary"
                 className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled
-                    ? "bg-white/70 backdrop-blur-xl shadow-md shadow-[#1C77A4]/5"
-                    : "bg-white/50 backdrop-blur-lg"
+                    ? "bg-[var(--theme-text-primary)]/70 backdrop-blur-xl shadow-md shadow-[var(--scolor)]/5"
+                    : "bg-[var(--theme-text-primary)]/50 backdrop-blur-lg"
                     }`}
             >
                 <div className="max-w-7xl mx-auto px-4">
@@ -83,7 +83,7 @@ export default function HeaderNine({
                         <IonButtons>
                             <IonButton onClick={() => navigate("/")}>
                                 <div className="flex items-center gap-2">
-                                    <div className="relative w-9 h-9 rounded-full overflow-hidden bg-[#1C77A4]/10 shadow-sm ring-2 ring-[#1C77A4]/20">
+                                    <div className="relative w-9 h-9 rounded-full overflow-hidden bg-[var(--scolor)]/10 shadow-sm ring-2 ring-[var(--scolor)]/20">
                                         {contactData?.Thumbnail ? (
                                             <img
                                                 src={`${IMAGE_URL}/uploads/${contactData.Thumbnail}`}
@@ -124,8 +124,8 @@ export default function HeaderNine({
                                                 key={m.label}
                                                 onClick={() => handleDropdownClick(cfg)}
                                                 className={`${baseButton} ${opened
-                                                    ? "bg-[#1C77A4]/10 text-[#1C77A4]"
-                                                    : "text-gray-700 hover:bg-[#1C77A4]/5 hover:text-[#1C77A4]"
+                                                    ? "bg-[var(--scolor)]/10 text-[var(--scolor)]"
+                                                    : "text-[var(--theme-text-muted)] hover:bg-[var(--scolor)]/5 hover:text-[var(--scolor)]"
                                                     }`}
                                             >
                                                 <m.icon size={16} />
@@ -148,8 +148,8 @@ export default function HeaderNine({
                                             key={m.label}
                                             onClick={() => navigate(m.url)}
                                             className={`${baseButton} ${active
-                                                ? "bg-[#1C77A4] text-white shadow-md shadow-[#1C77A4]/30"
-                                                : "text-gray-700 hover:bg-[#1C77A4]/5 hover:text-[#1C77A4]"
+                                                ? "bg-[var(--scolor)] text-[var(--theme-primary-text)] shadow-md shadow-[var(--scolor)]/30"
+                                                : "text-[var(--theme-text-muted)] hover:bg-[var(--scolor)]/5 hover:text-[var(--scolor)]"
                                                 }`}
                                         >
                                             <m.icon size={16} />
@@ -212,7 +212,7 @@ export default function HeaderNine({
                                                                 );
                                                                 setIsMenuOpen(false);
                                                             }}
-                                                            className="bg-white rounded-lg shadow-sm p-2 flex flex-col items-center hover:bg-[#1C77A4]/5 active:bg-[#1C77A4]/10 border border-transparent hover:border-[#1C77A4]/20 transition-all text-left"
+                                                            className="bg-[var(--theme-text-primary)] rounded-lg shadow-sm p-2 flex flex-col items-center hover:bg-[var(--scolor)]/5 active:bg-[var(--scolor)]/10 border border-transparent hover:border-[var(--scolor)]/20 transition-all text-left"
                                                         >
                                                             <div className="w-14 h-14 overflow-hidden rounded-md">
                                                                 <img
@@ -240,8 +240,8 @@ export default function HeaderNine({
                                             setIsMenuOpen(false);
                                         }}
                                         className={`w-full px-4 py-3 flex items-center gap-2 rounded-lg mb-1 transition-all font-medium ${active
-                                            ? "bg-[#1C77A4] text-white shadow-md shadow-[#1C77A4]/30"
-                                            : "bg-gray-50 hover:bg-[#1C77A4]/5 hover:text-[#1C77A4]"
+                                            ? "bg-[var(--scolor)] text-[var(--theme-primary-text)] shadow-md shadow-[var(--scolor)]/30"
+                                            : "bg-[var(--theme-text-secondary)]/10 hover:bg-[var(--scolor)]/5 hover:text-[var(--scolor)]"
                                             }`}
                                     >
                                         <m.icon size={17} className={active ? "text-white" : "text-gray-700"} />
@@ -283,7 +283,7 @@ export default function HeaderNine({
                                                         )
                                                         setOpenDropdown(null);
                                                     }}
-                                                    className="bg-white rounded-xl shadow-sm p-3 hover:shadow-lg hover:shadow-[#1C77A4]/10 transition-all border border-transparent hover:border-[#1C77A4]/20 group text-left"
+                                                    className="bg-[var(--theme-text-primary)] rounded-xl shadow-sm p-3 hover:shadow-lg hover:shadow-[var(--scolor)]/10 transition-all border border-transparent hover:border-[var(--scolor)]/20 group text-left"
                                                 >
                                                     <div className="overflow-hidden rounded-lg">
                                                         <img

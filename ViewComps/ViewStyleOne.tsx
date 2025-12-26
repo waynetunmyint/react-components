@@ -141,7 +141,7 @@ const ViewStyleOne: React.FC<Props> = ({ dataSource, id }) => {
       <button
         onClick={() => handleOpenLink(url)}
         className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 transition-all duration-200 text-sm font-semibold hover:scale-105 active:scale-95 ${linkStyles[label] || "bg-gray-100 text-gray-800 hover:bg-gray-200 border-gray-300 hover:shadow-lg"}`}
-        style={label === 'Website' ? { backgroundColor: 'var(--theme-primary-bg, #5FA310)' } : undefined}
+        style={label === 'Website' ? { backgroundColor: 'var(--theme-primary-bg)' } : undefined}
       >
         {icon || <ExternalLink size={16} />}
         {label}
@@ -187,7 +187,7 @@ const ViewStyleOne: React.FC<Props> = ({ dataSource, id }) => {
           <button
             onClick={() => window.history.back()}
             className="px-6 py-2.5 text-white rounded-lg hover:opacity-90 transition-colors font-medium"
-            style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}
+            style={{ backgroundColor: 'var(--theme-primary-bg)' }}
           >
             Go Back
           </button>

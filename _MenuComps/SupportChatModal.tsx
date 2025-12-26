@@ -329,11 +329,11 @@ export default function SupportChatModal({ isOpen, onClose }: SupportChatModalPr
           background: transparent;
         }
         .scrollbar-thin::-webkit-scrollbar-thumb {
-          background: #334155;
+          background: var(--theme-text-primary)/20;
           border-radius: 10px;
         }
         .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-          background: #475569;
+          background: var(--theme-text-primary)/30;
         }
       `}</style>
         </>

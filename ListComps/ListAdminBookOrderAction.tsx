@@ -268,8 +268,8 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
         {/* Top Header */}
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-[#004D25] flex items-center justify-center shadow-lg">
-              <ShoppingBag size={20} className="text-white" />
+            <div className="w-10 h-10 rounded-xl bg-[var(--theme-primary-bg)] flex items-center justify-center shadow-lg">
+              <ShoppingBag size={20} className="text-[var(--theme-primary-text)]" />
             </div>
             <div>
               <h2 className="text-xl font-bold text-gray-900 leading-none">Orders</h2>
@@ -280,7 +280,7 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
             {onAddNew && (
               <button
                 onClick={onAddNew}
-                className="p-2.5 rounded-xl bg-[#004D25] text-white hover:opacity-90 active:scale-95 transition-all shadow-md"
+                className="p-2.5 rounded-xl bg-[var(--theme-primary-bg)] text-[var(--theme-primary-text)] hover:opacity-90 active:scale-95 transition-all shadow-md"
                 title="Add Manual Order"
               >
                 <ShoppingBag size={18} />
@@ -297,13 +297,13 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
 
         {/* Search Bar - Compact */}
         <div className="relative group mb-3">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#004D25] transition-colors" size={18} />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[var(--theme-primary-bg)] transition-colors" size={18} />
           <input
             type="text"
             placeholder="Search by customer name..."
             value={search}
             onChange={(e) => handleSearchChange(e.target.value)}
-            className="w-full pl-11 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm text-gray-900 placeholder:text-gray-500 focus:ring-4 focus:ring-gray-100 focus:border-[#004D25] focus:bg-white transition-all duration-300"
+            className="w-full pl-11 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm text-gray-900 placeholder:text-gray-500 focus:ring-4 focus:ring-gray-100 focus:border-[var(--theme-primary-bg)] focus:bg-white transition-all duration-300"
           />
           {search && (
             <button onClick={() => { setSearch(""); fetchData(1); }} className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-400">
@@ -329,7 +329,7 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
                 className={`
                   flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all active:scale-95
                   ${isActive
-                    ? "bg-[#004D25] text-white shadow-md ring-1 ring-white"
+                    ? "bg-[var(--theme-primary-bg)] text-[var(--theme-primary-text)] shadow-md ring-1 ring-white"
                     : "bg-white border border-gray-100 text-gray-600 hover:bg-gray-50 shadow-sm"
                   }
                 `}
@@ -409,7 +409,7 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
                           </div>
                         </td>
                         <td className="p-5 text-right w-40">
-                          <span className="font-black text-emerald-600 block text-sm">{formatPrice(Number(item.OrderGrandTotal) || 0)}</span>
+                          <span className="font-black block text-sm" style={{ color: 'var(--theme-primary-bg)' }}>{formatPrice(Number(item.OrderGrandTotal) || 0)}</span>
                           <div className="flex gap-1 justify-end mt-2">
                             {[
                               { s: 2, l: "P" },
@@ -477,7 +477,7 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
 
               <div className="flex gap-2">
                 <button onClick={() => setShowStatusModal(false)} className="flex-1 py-2.5 rounded-xl bg-gray-50 text-gray-500 text-xs font-bold hover:bg-gray-100 transition-all">Cancel</button>
-                <button onClick={handleUpdateStatus} className="flex-1 py-2.5 rounded-xl bg-[#004D25] text-white text-xs font-bold shadow-lg hover:opacity-90 transition-all">Confirm</button>
+                <button onClick={handleUpdateStatus} className="flex-1 py-2.5 rounded-xl bg-[var(--theme-primary-bg)] text-[var(--theme-primary-text)] text-xs font-bold shadow-lg hover:opacity-90 transition-all">Confirm</button>
               </div>
             </div>
           </div>

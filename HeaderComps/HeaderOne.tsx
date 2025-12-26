@@ -71,7 +71,7 @@ export default function HeaderOne({
     <>
       <header
         id="page-header-primary"
-        className={`sticky top-0 left-0 right-0 z-40 transition-all duration-300 shadow-sm bg-[#8CC63F] text-[#004D25]`}
+        className={`sticky top-0 left-0 right-0 z-40 transition-all duration-300 shadow-sm bg-[var(--theme-primary-bg)] text-[var(--theme-primary-text)]`}
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16 sm:h-20">        {/* Logo */}
@@ -91,7 +91,7 @@ export default function HeaderOne({
                   </div>
 
                   {headingField && (
-                    <h1 className="text-base sm:text-lg font-bold text-[#004D25]">
+                    <h1 className="text-base sm:text-lg font-bold text-[var(--theme-primary-text)]">
                       {headingField}
                     </h1>
                   )}
@@ -119,7 +119,7 @@ export default function HeaderOne({
                       <button
                         key={m.label}
                         onClick={() => handleDropdownClick(cfg)}
-                        className={`${baseButton} ${opened ? "bg-white text-[var(--theme-primary-bg)] shadow-sm" : "text-[var(--theme-primary-text)]"
+                        className={`${baseButton} ${opened ? "bg-white text-[var(--scolor)] shadow-sm" : "text-[var(--theme-primary-text)]"
                           }`}
                       >
                         <m.icon size={16} />
@@ -141,7 +141,7 @@ export default function HeaderOne({
                     <button
                       key={m.label}
                       onClick={() => navigate(m.url)}
-                      className={`${baseButton} ${active ? "bg-white text-[#8CC63F] shadow-sm" : "text-[#004D25]"
+                      className={`${baseButton} ${active ? "bg-white/20 text-[var(--theme-primary-text)] shadow-sm" : "text-[var(--theme-primary-text)]"
                         }`}
                     >
                       <m.icon size={16} />
@@ -155,7 +155,7 @@ export default function HeaderOne({
             {/* Mobile Menu Button */}
             {showRightButtons && (
               <button
-                className="md:hidden p-2 text-[#004D25] rounded-lg hover:bg-white/10 active:bg-white/20 transition-all"
+                className="md:hidden p-2 text-[var(--theme-primary-text)] rounded-lg hover:bg-white/10 active:bg-white/20 transition-all"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
@@ -205,7 +205,7 @@ export default function HeaderOne({
                               }}
                               className={`${dropdownStyle === 'simple'
                                 ? "w-full text-left px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-white rounded-lg transition-colors border border-transparent hover:border-gray-100 shadow-sm hover:shadow"
-                                : "bg-white rounded-lg shadow-sm p-2 flex flex-col items-center hover:bg-gray-50 active:bg-gray-100"
+                                : "bg-[var(--theme-text-primary)] rounded-lg shadow-sm p-2 flex flex-col items-center hover:bg-[var(--theme-text-secondary)] opacity-10 active:opacity-20"
                                 }`}
                             >
                               {dropdownStyle !== 'simple' && (
@@ -277,9 +277,9 @@ export default function HeaderOne({
                                 cfg.urlPattern.replace("{id}", item[cfg.idField])
                               )
                             }
-                            className="w-full text-left py-2 px-3 rounded-lg hover:bg-gray-50 text-gray-700 hover:text-[var(--theme-primary-bg)] transition-colors flex items-center gap-2 group break-inside-avoid"
+                            className="w-full text-left py-2 px-3 rounded-lg hover:bg-gray-50 text-gray-700 hover:text-[var(--scolor)] transition-colors flex items-center gap-2 group break-inside-avoid"
                           >
-                            <div className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-[var(--theme-primary-bg)] transition-colors" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-[var(--scolor)] transition-colors" />
                             <span className="font-medium text-sm truncate">{item[cfg.titleField]}</span>
                           </button>
                         )
@@ -293,7 +293,7 @@ export default function HeaderOne({
                               cfg.urlPattern.replace("{id}", item[cfg.idField])
                             )
                           }
-                          className="bg-white rounded-xl shadow-sm p-3 hover:shadow-md transition-all"
+                          className="bg-[var(--theme-text-primary)] rounded-xl shadow-sm p-3 hover:shadow-md transition-all"
                         >
                           <img
                             src={`${IMAGE_URL}/uploads/${item[cfg.thumbnailField]}`}

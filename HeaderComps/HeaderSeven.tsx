@@ -72,9 +72,9 @@ export default function HeaderSeven({
     <>
       <header
         id="page-header-primary"
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 border-b-2 border-yellow-400 ${scrolled
-          ? "bg-red-900/90 backdrop-blur-xl shadow-lg"
-          : "bg-red-900/80 backdrop-blur"
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 border-b-2 border-[var(--theme-accent)] ${scrolled
+          ? "bg-[var(--theme-primary-bg)]/90 backdrop-blur-xl shadow-lg"
+          : "bg-[var(--theme-primary-bg)]/80 backdrop-blur"
           }`}
       >
         <div className="max-w-7xl mx-auto px-4">
@@ -83,7 +83,7 @@ export default function HeaderSeven({
             <IonButtons>
               <IonButton onClick={() => navigate("/")}>
                 <div className="flex items-center gap-2">
-                  <div className="relative w-9 h-9 rounded-full overflow-hidden bg-white border-2 border-yellow-400 shadow-sm">
+                  <div className="relative w-9 h-9 rounded-full overflow-hidden bg-[var(--theme-text-primary)] border-2 border-[var(--theme-accent)] shadow-sm">
                     {contactData?.Thumbnail ? (
                       <img
                         src={`${IMAGE_URL}/uploads/${contactData.Thumbnail}`}
@@ -96,7 +96,7 @@ export default function HeaderSeven({
                     )}
                   </div>
                   {headingField && (
-                    <h1 className="text-base sm:text-lg font-bold text-yellow-400 drop-shadow-md">
+                    <h1 className="text-base sm:text-lg font-bold text-[var(--theme-accent)] drop-shadow-md">
                       {headingField}
                     </h1>
                   )}
@@ -119,7 +119,7 @@ export default function HeaderSeven({
                       <button
                         key={m.label}
                         onClick={() => handleDropdownClick(cfg)}
-                        className={`${baseButton} ${opened ? "bg-yellow-400/20 text-yellow-400" : active ? "text-yellow-400" : ""
+                        className={`${baseButton} ${opened ? "bg-[var(--theme-accent)]/20 text-[var(--theme-accent)]" : active ? "text-[var(--theme-accent)]" : ""
                           }`}
                       >
                         <m.icon size={16} />
@@ -199,7 +199,7 @@ export default function HeaderSeven({
                               }}
                               className={`${dropdownStyle === 'simple'
                                 ? "w-full text-left px-4 py-2.5 text-sm font-medium text-yellow-900 hover:text-yellow-700 hover:bg-white rounded-lg transition-colors border border-transparent hover:border-yellow-200 shadow-sm hover:shadow"
-                                : "bg-white rounded-lg shadow-sm p-2 flex flex-col items-center hover:bg-yellow-50 active:bg-yellow-100 text-left"
+                                : "bg-[var(--theme-text-primary)] rounded-lg shadow-sm p-2 flex flex-col items-center hover:bg-[var(--theme-text-secondary)] opacity-10 active:opacity-20 text-left"
                                 }`}
                             >
                               {dropdownStyle !== 'simple' && (
@@ -286,7 +286,7 @@ export default function HeaderSeven({
                             )
                             setOpenDropdown(null);
                           }}
-                          className="bg-white rounded-xl shadow-sm p-3 hover:shadow-md transition-all border border-yellow-100 text-left group"
+                          className="bg-[var(--theme-text-primary)] rounded-xl shadow-sm p-3 hover:shadow-md transition-all border border-[var(--theme-accent)]/20 text-left group"
                         >
                           <div className="overflow-hidden rounded-lg">
                             <img

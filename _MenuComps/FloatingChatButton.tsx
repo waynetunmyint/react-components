@@ -33,12 +33,12 @@ const FloatingChatButton: React.FC = () => {
             <div className="fixed right-6 bottom-[74px] z-[60] flex flex-col items-end gap-3 pointer-events-none">
                 {/* Teaser Bubble */}
                 {showTeaser && !isOpen && (
-                    <div className="bg-white text-slate-900 px-4 py-3 rounded-2xl shadow-2xl border border-slate-100 mb-2 animate-bounceIn pointer-events-auto relative mr-2 max-w-[200px]">
+                    <div className="bg-[var(--theme-text-primary)] text-[var(--theme-secondary-bg)] px-4 py-3 rounded-2xl shadow-2xl border border-[var(--theme-border-primary)] mb-2 animate-bounceIn pointer-events-auto relative mr-2 max-w-[200px]">
                         <p className="text-xs font-semibold leading-snug">👋 How can we help you today?</p>
-                        <div className="absolute -bottom-1.5 right-6 w-3 h-3 bg-white border-r border-b border-slate-100 rotate-45" />
+                        <div className="absolute -bottom-1.5 right-6 w-3 h-3 bg-[var(--theme-text-primary)] border-r border-b border-[var(--theme-border-primary)] rotate-45" />
                         <button
                             onClick={(e) => { e.stopPropagation(); setShowTeaser(false); }}
-                            className="absolute -top-1 -right-1 w-4 h-4 bg-slate-200 rounded-full flex items-center justify-center text-[10px] hover:bg-slate-300 transition-colors"
+                            className="absolute -top-1 -right-1 w-4 h-4 bg-[var(--theme-text-secondary)]/20 rounded-full flex items-center justify-center text-[10px] hover:bg-[var(--theme-text-secondary)]/30 transition-colors"
                         >
                             <X size={10} />
                         </button>
@@ -48,18 +48,22 @@ const FloatingChatButton: React.FC = () => {
                 {/* Main Button */}
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="w-14 h-14 bg-[#004D25] rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all group overflow-hidden pointer-events-auto"
+                    className="w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all group overflow-hidden pointer-events-auto"
+                    style={{
+                        backgroundColor: 'var(--theme-primary-bg)',
+                        color: 'var(--theme-primary-text)'
+                    }}
                 >
-                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-[var(--theme-primary-text)]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {isOpen ? (
-                        <X className="w-7 h-7 text-white" />
+                        <X className="w-7 h-7 text-[var(--theme-primary-text)]" />
                     ) : (
-                        <MessageCircle className="w-7 h-7 text-white" />
+                        <MessageCircle className="w-7 h-7 text-[var(--theme-primary-text)]" />
                     )}
 
                     {/* Notification Badge */}
                     {!isOpen && (
-                        <div className="absolute top-3 right-3 w-3 h-3 bg-red-500 rounded-full border-2 border-[#004D25] animate-pulse" />
+                        <div className="absolute top-3 right-3 w-3 h-3 bg-[var(--theme-accent)] rounded-full border-2 border-[var(--theme-primary-bg)] animate-pulse" />
                     )}
                 </button>
             </div>

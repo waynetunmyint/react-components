@@ -47,23 +47,23 @@ export const BookAddToCart: React.FC<BookAddToCartProps> = ({
   return (
     <div className={`flex items-center gap-3 ${className}`}>
       {/* Quantity Selector */}
-      <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
+      <div className="flex items-center gap-2 bg-[var(--theme-text-secondary)]/10 rounded-lg p-1">
         <button
           onClick={decrementQty}
-          className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-white active:opacity-70 transition-all"
+          className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-[var(--theme-text-secondary)]/10 active:opacity-70 transition-all"
           aria-label="Decrease quantity"
         >
-          <Minus size={16} className="text-gray-700" />
+          <Minus size={16} className="text-[var(--theme-text-muted)]" />
         </button>
         <span className="w-10 text-center font-semibold" style={{ color: 'var(--theme-text-primary)' }}>
           {quantity}
         </span>
         <button
           onClick={incrementQty}
-          className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-white active:opacity-70 transition-all"
+          className="w-8 h-8 flex items-center justify-center rounded-md hover:bg-[var(--theme-text-secondary)]/10 active:opacity-70 transition-all"
           aria-label="Increase quantity"
         >
-          <Plus size={16} className="text-gray-700" />
+          <Plus size={16} className="text-[var(--theme-text-muted)]" />
         </button>
       </div>
 

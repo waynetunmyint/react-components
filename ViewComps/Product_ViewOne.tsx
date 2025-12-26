@@ -67,9 +67,9 @@ export default function ProductViewOne({ item }: Props) {
         return (
             <div className="min-h-screen bg-white flex items-center justify-center py-12 px-4">
                 <div className="animate-pulse text-center">
-                    <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-6"></div>
-                    <div className="h-8 bg-gray-200 rounded w-48 mx-auto mb-4"></div>
-                    <div className="h-4 bg-gray-200 rounded w-64 mx-auto"></div>
+                    <div className="w-24 h-24 bg-gray-100 rounded-full mx-auto mb-6"></div>
+                    <div className="h-8 bg-gray-100 rounded w-48 mx-auto mb-4"></div>
+                    <div className="h-4 bg-gray-100 rounded w-64 mx-auto"></div>
                 </div>
             </div>
         );
@@ -82,8 +82,8 @@ export default function ProductViewOne({ item }: Props) {
                     <h3 className="text-2xl font-bold text-gray-900 mb-3">Product Not Found</h3>
                     <button
                         onClick={() => window.history.back()}
-                        className="px-6 py-2.5 text-white rounded-lg hover:opacity-90"
-                        style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}
+                        className="px-6 py-2.5 text-[var(--theme-primary-text)] rounded-lg hover:opacity-90 transition-all font-semibold"
+                        style={{ backgroundColor: 'var(--theme-primary-bg)' }}
                     >
                         Go Back
                     </button>
@@ -117,7 +117,7 @@ export default function ProductViewOne({ item }: Props) {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 mt-10">
+        <div className="min-h-screen bg-white mt-10">
             <div className="max-w-7xl mx-auto px-4 py-6 md:py-10">
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                     <div className="flex md:flex-row flex-col">
@@ -142,7 +142,7 @@ export default function ProductViewOne({ item }: Props) {
                                             className="w-full h-full object-cover"
                                         />
                                     ) : (
-                                        <div className="w-full h-full flex flex-col items-center justify-center text-gray-300">
+                                        <div className="w-full h-full flex flex-col items-center justify-center text-gray-400">
                                             <ImageIcon size={64} />
                                             <p className="mt-2 text-sm">No Image Available</p>
                                         </div>
@@ -153,7 +153,7 @@ export default function ProductViewOne({ item }: Props) {
                                     {[item.ThumbnailOne, item.ThumbnailTwo, item.ThumbnailThree]
                                         .filter(t => t && t !== "logo.png")
                                         .map((thumb, idx) => (
-                                            <div key={idx} className="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden border border-gray-200 cursor-pointer hover:border-emerald-500 transition-colors">
+                                            <div key={idx} className="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden border border-gray-200 cursor-pointer hover:border-[var(--theme-accent)] transition-colors">
                                                 <ImageModal
                                                     src={getImageUrl(thumb) || ""}
                                                     alt={`${title} thumb ${idx + 1}`}
@@ -168,7 +168,7 @@ export default function ProductViewOne({ item }: Props) {
                         {/* RIGHT — DETAILS */}
                         <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col">
                             <div className="flex-1">
-                                <nav className="flex mb-4 text-xs font-medium uppercase tracking-wider text-gray-400">
+                                <nav className="flex mb-4 text-xs font-semibold uppercase tracking-wider text-gray-500">
                                     <span>Product Details</span>
                                 </nav>
 
@@ -178,7 +178,7 @@ export default function ProductViewOne({ item }: Props) {
 
                                 {/* PRICE DISPLAY */}
                                 <div className="flex items-baseline gap-2 mb-8">
-                                    <span className="text-3xl font-bold" style={{ color: 'var(--theme-primary-bg, #059669)' }}>
+                                    <span className="text-3xl font-bold" style={{ color: 'var(--theme-accent)' }}>
                                         {formatPrice(
                                             selectedVariant
                                                 ? Number(selectedVariant.Price)
@@ -191,7 +191,7 @@ export default function ProductViewOne({ item }: Props) {
                                 {/* VARIANT SELECTION */}
                                 {variants.length > 0 && (
                                     <div className="mb-8">
-                                        <label className="block text-sm font-semibold text-gray-700 mb-3">
+                                        <label className="block text-sm font-semibold text-gray-900 mb-3">
                                             Select Variant
                                         </label>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -200,12 +200,12 @@ export default function ProductViewOne({ item }: Props) {
                                                     key={i}
                                                     onClick={() => setSelectedVariant(v)}
                                                     className={`flex items-center justify-between p-4 rounded-xl border-2 transition-all ${selectedVariant?.VariantTitle === v.VariantTitle
-                                                        ? "border-emerald-500 bg-emerald-50/50"
-                                                        : "border-gray-100 bg-white hover:border-gray-200"
+                                                        ? "border-[var(--theme-accent)] bg-[var(--theme-accent)]/5"
+                                                        : "border-gray-100 bg-gray-50 hover:border-gray-200"
                                                         }`}
                                                 >
                                                     <div className="flex flex-col items-start">
-                                                        <span className={`text-sm font-bold ${selectedVariant?.VariantTitle === v.VariantTitle ? "text-emerald-900" : "text-gray-900"}`}>
+                                                        <span className={`text-sm font-bold ${selectedVariant?.VariantTitle === v.VariantTitle ? "text-[var(--theme-accent)]" : "text-gray-900"}`}>
                                                             {v.VariantTitle}
                                                         </span>
                                                         {v.Description && (
@@ -213,7 +213,7 @@ export default function ProductViewOne({ item }: Props) {
                                                         )}
                                                     </div>
                                                     {selectedVariant?.VariantTitle === v.VariantTitle && (
-                                                        <Check size={18} className="text-emerald-600" />
+                                                        <Check size={18} className="text-[var(--theme-accent)]" />
                                                     )}
                                                 </button>
                                             ))}
@@ -226,13 +226,13 @@ export default function ProductViewOne({ item }: Props) {
                                     <div className="flex flex-col gap-4 mb-10">
                                         <button
                                             onClick={handleAddToCart}
-                                            className="w-full flex items-center justify-center gap-3 py-4 rounded-xl text-white font-bold text-lg shadow-lg hover:opacity-95 active:scale-[0.98] transition-all"
-                                            style={{ backgroundColor: 'var(--theme-primary-bg, #10b981)' }}
+                                            className="w-full flex items-center justify-center gap-3 py-4 rounded-xl text-[var(--theme-primary-text)] font-bold text-lg shadow-lg hover:opacity-95 active:scale-[0.98] transition-all"
+                                            style={{ backgroundColor: 'var(--theme-primary-bg)' }}
                                         >
                                             <ShoppingCart size={22} />
                                             Add to Cart
                                         </button>
-                                        <p className="text-center text-xs text-gray-400">
+                                        <p className="text-center text-xs text-gray-500">
                                             Standard shipping applies. Returns accepted within 7 days.
                                         </p>
                                     </div>
@@ -240,7 +240,7 @@ export default function ProductViewOne({ item }: Props) {
                             </div>
 
                             {/* TABS/COLLAPSIBLE DESCRIPTION */}
-                            <div className="mt-auto border-t border-gray-100 pt-8">
+                            <div className="mt-auto border-t border-[var(--theme-text-primary)]/5 pt-8">
                                 <button
                                     onClick={() => setShowFullDescription(!showFullDescription)}
                                     className="w-full flex items-center justify-between text-left mb-4"
@@ -259,7 +259,7 @@ export default function ProductViewOne({ item }: Props) {
                                         {selectedVariant?.Description && (
                                             <div className="mt-4 p-4 bg-gray-50 rounded-lg">
                                                 <p className="font-semibold text-xs text-gray-500 uppercase mb-2">Variant Details</p>
-                                                <p className="text-gray-700">{selectedVariant.Description}</p>
+                                                <p className="text-gray-900">{selectedVariant.Description}</p>
                                             </div>
                                         )}
                                     </div>

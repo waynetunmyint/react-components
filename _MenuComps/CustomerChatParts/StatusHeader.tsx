@@ -32,14 +32,14 @@ const StatusHeader = memo(function StatusHeader({
 
     return (
         <div
-            className="px-4 py-3 flex items-center justify-between border-b border-slate-800/50 bg-gradient-to-r from-slate-800/30 to-slate-800/10 backdrop-blur-sm shrink-0"
+            className="px-4 py-3 flex items-center justify-between border-b border-[var(--theme-text-primary)]/5 bg-gradient-to-r from-[var(--theme-secondary-bg)]/30 to-[var(--theme-secondary-bg)]/10 backdrop-blur-sm shrink-0"
             role="region"
             aria-label="Chat status"
         >
             <div className="flex items-center gap-3">
                 {/* Avatar */}
                 <div
-                    className="w-8 h-8 rounded-xl bg-gradient-to-br from-[var(--theme-primary-bg)] to-[var(--theme-primary-bg)]/70 flex items-center justify-center text-white font-bold text-[10px] shadow-lg border border-white/10"
+                    className="w-8 h-8 rounded-xl bg-gradient-to-br from-[var(--theme-accent)] to-[var(--theme-accent)]/70 flex items-center justify-center text-[var(--theme-primary-text)] font-bold text-[10px] shadow-lg border border-[var(--theme-text-primary)]/10"
                     aria-hidden="true"
                 >
                     {getInitials(guestName)}
@@ -47,10 +47,10 @@ const StatusHeader = memo(function StatusHeader({
 
                 {/* Name & Status */}
                 <div className="min-w-0">
-                    <span className="text-[9px] text-slate-500 font-medium block leading-none mb-0.5">
+                    <span className="text-[9px] text-[var(--theme-text-muted)] font-medium block leading-none mb-0.5">
                         {isAdmin ? "Chatting with" : "Chatting as"}
                     </span>
-                    <span className="text-[12px] text-white font-bold leading-tight block truncate max-w-[120px]">
+                    <span className="text-[12px] text-[var(--theme-text-primary)] font-bold leading-tight block truncate max-w-[120px]">
                         {guestName || (isAdmin ? "Customer" : "Support Guest")}
                     </span>
                 </div>
@@ -62,8 +62,8 @@ const StatusHeader = memo(function StatusHeader({
                     <button
                         onClick={onToggleAi}
                         className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border transition-all duration-300 hover:scale-105 active:scale-95 ${isAiEnabled
-                                ? 'bg-gradient-to-r from-blue-500/20 to-indigo-500/20 border-blue-500/40 text-blue-400 shadow-lg shadow-blue-500/10'
-                                : 'bg-slate-800/60 border-slate-700/50 text-slate-500 hover:border-slate-600'
+                            ? 'bg-gradient-to-r from-[var(--theme-accent)]/20 to-[var(--scolor-contrast)]/20 border-[var(--theme-accent)]/40 text-[var(--theme-accent)] shadow-lg shadow-[var(--theme-accent)]/10'
+                            : 'bg-[var(--theme-text-secondary)]/10 border-[var(--theme-text-secondary)]/20 text-[var(--theme-text-muted)] hover:border-[var(--theme-text-secondary)]/30'
                             }`}
                         title={isAiEnabled ? "AI Auto-Reply: ON (Click to disable)" : "AI Auto-Reply: OFF (Click to enable)"}
                         aria-label={isAiEnabled ? "Disable AI auto-reply" : "Enable AI auto-reply"}
@@ -84,7 +84,7 @@ const StatusHeader = memo(function StatusHeader({
                 {isAdmin && hasSelectedGuest && (
                     <button
                         onClick={onDeleteRecord}
-                        className="p-2 hover:bg-red-500/15 rounded-xl text-red-500/50 hover:text-red-400 transition-all hover:scale-105 active:scale-95"
+                        className="p-2 hover:bg-[var(--theme-accent)]/15 rounded-xl text-[var(--theme-accent)]/50 hover:text-[var(--theme-accent)] transition-all hover:scale-105 active:scale-95"
                         title="Delete entire conversation"
                         aria-label="Delete conversation"
                     >
@@ -94,14 +94,14 @@ const StatusHeader = memo(function StatusHeader({
 
                 {/* Admin Badge or End Chat Button */}
                 {isAdmin ? (
-                    <div className="flex items-center gap-1.5 bg-gradient-to-r from-slate-800 to-slate-800/80 text-slate-400 text-[9px] font-bold px-2.5 py-1.5 rounded-xl border border-slate-700/50 uppercase tracking-wider shadow-inner">
+                    <div className="flex items-center gap-1.5 bg-gradient-to-r from-[var(--theme-text-secondary)]/10 to-[var(--theme-text-secondary)]/5 text-[var(--theme-text-muted)] text-[9px] font-bold px-2.5 py-1.5 rounded-xl border border-[var(--theme-text-secondary)]/20 uppercase tracking-wider shadow-inner">
                         <User size={10} />
                         Admin
                     </div>
                 ) : (
                     <button
                         onClick={onEndChat}
-                        className="flex items-center gap-1.5 text-[9px] font-bold text-red-400/80 hover:text-red-400 transition-all px-2.5 py-1.5 hover:bg-red-500/10 rounded-xl uppercase tracking-wider"
+                        className="flex items-center gap-1.5 text-[9px] font-bold text-[var(--theme-accent)]/80 hover:text-[var(--theme-accent)] transition-all px-2.5 py-1.5 hover:bg-[var(--theme-accent)]/10 rounded-xl uppercase tracking-wider"
                         aria-label="End chat session"
                     >
                         <LogOut size={11} />

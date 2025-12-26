@@ -188,7 +188,7 @@ export default function ManualOrderModal({ isOpen, onClose, onCreated, orderData
 
   return (
 
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--theme-primary-text)]/40 backdrop-blur-sm">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full mx-4 overflow-hidden flex flex-col" style={{ maxHeight: "90vh" }}>
         <div className="p-5 border-b border-gray-200 flex items-center justify-between bg-white">
           <h3 className="text-lg font-semibold text-gray-900">{isEditMode ? 'Edit Book Order' : 'Create Book Order'}</h3>
@@ -221,15 +221,15 @@ export default function ManualOrderModal({ isOpen, onClose, onCreated, orderData
             </div>
             <div>
               <label className="block text-xs font-semibold text-gray-700 uppercase mb-1">Discount (%)</label>
-              <select value={discountPercentage} onChange={(e) => setDiscountPercentage(Number(e.target.value))} className="w-full px-3 py-2 bg-white border border-gray-300 rounded text-gray-900 focus:border-black outline-none transition-colors">
-                <option value="0" className="text-black">No Discount</option>
-                <option value="5" className="text-black">5%</option>
-                <option value="10" className="text-black">10%</option>
-                <option value="15" className="text-black">15%</option>
-                <option value="20" className="text-black">20%</option>
-                <option value="25" className="text-black">25%</option>
-                <option value="30" className="text-black">30%</option>
-                <option value="50" className="text-black">50%</option>
+              <select value={discountPercentage} onChange={(e) => setDiscountPercentage(Number(e.target.value))} className="w-full px-3 py-2 bg-white border border-gray-300 rounded text-gray-900 focus:border-[var(--theme-primary-bg)] outline-none transition-colors">
+                <option value="0" className="text-[var(--theme-primary-text)]">No Discount</option>
+                <option value="5" className="text-[var(--theme-primary-text)]">5%</option>
+                <option value="10" className="text-[var(--theme-primary-text)]">10%</option>
+                <option value="15" className="text-[var(--theme-primary-text)]">15%</option>
+                <option value="20" className="text-[var(--theme-primary-text)]">20%</option>
+                <option value="25" className="text-[var(--theme-primary-text)]">25%</option>
+                <option value="30" className="text-[var(--theme-primary-text)]">30%</option>
+                <option value="50" className="text-[var(--theme-primary-text)]">50%</option>
               </select>
             </div>
           </div>
@@ -345,7 +345,7 @@ export default function ManualOrderModal({ isOpen, onClose, onCreated, orderData
             disabled={submitting}
             onClick={handleSubmit}
             className="flex-1 px-4 py-2 rounded text-sm font-bold text-white shadow hover:opacity-90 active:translate-y-0.5 transition-all disabled:opacity-50"
-            style={{ backgroundColor: 'var(--theme-primary-bg, #000)' }}
+            style={{ backgroundColor: 'var(--theme-primary-bg)' }}
           >
             {submitting ? (isEditMode ? 'Updating...' : 'Saving...') : (isEditMode ? 'Update Order' : 'Create Order')}
           </button>

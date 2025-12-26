@@ -51,8 +51,8 @@ export default function HeaderFive({
       {/* Minimalist Top Bar */}
       <header
         className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? "bg-[#8CC63F] border-b border-[#004D25] shadow-sm"
-          : "bg-[#8CC63F]/95 backdrop-blur-lg"
+          ? "bg-[var(--scolor)] border-b border-[var(--scolor-contrast)] shadow-sm"
+          : "bg-[var(--scolor)]/95 backdrop-blur-lg"
           }`}
       >
         <div className="max-w-7xl mx-auto px-4">
@@ -61,7 +61,7 @@ export default function HeaderFive({
             <IonButtons>
               <IonButton onClick={() => navigate("/")}>
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg overflow-hidden bg-gradient-to-br from-[#8CC63F] to-[#004D25] shadow-md flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-lg overflow-hidden bg-gradient-to-br from-[var(--scolor)] to-[var(--scolor-contrast)] shadow-md flex items-center justify-center">
                     {contactData?.Thumbnail ? (
                       <img
                         src={`${IMAGE_URL}/uploads/${contactData.Thumbnail}`}
@@ -69,7 +69,7 @@ export default function HeaderFive({
                         alt="Logo"
                       />
                     ) : (
-                      <span className="text-white text-xs font-bold">LG</span>
+                      <span className="text-[var(--theme-primary-text)] text-xs font-bold">LG</span>
                     )}
                   </div>
 
@@ -97,8 +97,8 @@ export default function HeaderFive({
                         key={m.label}
                         onClick={() => handleDropdownClick(cfg)}
                         className={`px-3 py-2 text-sm font-medium transition-all flex items-center gap-1.5 border-b-2 ${opened
-                          ? "text-[#004D25] border-[#004D25]"
-                          : "text-[#004D25]/70 border-transparent hover:text-[#004D25] hover:border-[#004D25]/30"
+                          ? "text-[var(--scolor-contrast)] border-[var(--scolor-contrast)]"
+                          : "text-[var(--scolor-contrast)]/70 border-transparent hover:text-[var(--scolor-contrast)] hover:border-[var(--scolor-contrast)]/30"
                           }`}
                       >
                         {m.label}
@@ -120,8 +120,8 @@ export default function HeaderFive({
                       key={m.label}
                       onClick={() => navigate(m.url)}
                       className={`px-3 py-2 text-sm font-medium transition-all border-b-2 ${active
-                        ? "text-[#004D25] border-[#004D25]"
-                        : "text-[#004D25]/70 border-transparent hover:text-[#004D25] hover:border-[#004D25]/30"
+                        ? "text-[var(--scolor-contrast)] border-[var(--scolor-contrast)]"
+                        : "text-[var(--scolor-contrast)]/70 border-transparent hover:text-[var(--scolor-contrast)] hover:border-[var(--scolor-contrast)]/30"
                         }`}
                     >
                       {m.label}
@@ -134,10 +134,10 @@ export default function HeaderFive({
             {/* RIGHT - Menu Toggle */}
             {showRightButtons && (
               <button
-                className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors"
+                className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-[var(--theme-text-secondary)] opacity-10 active:opacity-20 transition-colors"
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
               >
-                <Grid3x3 size={20} className="text-gray-700" />
+                <Grid3x3 size={20} className="text-[var(--theme-secondary-bg)]" />
               </button>
             )}
           </div>
@@ -147,7 +147,7 @@ export default function HeaderFive({
             <div className="hidden md:block py-4 border-t border-gray-100 animate-in fade-in slide-in-from-top-2 duration-200">
               {dropdownLoading[openDropdown] && (!dropdownData[openDropdown] || dropdownData[openDropdown].length === 0) ? (
                 <div className="flex justify-center py-8">
-                  <Loader2 size={24} className="animate-spin text-[#004D25]" />
+                  <Loader2 size={24} className="animate-spin text-[var(--scolor-contrast)]" />
                 </div>
               ) : (
                 <div className="grid grid-cols-4 lg:grid-cols-6 gap-3">
@@ -170,7 +170,7 @@ export default function HeaderFive({
                             alt={String(item[cfg.titleField] || "Item")}
                           />
                         </div>
-                        <p className="text-xs font-medium text-gray-700 line-clamp-2 group-hover:text-orange-600 transition-colors">
+                        <p className="text-xs font-medium text-gray-700 line-clamp-2 group-hover:text-[var(--scolor-contrast)] transition-colors">
                           {String(item[cfg.titleField] || "")}
                         </p>
                       </button>
@@ -189,7 +189,7 @@ export default function HeaderFive({
       {/* Sidebar Overlay */}
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 animate-in fade-in duration-200"
+          className="fixed inset-0 bg-[var(--theme-primary-text)]/30 backdrop-blur-sm z-40 animate-in fade-in duration-200"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
@@ -225,8 +225,8 @@ export default function HeaderFive({
                       <button
                         onClick={() => handleDropdownClick(cfg)}
                         className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all ${opened
-                          ? "bg-orange-50 text-orange-600"
-                          : "text-gray-700 hover:bg-gray-50"
+                          ? "bg-[var(--theme-accent)]/10 text-[var(--theme-accent)]"
+                          : "text-[var(--theme-text-muted)] hover:bg-[var(--theme-text-secondary)]/10"
                           }`}
                       >
                         <div className="flex items-center gap-3">
@@ -275,8 +275,8 @@ export default function HeaderFive({
                     key={m.label}
                     onClick={() => navigate(m.url)}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${active
-                      ? "bg-orange-50 text-orange-600"
-                      : "text-gray-700 hover:bg-gray-50"
+                      ? "bg-[var(--theme-accent)]/10 text-[var(--theme-accent)]"
+                      : "text-[var(--theme-text-muted)] hover:bg-[var(--theme-text-secondary)]/10"
                       }`}
                   >
                     <m.icon size={20} />
@@ -298,7 +298,7 @@ export default function HeaderFive({
                     alt="Logo"
                   />
                 ) : (
-                  <span className="text-white text-sm font-bold">LG</span>
+                  <span className="text-[var(--theme-primary-text)] text-sm font-bold">LG</span>
                 )}
               </div>
               <div className="flex-1 min-w-0">

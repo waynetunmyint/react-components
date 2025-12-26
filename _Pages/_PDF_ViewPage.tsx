@@ -81,7 +81,7 @@ const PDFViewPage: React.FC = () => {
                         {/* Loading State */}
                         {isLoading && (
                             <div className="flex justify-center items-center py-12">
-                                <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200" style={{ borderTopColor: 'var(--theme-primary-bg, #5FA310)' }}></div>
+                                <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200" style={{ borderTopColor: 'var(--theme-primary-bg)' }}></div>
                             </div>
                         )}
 
@@ -133,7 +133,7 @@ const PDFViewPage: React.FC = () => {
                                         {/* Open Button */}
                                         <button
                                             className="flex items-center gap-2 px-4 py-2 rounded-lg text-white text-sm font-medium transition-all hover:opacity-90"
-                                            style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}
+                                            style={{ backgroundColor: 'var(--theme-primary-bg)' }}
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 openPDF(book.PreviewPDF!);
@@ -152,7 +152,7 @@ const PDFViewPage: React.FC = () => {
                                             onClick={handleViewMore}
                                             disabled={isLoadingMore}
                                             className="flex items-center gap-2 px-6 py-3 rounded-xl text-white font-medium transition-all hover:opacity-90 disabled:opacity-50"
-                                            style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}
+                                            style={{ backgroundColor: 'var(--theme-primary-bg)' }}
                                         >
                                             {isLoadingMore ? (
                                                 <>

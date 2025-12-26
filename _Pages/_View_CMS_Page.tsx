@@ -38,10 +38,10 @@ const CommonViewPage: React.FC<Props> = ({
 
   return (
     <IonPage>
-      <HeaderSwitcher headingField={displayTitle} />
-      <IonContent fullscreen>
 
-        <div className='min-h-screen bg-white mt-[100px]'>
+      <IonContent fullscreen>
+        <HeaderSwitcher headingField={displayTitle} />
+        <div className='min-h-screen bg-white '>
           <ViewSwitcher
             dataSource={dataSource}
             idField={id || ''}

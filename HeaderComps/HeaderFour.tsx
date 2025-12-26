@@ -51,8 +51,8 @@ export default function HeaderFour({
       <div className="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
         <header
           className={`max-w-7xl mx-auto rounded-2xl transition-all duration-500 ${scrolled
-            ? "bg-white/70 backdrop-blur-2xl shadow-2xl shadow-orange-500/10 border border-orange-100/50"
-            : "bg-white/40 backdrop-blur-xl border border-white/30"
+            ? "bg-[var(--theme-text-primary)]/70 backdrop-blur-2xl shadow-2xl shadow-[var(--scolor)]/10 border border-[var(--theme-accent)]/20"
+            : "bg-[var(--theme-text-primary)]/40 backdrop-blur-xl border border-[var(--theme-text-primary)]/30"
             }`}
         >
           <div className="px-6">
@@ -63,9 +63,9 @@ export default function HeaderFour({
                   <div className="flex items-center gap-3">
                     <div className="relative">
                       {/* Gradient Ring */}
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-orange-400 via-pink-400 to-purple-400 opacity-75 blur-sm" />
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--scolor)] via-[var(--theme-accent)] to-[var(--scolor-contrast)] opacity-75 blur-sm" />
 
-                      <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden bg-white shadow-xl ring-2 ring-orange-200 p-1.5">
+                      <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden bg-[var(--theme-text-primary)] shadow-xl ring-2 ring-[var(--theme-accent)]/20 p-1.5">
                         {contactData?.Thumbnail ? (
                           <img
                             src={`${IMAGE_URL}/uploads/${contactData.Thumbnail}`}
@@ -73,13 +73,13 @@ export default function HeaderFour({
                             alt="Logo"
                           />
                         ) : (
-                          <div className="w-full h-full bg-gradient-to-br from-orange-200 to-orange-400 animate-pulse rounded-full" />
+                          <div className="w-full h-full bg-gradient-to-br from-orange-200 to-[var(--scolor)] animate-pulse rounded-full" />
                         )}
                       </div>
                     </div>
 
                     {headingField && (
-                      <h1 className="text-base sm:text-lg font-bold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
+                      <h1 className="text-base sm:text-lg font-bold bg-gradient-to-r from-[var(--scolor-contrast)] to-[var(--scolor-contrast)] bg-clip-text text-transparent">
                         {headingField}
                       </h1>
                     )}
@@ -102,7 +102,7 @@ export default function HeaderFour({
                           key={m.label}
                           onClick={() => handleDropdownClick(cfg)}
                           className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${opened
-                            ? "bg-gradient-to-r from-orange-500 to-pink-500 text-white shadow-lg shadow-orange-500/30"
+                            ? "bg-gradient-to-r from-[var(--scolor)] to-[var(--scolor)] text-white shadow-lg shadow-[var(--scolor)]/30"
                             : "text-gray-700 hover:bg-white/80 hover:shadow-md"
                             }`}
                         >
@@ -126,7 +126,7 @@ export default function HeaderFour({
                         key={m.label}
                         onClick={() => navigate(m.url)}
                         className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${active
-                          ? "bg-gradient-to-r from-orange-500 to-pink-500 text-white shadow-lg shadow-orange-500/30"
+                          ? "bg-gradient-to-r from-[var(--scolor)] to-[var(--scolor)] text-white shadow-lg shadow-[var(--scolor)]/30"
                           : "text-gray-700 hover:bg-white/80 hover:shadow-md"
                           }`}
                       >
@@ -141,7 +141,7 @@ export default function HeaderFour({
               {/* RIGHT - Mobile Menu */}
               {showRightButtons && (
                 <button
-                  className="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-pink-500 text-white shadow-lg shadow-orange-500/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all"
+                  className="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-[var(--scolor)] to-[var(--scolor)] text-white shadow-lg shadow-[var(--scolor)]/30 hover:shadow-xl hover:scale-105 active:scale-95 transition-all"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
                   {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -164,7 +164,7 @@ export default function HeaderFour({
                           <button
                             onClick={() => handleDropdownClick(cfg)}
                             className={`w-full flex justify-between items-center px-4 py-3 rounded-xl transition-all ${opened
-                              ? "bg-gradient-to-r from-orange-500 to-pink-500 text-white shadow-lg"
+                              ? "bg-gradient-to-r from-[var(--scolor)] to-[var(--scolor)] text-white shadow-lg"
                               : "bg-white/50 hover:bg-white/80"
                               }`}
                           >
@@ -216,7 +216,7 @@ export default function HeaderFour({
                           setIsMenuOpen(false);
                         }}
                         className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${active
-                          ? "bg-gradient-to-r from-orange-500 to-pink-500 text-white shadow-lg"
+                          ? "bg-gradient-to-r from-[var(--scolor)] to-[var(--scolor)] text-white shadow-lg"
                           : "bg-white/50 hover:bg-white/80"
                           }`}
                       >
@@ -249,8 +249,8 @@ export default function HeaderFour({
                 {dropdownLoading[openDropdown] && (!dropdownData[openDropdown] || dropdownData[openDropdown].length === 0) ? (
                   <div className="flex justify-center py-16">
                     <div className="relative">
-                      <Sparkles className="absolute inset-0 text-orange-400 animate-pulse" size={32} />
-                      <Loader2 size={32} className="animate-spin text-orange-500" />
+                      <Sparkles className="absolute inset-0 text-[var(--scolor)] animate-pulse" size={32} />
+                      <Loader2 size={32} className="animate-spin text-[var(--scolor)]" />
                     </div>
                   </div>
                 ) : (
@@ -265,7 +265,7 @@ export default function HeaderFour({
                             navigate(cfg.urlPattern.replace("{id}", String(item[cfg.idField] || "")))
                             setOpenDropdown(null);
                           }}
-                          className="group bg-white rounded-2xl p-4 shadow-md hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-300 hover:-translate-y-1 text-left"
+                          className="group bg-white rounded-2xl p-4 shadow-md hover:shadow-2xl hover:shadow-[var(--scolor)]/20 transition-all duration-300 hover:-translate-y-1 text-left"
                         >
                           <div className="relative overflow-hidden rounded-xl mb-3">
                             <img
@@ -275,7 +275,7 @@ export default function HeaderFour({
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                           </div>
-                          <p className="text-sm font-semibold text-gray-800 line-clamp-2 group-hover:text-orange-600 transition-colors">
+                          <p className="text-sm font-semibold text-gray-800 line-clamp-2 group-hover:text-[var(--scolor-contrast)] transition-colors">
                             {String(item[cfg.titleField] || "")}
                           </p>
                         </button>

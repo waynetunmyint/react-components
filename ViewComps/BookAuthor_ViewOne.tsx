@@ -56,7 +56,7 @@ export const BookAuthorViewOne: React.FC<Props> = ({ item }) => {
           <button
             onClick={() => window.history.back()}
             className="px-6 py-3 text-base font-medium rounded-xl transition-colors text-white hover:opacity-90"
-            style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}
+            style={{ backgroundColor: 'var(--theme-primary-bg)' }}
           >
             Go Back
           </button>
@@ -117,7 +117,7 @@ export const BookAuthorViewOne: React.FC<Props> = ({ item }) => {
                       <button
                         onClick={() => setExpandDescription(!expandDescription)}
                         className="inline-flex items-center gap-1 mt-3 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors hover:opacity-80"
-                        style={{ color: 'var(--theme-primary-bg, #5FA310)' }}
+                        style={{ color: 'var(--theme-primary-bg)' }}
                       >
                         {expandDescription ? (
                           <>

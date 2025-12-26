@@ -36,7 +36,7 @@ export default function CustomerChatModal({ isOpen, onClose }: CustomerChatModal
 
     return (
         <div
-            className={`fixed z-[70] transition-all duration-500 ease-in-out bg-slate-950 shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/5 flex flex-col overflow-hidden animate-widgetUp
+            className={`fixed z-[70] transition-all duration-500 ease-in-out bg-[var(--theme-secondary-bg)] shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-[var(--theme-text-primary)]/5 flex flex-col overflow-hidden animate-widgetUp
                 ${isMaximized
                     ? 'inset-0 w-full h-full rounded-none'
                     : 'right-0 bottom-0 sm:right-6 sm:bottom-[100px] w-full sm:w-[420px] h-full sm:h-[650px] sm:max-h-[calc(100vh-140px)] sm:rounded-[2rem]'
@@ -56,18 +56,18 @@ export default function CustomerChatModal({ isOpen, onClose }: CustomerChatModal
 
             {/* AI Status / Connection Banner */}
             {chat.connectionStatus === "error" && (
-                <div className="px-3 py-1.5 bg-red-500/10 border-b border-red-500/20 flex items-center justify-between gap-2 overflow-hidden">
+                <div className="px-3 py-1.5 bg-[var(--theme-accent)]/10 border-b border-[var(--theme-accent)]/20 flex items-center justify-between gap-2 overflow-hidden">
                     <div className="flex items-center gap-2 min-w-0">
-                        <WifiOff size={12} className="text-red-400 shrink-0" />
-                        <span className="text-[10px] text-red-400 font-medium truncate">Connection Interrupted</span>
+                        <WifiOff size={12} className="text-[var(--theme-accent)] shrink-0" />
+                        <span className="text-[10px] text-[var(--theme-accent)] font-medium truncate">Connection Interrupted</span>
                     </div>
-                    <button onClick={() => window.location.reload()} className="px-2 py-0.5 bg-red-500/20 rounded text-[9px] text-red-300 font-black uppercase">Refresh</button>
+                    <button onClick={() => window.location.reload()} className="px-2 py-0.5 bg-[var(--theme-accent)]/20 rounded text-[9px] text-[var(--theme-text-primary)] font-black uppercase">Refresh</button>
                 </div>
             )}
 
             <div className="flex-1 overflow-hidden flex flex-col relative">
                 {/* Background Glow */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-blue-600/5 blur-[100px] pointer-events-none" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-[var(--theme-accent)]/5 blur-[100px] pointer-events-none" />
 
                 {!chat.isRegistered && !chat.isAdmin ? (
                     <RegistrationForm

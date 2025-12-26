@@ -31,8 +31,8 @@ export const CartButton: React.FC = () => {
       <button
         onClick={() => setOpen(true)}
         style={{
-          backgroundColor: '#004D25',
-          color: '#ffffff'
+          backgroundColor: 'var(--theme-primary-bg)',
+          color: 'var(--theme-primary-text)'
         }}
         className="fixed right-6 bottom-6 z-50 p-3 rounded-full shadow-lg flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all"
         aria-label="Open cart"

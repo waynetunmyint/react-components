@@ -75,18 +75,18 @@ export function CommonOne({ item, dataSource }: Props) {
                 )}
 
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--theme-primary-text)]/60 via-[var(--theme-primary-text)]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 {/* View Count Badge */}
                 {viewCount !== undefined && viewCount > 0 && (
-                    <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 bg-black/50 backdrop-blur-sm text-white text-xs font-medium rounded-full">
+                    <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 bg-[var(--theme-primary-text)]/50 backdrop-blur-sm text-[var(--theme-primary-bg)] text-xs font-medium rounded-full">
                         <Eye size={12} />
                         <span>{viewCount.toLocaleString()}</span>
                     </div>
                 )}
 
                 {/* Arrow on hover */}
-                <div className="absolute bottom-4 right-4 w-10 h-10 rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-lg" style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}>
+                <div className="absolute bottom-4 right-4 w-10 h-10 rounded-full flex items-center justify-center text-[var(--theme-primary-text)] opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-lg" style={{ backgroundColor: 'var(--theme-primary-bg)' }}>
                     <ArrowRight size={20} />
                 </div>
             </div>
@@ -110,7 +110,7 @@ export function CommonOne({ item, dataSource }: Props) {
                     {/* Left: Date or Price */}
                     {price ? (
                         <div className="flex flex-col">
-                            <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--theme-primary-bg, #5FA310)' }}>Price</span>
+                            <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--theme-primary-bg)' }}>Price</span>
                             <span className="text-lg font-bold text-gray-900">
                                 {priceFormatter(price)}
                             </span>

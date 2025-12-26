@@ -20,14 +20,14 @@ const ChatHeader = memo(function ChatHeader({
 }: ChatHeaderProps) {
     return (
         <header
-            className="px-4 py-3 bg-slate-800/95 backdrop-blur-md border-b border-[var(--theme-border-primary)]/10 flex items-center justify-between shrink-0"
+            className="px-4 py-3 bg-[var(--theme-secondary-bg)]/95 backdrop-blur-md border-b border-[var(--theme-border-primary)]/10 flex items-center justify-between shrink-0"
             role="banner"
         >
             <div className="flex items-center gap-2.5">
                 {isAdmin && hasSelectedGuest && (
                     <button
                         onClick={onBack}
-                        className="p-1.5 hover:bg-slate-700 rounded-lg text-slate-400 hover:text-white transition-all active:scale-95"
+                        className="p-1.5 hover:bg-[var(--theme-text-secondary)]/10 rounded-lg text-[var(--theme-text-muted)] hover:text-[var(--theme-text-primary)] transition-all active:scale-95"
                         aria-label="Go back to chat list"
                     >
                         <ArrowLeft size={16} />
@@ -37,17 +37,17 @@ const ChatHeader = memo(function ChatHeader({
                     className="w-9 h-9 rounded-xl flex items-center justify-center shadow-lg relative overflow-hidden group"
                     style={{ backgroundColor: 'var(--theme-primary-bg)' }}
                 >
-                    <MessageCircle className="w-4 h-4 text-white relative z-10" />
-                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <MessageCircle className="w-4 h-4 text-[var(--theme-primary-text)] relative z-10" />
+                    <div className="absolute inset-0 bg-[var(--theme-text-primary)]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
                 <div>
-                    <h3 className="text-[13px] font-bold text-white leading-tight flex items-center gap-1.5">
+                    <h3 className="text-[13px] font-bold text-[var(--theme-text-primary)] leading-tight flex items-center gap-1.5">
                         {isAdmin ? "Customer Chats" : "Customer Support"}
-                        {isAdmin && <Shield size={10} className="text-blue-400" />}
+                        {isAdmin && <Shield size={10} className="text-[var(--theme-accent)]" />}
                     </h3>
                     <div className="flex items-center gap-1.5 mt-0.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shadow-lg shadow-green-500/50" />
-                        <span className="text-[9px] text-slate-400 font-bold tracking-tight uppercase">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--scolor)] animate-pulse shadow-lg shadow-[var(--scolor)]/50" />
+                        <span className="text-[9px] text-[var(--theme-text-muted)] font-bold tracking-tight uppercase">
                             {isAdmin ? "Live Dashboard" : "Online • Typically replies instantly"}
                         </span>
                     </div>
@@ -57,18 +57,18 @@ const ChatHeader = memo(function ChatHeader({
                 {onToggleMaximize && (
                     <button
                         onClick={onToggleMaximize}
-                        className="p-2 hover:bg-slate-700 rounded-xl transition-all active:scale-90"
+                        className="p-2 hover:bg-[var(--theme-text-secondary)]/10 rounded-xl transition-all active:scale-90"
                         aria-label={isMaximized ? "Minimize chat" : "Maximize chat"}
                     >
-                        {isMaximized ? <Minimize2 size={18} className="text-slate-400" /> : <Maximize2 size={18} className="text-slate-400" />}
+                        {isMaximized ? <Minimize2 size={18} className="text-[var(--theme-text-muted)]" /> : <Maximize2 size={18} className="text-[var(--theme-text-muted)]" />}
                     </button>
                 )}
                 <button
                     onClick={onClose}
-                    className="p-2 hover:bg-slate-700 rounded-xl transition-all hover:rotate-90 active:scale-90"
+                    className="p-2 hover:bg-[var(--theme-text-secondary)]/10 rounded-xl transition-all hover:rotate-90 active:scale-90"
                     aria-label="Close chat"
                 >
-                    <X size={18} className="text-slate-400" />
+                    <X size={18} className="text-[var(--theme-text-muted)]" />
                 </button>
             </div>
         </header>

@@ -123,40 +123,40 @@ const CheckoutForm: React.FC<Props> = ({ items, grandTotal, onCancel, onComplete
   return (
     <form onSubmit={handleSubmit} className="p-4 space-y-3 h-[calc(100%-160px)] overflow-y-auto relative">
       {serverError && (
-        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black text-white px-6 py-4 rounded-lg shadow-2xl z-50 animate-fade-in flex flex-col items-center">
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[var(--theme-primary-text)] text-[var(--theme-primary-bg)] px-6 py-4 rounded-lg shadow-2xl z-50 animate-fade-in flex flex-col items-center">
           <span className="text-2xl mb-2">⚠️</span>
           <span>{serverError}</span>
         </div>
       )}
 
-      <h4 className="text-lg font-semibold" style={{ color: '#111' }}>Checkout</h4>
+      <h4 className="text-lg font-semibold" style={{ color: 'var(--theme-primary-text)' }}>Checkout</h4>
       <div>
-        <label className="text-sm" style={{ color: '#666' }}>Name *</label>
-        <input value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-white border rounded px-2 py-1 mt-1 outline-none focus:ring-1 focus:ring-[var(--theme-primary-bg)]" style={{ color: '#111', borderColor: 'var(--theme-border-primary, #eee)' }} />
+        <label className="text-sm" style={{ color: 'var(--theme-text-muted)' }}>Name *</label>
+        <input value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-white border rounded px-2 py-1 mt-1 outline-none focus:ring-1 focus:ring-[var(--theme-primary-bg)]" style={{ color: 'var(--theme-primary-text)', borderColor: 'var(--theme-border-primary)' }} />
       </div>
       <div>
-        <label className="text-sm" style={{ color: '#666' }}>Phone *</label>
-        <input value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full bg-white border rounded px-2 py-1 mt-1 outline-none focus:ring-1 focus:ring-[var(--theme-primary-bg)]" style={{ color: '#111', borderColor: 'var(--theme-border-primary, #eee)' }} />
+        <label className="text-sm" style={{ color: 'var(--theme-text-muted)' }}>Phone *</label>
+        <input value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full bg-white border rounded px-2 py-1 mt-1 outline-none focus:ring-1 focus:ring-[var(--theme-primary-bg)]" style={{ color: 'var(--theme-primary-text)', borderColor: 'var(--theme-border-primary)' }} />
       </div>
       <div>
-        <label className="text-sm" style={{ color: '#666' }}>Email *</label>
-        <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full bg-white border rounded px-2 py-1 mt-1 outline-none focus:ring-1 focus:ring-[var(--theme-primary-bg)]" style={{ color: '#111', borderColor: 'var(--theme-border-primary, #eee)' }} />
+        <label className="text-sm" style={{ color: 'var(--theme-text-muted)' }}>Email *</label>
+        <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full bg-white border rounded px-2 py-1 mt-1 outline-none focus:ring-1 focus:ring-[var(--theme-primary-bg)]" style={{ color: 'var(--theme-primary-text)', borderColor: 'var(--theme-border-primary)' }} />
       </div>
       <div>
-        <label className="text-sm" style={{ color: '#666' }}>Address *</label>
-        <textarea value={address} onChange={(e) => setAddress(e.target.value)} className="w-full bg-white border rounded px-2 py-1 mt-1 resize-y outline-none focus:ring-1 focus:ring-[var(--theme-primary-bg)]" style={{ color: '#111', borderColor: 'var(--theme-border-primary, #eee)' }} rows={4} />
+        <label className="text-sm" style={{ color: 'var(--theme-text-muted)' }}>Address *</label>
+        <textarea value={address} onChange={(e) => setAddress(e.target.value)} className="w-full bg-white border rounded px-2 py-1 mt-1 resize-y outline-none focus:ring-1 focus:ring-[var(--theme-primary-bg)]" style={{ color: 'var(--theme-primary-text)', borderColor: 'var(--theme-border-primary)' }} rows={4} />
       </div>
 
-      <div className="pt-2 border-t" style={{ borderColor: 'var(--theme-border-primary, #eee)' }}>
+      <div className="pt-2 border-t" style={{ borderColor: 'var(--theme-border-primary)' }}>
         <div className="flex items-center justify-between mb-3">
-          <div className="text-sm" style={{ color: '#666' }}>Grand Total</div>
-          <div className="font-semibold" style={{ color: '#111' }}>{grandTotal.toLocaleString()} MMK</div>
+          <div className="text-sm" style={{ color: 'var(--theme-text-muted)' }}>Grand Total</div>
+          <div className="font-semibold" style={{ color: 'var(--theme-primary-text)' }}>{grandTotal.toLocaleString()} MMK</div>
         </div>
         <div className="flex gap-2">
           <button
             type="button"
             onClick={onCancel}
-            style={{ borderColor: 'var(--theme-border-primary, #eee)', color: '#333' }}
+            style={{ borderColor: 'var(--theme-border-primary)', color: 'var(--theme-primary-text)' }}
             className="flex-1 px-3 py-2 border rounded text-sm font-medium hover:bg-gray-50 transition-colors"
           >
             Back

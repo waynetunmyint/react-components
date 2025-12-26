@@ -211,7 +211,7 @@ export default function ListAdminActionComp({
     const s = Number(status);
     const config: any = {
       0: { text: "Inactive", color: "#fee2e2", textColor: "#b91c1c" },
-      1: { text: "Active", color: '#004D25', textColor: '#ffffff' },
+      1: { text: "Active", color: 'var(--theme-primary-bg)', textColor: 'var(--theme-primary-text)' },
       2: { text: "Sold", color: "#fef3c7", textColor: "#b45309" },
     }[s] || { text: "Unknown", color: "#f1f5f9", textColor: "#64748b" };
 
@@ -296,7 +296,7 @@ export default function ListAdminActionComp({
       {isFetching && data.length > 0 && (
         <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-bottom-5">
           <div className="flex items-center gap-2 px-5 py-2.5 bg-white rounded-full shadow-2xl border border-slate-100 ring-1 ring-black/5">
-            <RefreshCw size={14} className="animate-spin text-[#004D25]" />
+            <RefreshCw size={14} className="animate-spin text-[var(--theme-primary-bg)]" />
             <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Updating...</span>
           </div>
         </div>
@@ -316,7 +316,7 @@ export default function ListAdminActionComp({
         }
         @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
         .shadow-soft { box-shadow: 0 4px 20px -4px rgba(0,0,0,0.05), 0 2px 8px -2px rgba(0,0,0,0.03); }
-        .shadow-theme { box-shadow: 0 10px 25px -5px rgba(0, 77, 37, 0.3); }
+        .shadow-theme { box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2); }
       `}</style>
     </div>
   );

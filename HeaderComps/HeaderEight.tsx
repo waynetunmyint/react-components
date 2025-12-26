@@ -53,8 +53,8 @@ export default function HeaderEight({
             <header
                 className={`sticky top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? "shadow-lg" : ""}`}
                 style={{
-                    backgroundColor: '#8CC63F',
-                    borderBottom: '2px solid #8CC63F'
+                    backgroundColor: 'var(--scolor)',
+                    borderBottom: '2px solid var(--scolor)'
                 }}
             >
                 <div className="max-w-7xl mx-auto px-4">
@@ -65,7 +65,7 @@ export default function HeaderEight({
                             <IonButtons>
                                 <IonButton onClick={() => navigate("/")} className="hover:opacity-80 transition-opacity">
                                     <div className="flex flex-col items-center">
-                                        <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-white  shadow-md">
+                                        <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-[var(--theme-text-primary)] shadow-md">
                                             {contactData?.Thumbnail ? (
                                                 <img
                                                     src={`${IMAGE_URL}/uploads/${contactData.Thumbnail}`}
@@ -73,12 +73,12 @@ export default function HeaderEight({
                                                     alt="Logo"
                                                 />
                                             ) : (
-                                                <div className="w-full h-full animate-pulse bg-gray-100" />
+                                                <div className="w-full h-full animate-pulse bg-[var(--theme-text-muted)] opacity-20" />
                                             )}
                                         </div>
 
                                         {headingField && (
-                                            <h1 className="block md:hidden text-sm sm:text-base font-bold text-white drop-shadow-sm tracking-tight text-center mt-1">
+                                            <h1 className="block md:hidden text-sm sm:text-base font-bold text-[var(--theme-primary-text)] drop-shadow-sm tracking-tight text-center mt-1">
                                                 {headingField}
                                             </h1>
                                         )}
@@ -89,8 +89,8 @@ export default function HeaderEight({
                             {/* Mobile Menu Button */}
                             {showRightButtons && (
                                 <button
-                                    className="md:hidden p-2 text-[#004D25] rounded-lg transition-all absolute right-0 top-2"
-                                    style={{ color: '#004D25' }}
+                                    className="md:hidden p-2 text-[var(--scolor-contrast)] rounded-lg transition-all absolute right-0 top-2"
+                                    style={{ color: 'var(--scolor-contrast)' }}
                                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                                 >
                                     {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -193,7 +193,7 @@ export default function HeaderEight({
                                                                 }}
                                                                 className={`${!cfg.isMegaMenu
                                                                     ? "w-full text-left px-3, py-2.5 text-sm font-medium text-white hover:bg-white/10 rounded-lg transition-colors border border-transparent shadow-none"
-                                                                    : "bg-white text-center rounded-lg shadow-sm p-2 flex flex-col items-center hover:bg-gray-50 active:bg-gray-100 transition-colors"
+                                                                    : "bg-[var(--theme-text-primary)] text-center rounded-lg shadow-sm p-2 flex flex-col items-center hover:bg-[var(--theme-text-secondary)] opacity-10 active:opacity-20 transition-colors"
                                                                     }`}
                                                             >
                                                                 {cfg.isMegaMenu && (
@@ -247,8 +247,8 @@ export default function HeaderEight({
                     <div className="hidden md:block fixed left-0 right-0 top-28 z-40 animate-in slide-in-from-top-2">
                         <div className={`${!finalDropdowns.find(d => d.key === openDropdown)?.isMegaMenu ? 'max-w-sm' : 'max-w-7xl'} mx-auto px-4`}>
                             <div
-                                className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl p-6 max-h-[75vh] overflow-y-auto"
-                                style={{ border: '1px solid rgba(0, 77, 37, 0.3)' }}
+                                className="bg-[var(--theme-text-primary)] backdrop-blur-xl rounded-2xl shadow-2xl p-6 max-h-[75vh] overflow-y-auto"
+                                style={{ border: '1px solid var(--theme-border-primary)' }}
                             >
                                 {dropdownLoading[openDropdown] && (!dropdownData[openDropdown] || dropdownData[openDropdown].length === 0) ? (
                                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
@@ -274,9 +274,9 @@ export default function HeaderEight({
                                                             navigate(cfg.urlPattern.replace("{id}", item[cfg.idField]))
                                                             setOpenDropdown(null);
                                                         }}
-                                                        className="w-full text-left py-2 px-3 rounded-lg hover:bg-gray-50 text-gray-700 hover:text-[#004D25] transition-colors flex items-center gap-2 group break-inside-avoid"
+                                                        className="w-full text-left py-2 px-3 rounded-lg hover:bg-gray-50 text-gray-700 hover:text-[var(--scolor-contrast)] transition-colors flex items-center gap-2 group break-inside-avoid"
                                                     >
-                                                        <div className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-[#004D25] transition-colors" />
+                                                        <div className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-[var(--scolor-contrast)] transition-colors" />
                                                         <span className="font-semibold text-sm truncate">{item[cfg.titleField]}</span>
                                                     </button>
                                                 )
@@ -289,7 +289,7 @@ export default function HeaderEight({
                                                         navigate(cfg.urlPattern.replace("{id}", item[cfg.idField]))
                                                         setOpenDropdown(null);
                                                     }}
-                                                    className="group bg-white rounded-xl shadow-sm p-4 hover:shadow-lg transition-all border border-gray-100 hover:-translate-y-1 text-left"
+                                                    className="group bg-[var(--theme-text-primary)] rounded-xl shadow-sm p-4 hover:shadow-lg transition-all border border-[var(--theme-text-secondary)] opacity-10 hover:opacity-100 hover:-translate-y-1 text-left"
                                                 >
                                                     <div className="relative overflow-hidden rounded-lg aspect-[16/9] mb-3 bg-gray-100">
                                                         {item[cfg.thumbnailField] ? (
@@ -302,7 +302,7 @@ export default function HeaderEight({
                                                             <div className="w-full h-full flex items-center justify-center text-gray-300">No Image</div>
                                                         )}
                                                     </div>
-                                                    <p className="font-bold text-gray-900 line-clamp-2 leading-tight group-hover:text-[#004D25] transition-colors">
+                                                    <p className="font-bold text-gray-900 line-clamp-2 leading-tight group-hover:text-[var(--scolor-contrast)] transition-colors">
                                                         {item[cfg.titleField]}
                                                     </p>
                                                 </button>

@@ -36,9 +36,10 @@ const ProductViewPage: React.FC<Props> = ({ dataSource, title }) => {
 
     return (
         <IonPage>
-            <HeaderSwitcher headingField={displayTitle} />
+
             <IonContent fullscreen>
-                <div className='min-h-screen p-5 bg-white'>
+                <HeaderSwitcher headingField={displayTitle} />
+                <div className='min-h-screen p-5 bg-white text-black'>
                     <Product_ViewOne item={item} />
                 </div>
                 <FooterSwitchComp styleNo={FOOTER_STYLE} />

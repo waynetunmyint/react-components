@@ -58,13 +58,13 @@ export default function HeaderSixteen({
     const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
 
     return (
-        <div className="relative font-sans bg-white w-full">
+        <div className="relative font-sans bg-[var(--theme-text-primary)] w-full">
             {/* 
         ==============================
            TOP SECTION (White)
         ==============================
       */}
-            <div className="bg-white relative z-50">
+            <div className="bg-[var(--theme-text-primary)] relative z-50">
                 <div className="max-w-7xl mx-auto px-4 py-4 md:py-6">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
 
@@ -78,7 +78,7 @@ export default function HeaderSixteen({
                                         alt="Logo"
                                     />
                                 ) : (
-                                    <div className="h-full w-full bg-yellow-400 rounded-full flex items-center justify-center text-white font-bold text-xs p-2 text-center">
+                                    <div className="h-full w-full bg-[var(--scolor)] rounded-full flex items-center justify-center text-[var(--theme-primary-text)] font-bold text-xs p-2 text-center">
                                         {headingField?.substring(0, 1) || "E"}
                                     </div>
                                 )}
@@ -99,9 +99,9 @@ export default function HeaderSixteen({
 
                             {/* Office Hour */}
                             <div className="flex items-center gap-3">
-                                <Clock size={34} className="text-gray-900" strokeWidth={1.2} />
+                                <Clock size={34} className="text-[var(--theme-secondary-bg)]" strokeWidth={1.2} />
                                 <div>
-                                    <h6 className="text-[14px] font-bold text-[#fccb06] tracking-wide uppercase leading-tight">
+                                    <h6 className="text-[14px] font-bold text-[var(--scolor)] tracking-wide uppercase leading-tight">
                                         Office Hour
                                     </h6>
                                     <p className="text-[14px] text-gray-800 font-medium whitespace-nowrap">
@@ -112,9 +112,9 @@ export default function HeaderSixteen({
 
                             {/* Email */}
                             <div className="flex items-center gap-3">
-                                <Mail size={34} className="text-gray-900" strokeWidth={1.2} />
+                                <Mail size={34} className="text-[var(--theme-secondary-bg)]" strokeWidth={1.2} />
                                 <div>
-                                    <h6 className="text-[14px] font-bold text-[#fccb06] tracking-wide uppercase leading-tight">
+                                    <h6 className="text-[14px] font-bold text-[var(--scolor)] tracking-wide uppercase leading-tight">
                                         Email Us
                                     </h6>
                                     <p className="text-[14px] text-gray-800 font-medium whitespace-nowrap">
@@ -125,9 +125,9 @@ export default function HeaderSixteen({
 
                             {/* Call Us */}
                             <div className="flex items-center gap-3">
-                                <Headphones size={34} className="text-gray-900" strokeWidth={1.2} />
+                                <Headphones size={34} className="text-[var(--theme-secondary-bg)]" strokeWidth={1.2} />
                                 <div>
-                                    <h6 className="text-[14px] font-bold text-[#fccb06] tracking-wide uppercase leading-tight">
+                                    <h6 className="text-[14px] font-bold text-[var(--scolor)] tracking-wide uppercase leading-tight">
                                         Call Us
                                     </h6>
                                     <p className="text-[14px] text-gray-800 font-medium whitespace-nowrap">
@@ -154,7 +154,7 @@ export default function HeaderSixteen({
            BOTTOM NAVIGATION (Dark)
         ==============================
       */}
-            <div className={`bg-[#454545] text-white relative z-40 transition-all duration-300 ${scrolled ? 'fixed top-0 left-0 right-0 shadow-lg' : ''}`}>
+            <div className={`bg-[var(--theme-secondary-bg)] text-[var(--theme-primary-text)] relative z-40 transition-all duration-300 ${scrolled ? 'fixed top-0 left-0 right-0 shadow-lg' : ''}`}>
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="flex justify-center md:justify-center">
 
@@ -163,7 +163,7 @@ export default function HeaderSixteen({
                             {menuItems.map((m, index) => {
                                 const active = currentPath === m.url;
                                 const cfg = finalDropdowns.find((d) => d.key === m.key);
-                                const highlightClass = active ? "text-[#fccb06]" : "text-white hover:text-[#fccb06]";
+                                const highlightClass = active ? "text-[var(--scolor)]" : "text-[var(--theme-primary-text)] hover:text-[var(--scolor)]";
 
                                 return (
                                     <div key={m.label} className="flex items-center">
@@ -172,12 +172,12 @@ export default function HeaderSixteen({
                                             <div className="relative group">
                                                 <button
                                                     onClick={() => handleDropdownClick(cfg)}
-                                                    className={`flex items-center gap-2 px-4 py-4 text-[13px] font-bold tracking-widest uppercase transition-colors ${openDropdown === cfg.key ? "text-[#fccb06]" : highlightClass
+                                                    className={`flex items-center gap-2 px-4 py-4 text-[13px] font-bold tracking-widest uppercase transition-colors ${openDropdown === cfg.key ? "text-[var(--scolor)]" : highlightClass
                                                         }`}
                                                 >
                                                     {m.label}
                                                     {dropdownLoading[cfg.key] && (!dropdownData[cfg.key] || dropdownData[cfg.key].length === 0) ? (
-                                                        <Loader2 size={12} className="animate-spin text-[#fccb06]" />
+                                                        <Loader2 size={12} className="animate-spin text-[var(--scolor)]" />
                                                     ) : (
                                                         <ChevronDown size={14} className={`transition-transform duration-200 ${openDropdown === cfg.key ? "rotate-180" : ""}`} />
                                                     )}
@@ -205,7 +205,7 @@ export default function HeaderSixteen({
          ==============================
        */}
             {isMenuOpen && (
-                <div className="md:hidden fixed inset-0 z-[60] bg-white animate-in slide-in-from-right duration-300">
+                <div className="md:hidden fixed inset-0 z-[60] bg-[var(--theme-text-primary)] animate-in slide-in-from-right duration-300">
                     <div className="flex justify-between items-center p-4 border-b">
                         <div className="flex items-center gap-2">
                             {contactData?.Thumbnail && (
@@ -245,7 +245,7 @@ export default function HeaderSixteen({
                                                                 navigate(cfg.urlPattern.replace("{id}", item[cfg.idField]));
                                                                 setIsMenuOpen(false);
                                                             }}
-                                                            className="w-full text-left text-sm font-medium text-gray-600 hover:text-[#fccb06]"
+                                                            className="w-full text-left text-sm font-medium text-[var(--theme-text-muted)] hover:text-[var(--scolor)]"
                                                         >
                                                             {item[cfg.titleField]}
                                                         </button>
@@ -271,15 +271,15 @@ export default function HeaderSixteen({
 
                     <div className="absolute bottom-10 left-0 right-0 px-6 space-y-4">
                         <div className="flex items-center gap-3">
-                            <Clock size={20} className="text-[#fccb06]" />
-                            <span className="text-sm text-gray-600">{contactData?.WorkTime || "Mon-Fri 09:00 - 17:00 | Sat 9:00 - 12:00"}</span>
+                            <Clock size={20} className="text-[var(--scolor)]" />
+                            <span className="text-sm text-[var(--theme-text-muted)]">{contactData?.WorkTime || "Mon-Fri 09:00 - 17:00 | Sat 9:00 - 12:00"}</span>
                         </div>
                         <div className="flex items-center gap-3">
-                            <Mail size={20} className="text-[#fccb06]" />
+                            <Mail size={20} className="text-[var(--scolor)]" />
                             <span className="text-sm text-gray-600 font-medium">{contactData?.Email || "grace@educareservice.com"}</span>
                         </div>
                         <div className="flex items-center gap-3">
-                            <Headphones size={20} className="text-[#fccb06]" />
+                            <Headphones size={20} className="text-[var(--scolor)]" />
                             <span className="text-sm text-gray-600 font-medium">{contactData?.Phone || "+959762850296"}</span>
                         </div>
                     </div>
@@ -299,10 +299,10 @@ export default function HeaderSixteen({
                     />
                     <div className={`hidden md:block fixed left-0 right-0 z-40 transition-all duration-300 ${scrolled ? 'top-[52px]' : 'top-[160px]'}`}>
                         <div className="max-w-7xl mx-auto px-4">
-                            <div className="bg-white shadow-2xl rounded-b-2xl border-t-4 border-[#fccb06] p-8 max-h-[75vh] overflow-y-auto">
+                            <div className="bg-[var(--theme-text-primary)] shadow-2xl rounded-b-2xl border-t-4 border-[var(--scolor)] p-8 max-h-[75vh] overflow-y-auto">
                                 {dropdownLoading[openDropdown] && (!dropdownData[openDropdown] || dropdownData[openDropdown].length === 0) ? (
                                     <div className="flex justify-center py-12">
-                                        <Loader2 size={40} className="animate-spin text-[#fccb06]" />
+                                        <Loader2 size={40} className="animate-spin text-[var(--scolor)]" />
                                     </div>
                                 ) : (
                                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
@@ -324,11 +324,11 @@ export default function HeaderSixteen({
                                                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                                             alt={item[cfg.titleField]}
                                                         />
-                                                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                                            <span className="text-white text-xs font-bold uppercase tracking-widest border border-white px-3 py-1">View Detail</span>
+                                                        <div className="absolute inset-0 bg-[var(--theme-secondary-bg)]/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                                            <span className="text-[var(--theme-primary-text)] text-xs font-bold uppercase tracking-widest border border-[var(--theme-primary-text)] px-3 py-1">View Detail</span>
                                                         </div>
                                                     </div>
-                                                    <h3 className="text-sm font-bold text-gray-800 line-clamp-2 leading-snug group-hover:text-[#fccb06] transition-colors uppercase tracking-tight">
+                                                    <h3 className="text-sm font-bold text-[var(--theme-secondary-bg)] line-clamp-2 leading-snug group-hover:text-[var(--scolor)] transition-colors uppercase tracking-tight">
                                                         {item[cfg.titleField]}
                                                     </h3>
                                                 </div>

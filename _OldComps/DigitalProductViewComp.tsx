@@ -9,12 +9,12 @@ import { UniversalGetStoredJWT, UniversalGetStoredProfile } from "./UniversalSto
 import { ShoppingCart } from "lucide-react";
 
 const SkeletonLoader = () => (
-  <div className="animate-pulse flex flex-col w-full min-h-screen bg-white p-4">
-    <div className="w-full h-64 bg-gray-200 rounded-3xl"></div>
+  <div className="animate-pulse flex flex-col w-full min-h-screen bg-[var(--theme-secondary-bg)] p-4">
+    <div className="w-full h-64 bg-[var(--theme-text-secondary)]/10 rounded-3xl"></div>
     <div className="mt-6 space-y-3">
-      <div className="h-6 bg-gray-200 rounded-lg w-1/2"></div>
-      <div className="h-4 bg-gray-200 rounded-lg w-2/3"></div>
-      <div className="h-4 bg-gray-200 rounded-lg w-1/3"></div>
+      <div className="h-6 bg-[var(--theme-text-secondary)]/10 rounded-lg w-1/2"></div>
+      <div className="h-4 bg-[var(--theme-text-secondary)]/10 rounded-lg w-2/3"></div>
+      <div className="h-4 bg-[var(--theme-text-secondary)]/10 rounded-lg w-1/3"></div>
     </div>
   </div>
 );
@@ -99,7 +99,7 @@ const DigitalProductViewComp: React.FC<Props> = ({ customAPI }) => {
 
   if (!data)
     return (
-      <div className="flex justify-center items-center h-full text-gray-500">
+      <div className="flex justify-center items-center h-full text-[var(--theme-text-muted)]">
         No data found
       </div>
     );
@@ -115,14 +115,14 @@ const DigitalProductViewComp: React.FC<Props> = ({ customAPI }) => {
               className="w-full sm:w-40 h-auto object-cover rounded-2xl flex-shrink-0"
             />
             <div className="flex-1 space-y-2">
-              <h2 className="text-2xl font-bold text-gray-900">{data.Title}</h2>
+              <h2 className="text-2xl font-bold text-[var(--theme-text-primary)]">{data.Title}</h2>
               {data.Price && (
-                <p className="text-xl font-semibold text-green-600">
+                <p className="text-xl font-semibold text-[var(--scolor)]">
                   Price: {data.Price} Token
                 </p>
               )}
               {data.Description && (
-                <p className="text-gray-600 text-base leading-relaxed whitespace-pre-wrap">
+                <p className="text-[var(--theme-text-muted)] text-base leading-relaxed whitespace-pre-wrap">
                   {data.Description}
                 </p>
               )}
@@ -132,24 +132,24 @@ const DigitalProductViewComp: React.FC<Props> = ({ customAPI }) => {
 
 
 
-{owner && data.FileURL && data.FileURL !== "null" && data.FileURL !== "-" ? (
-  <div className="w-full h-screen">
-    <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
-      <Viewer
-        fileUrl={`${IMAGE_URL}/uploads/${data.FileURL}`}
-        plugins={[]}
-      />
-    </Worker>
-  </div>
-) : (
-  <button
-    onClick={() => handlePurchase(data)}
-    className="flex items-center justify-center gap-2 text-white rounded-xl bg-blue-600 p-4 w-full font-medium mt-4 hover:bg-blue-700 transition-all shadow-md"
-  >
-    <ShoppingCart className="w-5 h-5" />
-    Purchase to View
-  </button>
-)}
+        {owner && data.FileURL && data.FileURL !== "null" && data.FileURL !== "-" ? (
+          <div className="w-full h-screen">
+            <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
+              <Viewer
+                fileUrl={`${IMAGE_URL}/uploads/${data.FileURL}`}
+                plugins={[]}
+              />
+            </Worker>
+          </div>
+        ) : (
+          <button
+            onClick={() => handlePurchase(data)}
+            className="flex items-center justify-center gap-2 text-[var(--theme-primary-text)] rounded-xl bg-[var(--theme-accent)] p-4 w-full font-medium mt-4 hover:opacity-90 transition-all shadow-md"
+          >
+            <ShoppingCart className="w-5 h-5" />
+            Purchase to View
+          </button>
+        )}
 
 
 
@@ -159,12 +159,12 @@ const DigitalProductViewComp: React.FC<Props> = ({ customAPI }) => {
 
       {/* Modal */}
       {modalContent?.message && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white rounded-2xl p-6 max-w-sm w-full text-center shadow-lg">
-            <p className="text-gray-800 text-base">{modalContent.message}</p>
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
+          <div className="bg-[var(--theme-secondary-bg)] border border-[var(--theme-text-primary)]/10 rounded-2xl p-6 max-w-sm w-full text-center shadow-lg">
+            <p className="text-[var(--theme-text-primary)] text-base">{modalContent.message}</p>
             <button
               onClick={() => setModalContent(null)}
-              className="bg-blue-700 text-white px-4 py-2 rounded-lg font-medium mt-4 w-full hover:bg-blue-800 transition-colors"
+              className="bg-[var(--theme-accent)] text-[var(--theme-primary-text)] px-4 py-2 rounded-lg font-medium mt-4 w-full hover:opacity-90 transition-colors"
             >
               OK
             </button>

@@ -90,7 +90,7 @@ export function ViewOne({ item }: Props) {
       <button
         onClick={() => handleOpenLink(url)}
         className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 transition-all duration-200 text-sm font-semibold hover:scale-105 active:scale-95 ${linkStyles[label] || "bg-gray-100 text-gray-800 hover:bg-gray-200 border-gray-300 hover:shadow-lg"}`}
-        style={label === 'Website' ? { backgroundColor: 'var(--theme-primary-bg, #5FA310)' } : undefined}
+        style={label === 'Website' ? { backgroundColor: 'var(--theme-primary-bg)' } : undefined}
       >
         {icon || <ExternalLink size={16} />}
         {label}
@@ -117,7 +117,7 @@ export function ViewOne({ item }: Props) {
             <div className="absolute inset-0 rounded-full border-4 border-gray-100"></div>
             <div
               className="absolute inset-0 rounded-full border-4 border-t-transparent animate-spin"
-              style={{ borderColor: 'var(--theme-primary-bg, #F97316)', borderTopColor: 'transparent' }}
+              style={{ borderColor: 'var(--theme-primary-bg)', borderTopColor: 'transparent' }}
             ></div>
           </div>
           <p className="text-gray-500 text-sm">Redirecting...</p>

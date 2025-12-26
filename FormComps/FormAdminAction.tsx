@@ -404,7 +404,7 @@ export default function FormAdminCreateComp({ dataSource, fields, imageSize, onS
           <div className="bg-white px-8 py-6 rounded-2xl shadow-2xl text-center animate-in zoom-in-95 duration-200">
             <div className="relative mx-auto mb-4 w-16 h-16">
               <div className="w-16 h-16 border-4 border-gray-200 rounded-full"></div>
-              <div className="w-16 h-16 border-4 border-[#004D25] border-t-transparent rounded-full animate-spin absolute top-0 left-0"></div>
+              <div className="w-16 h-16 border-4 border-[var(--theme-primary-bg)] border-t-transparent rounded-full animate-spin absolute top-0 left-0"></div>
             </div>
             <p className="text-xl font-semibold text-gray-900 mb-1">Creating Entry</p>
             <p className="text-sm text-gray-600">Please wait while we save your data...</p>
@@ -431,8 +431,8 @@ export default function FormAdminCreateComp({ dataSource, fields, imageSize, onS
                 </h1>
                 <p className="text-gray-600">Fill in the information below to create a new entry</p>
               </div>
-              <div className="bg-gradient-to-br from-[#8CC63F] to-[#004D25] p-3 rounded-xl shadow-lg">
-                <FileText className="text-white" size={28} />
+              <div className="p-3 rounded-xl shadow-lg bg-[var(--theme-primary-bg)]">
+                <FileText className="text-[var(--theme-primary-text)]" size={28} />
               </div>
             </div>
           </div>
@@ -501,7 +501,7 @@ export default function FormAdminCreateComp({ dataSource, fields, imageSize, onS
                 disabled={loading}
                 className={`flex items-center gap-3 px-8 py-3 rounded-xl font-semibold transition-all shadow-lg ${loading
                   ? "bg-gray-400 cursor-not-allowed text-white"
-                  : "bg-gradient-to-r from-[#004D25] to-[#00381b] text-white hover:from-[#00381b] hover:to-black hover:shadow-xl transform hover:-translate-y-0.5"
+                  : "bg-[var(--theme-primary-bg)] text-[var(--theme-primary-text)] hover:brightness-110 hover:shadow-xl transform hover:-translate-y-0.5"
                   }`}
               >
                 {loading ? (

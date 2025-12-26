@@ -46,8 +46,8 @@ export default function HeaderTwo({
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 
         ${scrolled
-            ? "bg-white/80 backdrop-blur-xl border-b border-black/5"
-            : "bg-white/60 backdrop-blur-2xl"
+            ? "bg-[var(--theme-text-primary)]/80 backdrop-blur-xl border-b border-[var(--theme-secondary-bg)]/5"
+            : "bg-[var(--theme-text-primary)]/60 backdrop-blur-2xl"
           }`}
       >
         <div className="max-w-7xl mx-auto px-4">
@@ -57,7 +57,7 @@ export default function HeaderTwo({
             <IonButtons>
               <IonButton onClick={() => navigate("/")}>
                 <div className="flex items-center gap-2">
-                  <div className="relative w-9 h-9 rounded-2xl bg-gray-200 overflow-hidden shadow-sm">
+                  <div className="relative w-9 h-9 rounded-2xl bg-[var(--theme-text-muted)] opacity-20 overflow-hidden shadow-sm">
                     {contactData?.Thumbnail ? (
                       <img
                         src={`${IMAGE_URL}/uploads/${contactData.Thumbnail}`}
@@ -70,7 +70,7 @@ export default function HeaderTwo({
                   </div>
 
                   {headingField && (
-                    <h1 className="text-base sm:text-xl font-extrabold text-[var(--theme-primary-bg)]">
+                    <h1 className="text-base sm:text-xl font-extrabold text-[var(--scolor)]">
                       {headingField}
                     </h1>
                   )}
@@ -119,7 +119,7 @@ export default function HeaderTwo({
                     <button
                       key={m.label}
                       onClick={() => navigate(m.url)}
-                      className={`${baseBtn} ${active ? "bg-black/10 text-gray-900" : "text-gray-700"
+                      className={`${baseBtn} ${active ? "bg-[var(--theme-secondary-bg)]/10 text-[var(--theme-secondary-bg)]" : "text-[var(--theme-text-muted)]"
                         }`}
                     >
                       <m.icon size={16} />
@@ -143,7 +143,7 @@ export default function HeaderTwo({
 
           {/* MOBILE MENU */}
           {isMenuOpen && (
-            <div className="md:hidden mt-2 bg-white/80 backdrop-blur-xl rounded-2xl border border-black/10 shadow-lg p-3 animate-in fade-in-20">
+            <div className="md:hidden mt-2 bg-[var(--theme-text-primary)]/80 backdrop-blur-xl rounded-2xl border border-[var(--theme-secondary-bg)]/10 shadow-lg p-3 animate-in fade-in-20">
               {menuItems.map((m) => {
                 const active = currentPath === m.url;
                 const cfg = finalDropdowns.find((d) => d.key === m.key);
@@ -178,7 +178,7 @@ export default function HeaderTwo({
                                 navigate(cfg.urlPattern.replace("{id}", item[cfg.idField]));
                                 setIsMenuOpen(false);
                               }}
-                              className="bg-white rounded-xl shadow-sm p-2 hover:shadow-md transition"
+                              className="bg-[var(--theme-text-primary)] rounded-xl shadow-sm p-2 hover:shadow-md transition"
                             >
                               <img
                                 src={`${IMAGE_URL}/uploads/${item[cfg.thumbnailField]}`}
@@ -226,7 +226,7 @@ export default function HeaderTwo({
 
           <div className="hidden md:block fixed left-0 right-0 top-16 z-40">
             <div className="max-w-7xl mx-auto px-4">
-              <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-xl border border-black/10 p-6">
+              <div className="bg-[var(--theme-text-primary)]/90 backdrop-blur-xl rounded-3xl shadow-xl border border-[var(--theme-secondary-bg)]/10 p-6">
                 {dropdownLoading[openDropdown] ? (
                   <div className="flex justify-center py-12">
                     <Loader2 size={28} className="animate-spin text-gray-400" />
@@ -246,7 +246,7 @@ export default function HeaderTwo({
                               cfg.urlPattern.replace("{id}", item[cfg.idField])
                             )
                           }
-                          className="bg-white rounded-2xl shadow-sm p-3 hover:shadow-lg transition"
+                          className="bg-[var(--theme-text-primary)] rounded-2xl shadow-sm p-3 hover:shadow-lg transition"
                         >
                           <img
                             src={`${IMAGE_URL}/uploads/${item[cfg.thumbnailField]}`}

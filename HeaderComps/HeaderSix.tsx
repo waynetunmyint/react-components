@@ -32,7 +32,7 @@ export default function HeaderSix({
   return (
     <>
       <header
-        className="sticky top-0 z-40 bg-[#5FA31C] text-white shadow-md"
+        className="sticky top-0 z-40 bg-[var(--scolor)] text-[var(--theme-primary-text)] shadow-md"
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-4">
           <div className="flex items-center justify-between h-16">
@@ -41,7 +41,7 @@ export default function HeaderSix({
               onClick={() => navigate("/")}
               className="flex items-center gap-2 sm:gap-3 hover:opacity-90 transition-opacity"
             >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden bg-[var(--theme-text-primary)] flex items-center justify-center p-1">
                 {contactData?.Thumbnail ? (
                   <img
                     src={`${IMAGE_URL}/uploads/${contactData.Thumbnail}`}
@@ -49,7 +49,7 @@ export default function HeaderSix({
                     alt="Logo"
                   />
                 ) : (
-                  <span className="text-[#5FA31C] font-bold text-xs">LOGO</span>
+                  <span className="text-[var(--scolor)] font-bold text-xs">LOGO</span>
                 )}
               </div>
 
@@ -121,7 +121,7 @@ export default function HeaderSix({
                     <div key={m.label}>
                       <button
                         onClick={() => handleDropdown(cfg)}
-                        className={`flex justify-between w-full px-4 py-3 rounded-lg transition-colors ${opened ? "bg-black/30" : "bg-[#4A8217]"} text-white`}
+                        className={`flex justify-between w-full px-4 py-3 rounded-lg transition-colors ${opened ? "bg-black/30" : "bg-[var(--scolor-contrast)]"} text-white`}
                       >
                         <div className="flex items-center gap-2">
                           {m.label}
@@ -137,7 +137,7 @@ export default function HeaderSix({
                           {dropdownData[cfg.key]?.map((item: any, i: number) => (
                             <button
                               key={i}
-                              className="w-full text-left px-4 py-2 rounded bg-white text-[#333] hover:bg-gray-100 transition-colors shadow-sm"
+                              className="w-full text-left px-4 py-2 rounded bg-[var(--theme-text-primary)] text-[var(--theme-secondary-bg)] hover:bg-[var(--theme-text-secondary)] transition-colors shadow-sm"
                               onClick={() => {
                                 navigate(
                                   cfg.urlPattern.replace(
@@ -164,7 +164,7 @@ export default function HeaderSix({
                       navigate(m.url);
                       setIsMenuOpen(false);
                     }}
-                    className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-colors ${active ? "bg-black/20" : "bg-[#4A8217] hover:bg-[#5FA31C]"
+                    className={`flex items-center gap-2 px-4 py-3 rounded-lg transition-colors ${active ? "bg-black/20" : "bg-[var(--scolor-contrast)] hover:bg-[var(--scolor)]"
                       }`}
                   >
                     {m.label}

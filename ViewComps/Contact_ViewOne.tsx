@@ -110,7 +110,7 @@ export function ContactViewOne({ item }: Props) {
             <button
               onClick={() => window.history.back()}
               className="inline-flex items-center gap-3 px-8 py-4 text-white rounded-2xl font-semibold hover:brightness-110 transition-all shadow-lg hover:shadow-xl active:scale-95"
-              style={{ backgroundColor: 'var(--theme-primary-bg, #0d2c6b)' }}
+              style={{ backgroundColor: 'var(--theme-primary-bg)' }}
             >
               <ArrowLeft size={20} />
               Return Home
@@ -176,7 +176,7 @@ export function ContactViewOne({ item }: Props) {
   );
 
   return (
-    <div className="min-h-screen  py-12 px-4 mt-20">
+    <div className="min-h-screen  py-12 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-[2.5rem] shadow-2xl shadow-blue-900/5 overflow-hidden border border-white">
 

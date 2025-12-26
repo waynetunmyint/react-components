@@ -79,7 +79,7 @@ export default function BookViewOne({ item }: Props) {
           <button
             onClick={() => window.history.back()}
             className="px-6 py-2.5 text-white rounded-lg hover:opacity-90"
-            style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}
+            style={{ backgroundColor: 'var(--theme-primary-bg)' }}
           >
             Go Back
           </button>
@@ -190,7 +190,7 @@ export default function BookViewOne({ item }: Props) {
                     <span className="w-32 text-gray-600 text-sm">စျေးနူန်:</span>
                     <span>
                       {item.Price === 0 ? (
-                        <span className="inline-flex items-center rounded-full text-sm font-medium" style={{ backgroundColor: 'var(--theme-accent, #7AC820)', color: 'white', padding: '2px 8px' }}>Free</span>
+                        <span className="inline-flex items-center rounded-full text-sm font-medium" style={{ backgroundColor: 'var(--theme-accent)', color: 'var(--theme-primary-text)', padding: '2px 8px' }}>Free</span>
                       ) : (
                         <span id="page-text-color" className="inline-flex  text-gray-900 items-center  rounded-full  text-sm font-semibold">{formatPrice(item.Price)} MMK</span>
                       )}
@@ -218,7 +218,7 @@ export default function BookViewOne({ item }: Props) {
                   <button
                     onClick={() => handleOpenLink(`${IMAGE_URL}/uploads/${item.PreviewPDF}`)}
                     className="inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded hover:opacity-90"
-                    style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}
+                    style={{ backgroundColor: 'var(--theme-primary-bg)' }}
                   >
                     <ExternalLink className="inline-block mr-2" size={14} />
                     စာမြည်းဖတ်ရန်
@@ -244,7 +244,7 @@ export default function BookViewOne({ item }: Props) {
                       show('Added to cart');
                     }}
                     className="px-4 py-2 text-white text-sm font-medium rounded hover:opacity-90"
-                    style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}
+                    style={{ backgroundColor: 'var(--theme-primary-bg)' }}
                   >
                     <ShoppingCart className="inline-block mr-2" size={14} />
                     Add to Cart

@@ -53,6 +53,7 @@ interface Props {
   headingField?: string;
   showRightButtons?: boolean;
   dropdownStyle?: string;
+  styleNo?: number;
 }
 
 export default function HeaderSwitcher({
@@ -61,6 +62,7 @@ export default function HeaderSwitcher({
   headingField,
   showRightButtons = true,
   dropdownStyle = "default",
+  styleNo: manualStyleNo,
 }: Props) {
   const [fetchedMenuItems, setFetchedMenuItems] = useState<MenuItem[]>([]);
   const [contactData, setContactData] = useState<any>(null);
@@ -261,7 +263,7 @@ export default function HeaderSwitcher({
   };
 
   const renderVariant = () => {
-    const style = HEADER_STYLE as number;
+    const style = manualStyleNo || (HEADER_STYLE as number);
     switch (style) {
       case 1: return <HeaderOne {...common} />;
       case 2: return <HeaderTwo {...common} />;

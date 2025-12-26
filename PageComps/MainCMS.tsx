@@ -156,20 +156,20 @@ export default function MainCMS({
           <div className="flex items-center justify-between flex-wrap gap-4">
             {/* Left: Page info */}
             <span className="inline-flex items-center gap-2.5 font-medium">
-              <svg className="w-4 h-4" style={{ color: 'var(--theme-primary-bg, #5FA310)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" style={{ color: 'var(--theme-primary-bg)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
               </svg>
               <span className="text-gray-600">Showing</span>
-              <span className="px-2 py-0.5 rounded-md font-bold text-sm" style={{ backgroundColor: 'rgba(95, 163, 16, 0.15)', color: 'var(--theme-primary-bg, #5FA310)' }}>{displayedItems.length}</span>
+              <span className="px-2 py-0.5 rounded-md font-bold text-sm" style={{ backgroundColor: 'color-mix(in srgb, var(--theme-primary-bg), transparent 85%)', color: 'var(--theme-primary-bg)' }}>{displayedItems.length}</span>
               <span className="text-gray-600">items</span>
               <span className="w-1.5 h-1.5 bg-gray-300 rounded-full mx-1"></span>
               <span className="text-gray-600">Page</span>
               <span className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded-md font-bold text-sm">{currentPage}</span>
               {loading && (
-                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ml-2" style={{ backgroundColor: 'rgba(95, 163, 16, 0.1)', color: 'var(--theme-primary-bg, #5FA310)' }}>
+                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ml-2" style={{ backgroundColor: 'color-mix(in srgb, var(--theme-primary-bg), transparent 90%)', color: 'var(--theme-primary-bg)' }}>
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ backgroundColor: 'var(--theme-primary-bg)' }}></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: 'var(--theme-primary-bg)' }}></span>
                   </span>
                   Loading…
                 </span>
@@ -188,7 +188,7 @@ export default function MainCMS({
                     ? "text-white"
                     : "text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                     }`}
-                  style={viewMode === "list" ? { backgroundColor: 'var(--theme-primary-bg, #5FA310)' } : undefined}
+                  style={viewMode === "list" ? { backgroundColor: 'var(--theme-primary-bg)' } : undefined}
                 >
                   <List size={16} strokeWidth={viewMode === "list" ? 2.5 : 2} />
                 </button>
@@ -201,7 +201,7 @@ export default function MainCMS({
                     ? "text-white"
                     : "text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                     }`}
-                  style={viewMode === "medium" ? { backgroundColor: 'var(--theme-primary-bg, #5FA310)' } : undefined}
+                  style={viewMode === "medium" ? { backgroundColor: 'var(--theme-primary-bg)' } : undefined}
                 >
                   <LayoutGrid size={16} strokeWidth={viewMode === "medium" ? 2.5 : 2} />
                 </button>
@@ -214,7 +214,7 @@ export default function MainCMS({
                     ? "text-white"
                     : "text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                     }`}
-                  style={viewMode === "large" ? { backgroundColor: 'var(--theme-primary-bg, #5FA310)' } : undefined}
+                  style={viewMode === "large" ? { backgroundColor: 'var(--theme-primary-bg)' } : undefined}
                 >
                   <LayoutGrid size={20} strokeWidth={viewMode === "large" ? 2.5 : 2} />
                 </button>
@@ -262,7 +262,7 @@ export default function MainCMS({
               onClick={() => getData()}
               aria-label="Retry fetching items"
               className="inline-flex items-center gap-2.5 px-8 py-4 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 focus:outline-none focus-visible:ring-4 active:scale-[0.98]"
-              style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}
+              style={{ backgroundColor: 'var(--theme-primary-bg)' }}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -319,7 +319,7 @@ export default function MainCMS({
                               {item.Description}
                             </p>
                           )}
-                          <div className="mt-auto flex items-center gap-2 font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200" style={{ color: 'var(--theme-primary-bg, #5FA310)' }}>
+                          <div className="mt-auto flex items-center gap-2 font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200" style={{ color: 'var(--theme-primary-bg)' }}>
                             <span>View details</span>
                             <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -351,8 +351,8 @@ export default function MainCMS({
                   aria-label="Load more items"
                   className={`group w-full sm:w-auto px-10 py-4 font-bold text-base rounded-2xl shadow-lg hover:shadow-xl text-white ${prefersReducedMotion ? "" : "transition-all duration-300 ease-out hover:-translate-y-0.5 active:scale-[0.98]"} focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-3`}
                   style={{
-                    backgroundColor: 'var(--theme-primary-bg, #5FA310)',
-                    boxShadow: '0 10px 25px -5px rgba(95, 163, 16, 0.3)'
+                    backgroundColor: 'var(--theme-primary-bg)',
+                    boxShadow: '0 10px 25px -5px color-mix(in srgb, var(--theme-primary-bg), transparent 70%)'
                   }}
                 >
                   {loading ? (

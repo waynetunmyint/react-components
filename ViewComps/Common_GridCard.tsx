@@ -42,7 +42,7 @@ export function CommonGridCard({ item, onClick }: Props) {
         }
       }}
       className="group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-gray-200/50 border border-gray-100 transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col focus-visible:ring-4 focus:outline-none"
-      style={{ '--focus-ring-color': 'var(--theme-primary-bg, #5FA310)' } as React.CSSProperties}
+      style={{ '--focus-ring-color': 'var(--theme-primary-bg)' } as React.CSSProperties}
     >
       {/* Card Image */}
       <div className="relative overflow-hidden aspect-[4/3] bg-gray-100">
@@ -74,8 +74,8 @@ export function CommonGridCard({ item, onClick }: Props) {
         <div className="flex items-center justify-between pt-4 border-t border-gray-50 mt-auto">
           {item.Price ? (
             <div className="flex flex-col">
-              <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--theme-primary-bg, #5FA310)' }}>Price</span>
-              <span className="text-lg font-bold" style={{ color: 'var(--theme-primary-bg, #5FA310)' }}>
+              <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--theme-primary-bg)' }}>Price</span>
+              <span className="text-lg font-bold" style={{ color: 'var(--theme-primary-bg)' }}>
                 {priceFormatter(item.Price)}
               </span>
             </div>

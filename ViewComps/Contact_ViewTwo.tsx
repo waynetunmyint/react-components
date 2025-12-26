@@ -83,7 +83,7 @@ export function ContactViewTwo({ item }: Props) {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#030712] py-16 px-6 mt-20">
+      <div className="min-h-screen bg-[var(--theme-page-bg)] py-16 px-6 mt-20">
         <div className="max-w-6xl mx-auto">
           <SkeletonLoader />
         </div>
@@ -93,11 +93,11 @@ export function ContactViewTwo({ item }: Props) {
 
   if (!item) {
     return (
-      <div className="min-h-screen bg-[#030712] py-16 px-6 mt-20">
+      <div className="min-h-screen bg-[var(--theme-page-bg)] py-16 px-6 mt-20">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="bg-[#111827] rounded-[3rem] shadow-2xl p-16 border border-gray-800/50">
-            <div className="w-24 h-24 rounded-3xl bg-red-500/10 flex items-center justify-center mx-auto mb-10 border border-red-500/20">
-              <Building2 size={48} className="text-red-500" />
+          <div className="bg-[var(--theme-secondary-bg)] rounded-[3rem] shadow-2xl p-16 border border-white/5">
+            <div className="w-24 h-24 rounded-3xl bg-[var(--theme-accent)]/10 flex items-center justify-center mx-auto mb-10 border border-[var(--theme-accent)]/20">
+              <Building2 size={48} className="text-[var(--theme-accent)]" />
             </div>
             <h3 className="text-3xl font-bold text-white mb-6">Contact Unavailable</h3>
             <p className="text-gray-400 text-lg mb-12 leading-relaxed">
@@ -105,7 +105,7 @@ export function ContactViewTwo({ item }: Props) {
             </p>
             <button
               onClick={() => window.history.back()}
-              className="inline-flex items-center gap-3 px-10 py-5 bg-white text-black rounded-2xl font-bold text-lg hover:bg-gray-200 transition-all active:scale-95 shadow-xl"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-[var(--theme-primary-bg)] text-[var(--theme-primary-text)] rounded-2xl font-bold text-lg hover:brightness-90 transition-all active:scale-95 shadow-xl"
             >
               <ArrowLeft size={24} />
               Return Back
@@ -127,9 +127,9 @@ export function ContactViewTwo({ item }: Props) {
         <div className="flex items-center gap-4 mb-6">
           <div
             className="flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center shadow-2xl transition-transform duration-500 group-hover:scale-110"
-            style={{ backgroundColor: 'var(--theme-primary-bg, #cc9d00)' }}
+            style={{ backgroundColor: 'var(--theme-primary-bg)' }}
           >
-            <Icon size={26} style={{ color: 'var(--theme-primary-text, #000000)' }} />
+            <Icon size={26} style={{ color: 'var(--theme-primary-text)' }} />
           </div>
           <h3 className="font-bold text-gray-500 text-xs uppercase tracking-[0.2em]">{label}</h3>
         </div>
@@ -158,7 +158,7 @@ export function ContactViewTwo({ item }: Props) {
         {/* Header Section */}
         <div className="mb-14 text-center space-y-4">
           <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-            <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: 'var(--theme-primary-bg, #cc9d00)' }}></span>
+            <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: 'var(--theme-primary-bg)' }}></span>
             <span className="text-xs font-black text-gray-400 uppercase tracking-widest">Connect With Us</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none">
@@ -250,8 +250,8 @@ export function ContactViewTwo({ item }: Props) {
                     href={`tel:${item.PhoneOne}`}
                     className="flex-1 min-w-[280px] flex items-center justify-center gap-4 px-10 py-6 rounded-[1.5rem] font-black text-xl hover:brightness-110 transition-all shadow-2xl active:scale-95"
                     style={{
-                      backgroundColor: 'var(--theme-primary-bg, #cc9d00)',
-                      color: 'var(--theme-primary-text, #000000)'
+                      backgroundColor: 'var(--theme-primary-bg)',
+                      color: 'var(--theme-primary-text)'
                     }}
                   >
                     <Phone size={28} />

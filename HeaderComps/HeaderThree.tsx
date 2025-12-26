@@ -45,8 +45,8 @@ export default function HeaderThree({
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 
         ${scrolled
-            ? "bg-black/95 backdrop-blur-xl border-b border-red-600/30"
-            : "bg-black/90 backdrop-blur-2xl"
+            ? "bg-[var(--theme-secondary-bg)]/95 backdrop-blur-xl border-b border-[var(--scolor)]/30"
+            : "bg-[var(--theme-secondary-bg)]/90 backdrop-blur-2xl"
           }`}
       >
         <div className="max-w-7xl mx-auto px-4">
@@ -54,7 +54,7 @@ export default function HeaderThree({
 
             {/* LEFT - LOGO */}
             <button onClick={() => navigate("/")} className="flex items-center gap-2">
-              <div className="relative w-9 h-9 rounded-2xl bg-red-600 overflow-hidden shadow-lg shadow-red-600/20">
+              <div className="relative w-9 h-9 rounded-2xl bg-[var(--scolor)] overflow-hidden shadow-lg shadow-[var(--scolor)]/20">
                 {contactData?.Thumbnail ? (
                   <img
                     src={`${IMAGE_URL}/uploads/${contactData.Thumbnail}`}
@@ -62,12 +62,12 @@ export default function HeaderThree({
                     alt="Logo"
                   />
                 ) : (
-                  <div className="w-full h-full bg-red-700 animate-pulse" />
+                  <div className="w-full h-full bg-[var(--scolor-contrast)] animate-pulse" />
                 )}
               </div>
 
               {headingField && (
-                <h1 className="text-base font-semibold text-white">
+                <h1 className="text-base font-semibold text-[var(--theme-text-primary)]">
                   {headingField}
                 </h1>
               )}
@@ -83,7 +83,7 @@ export default function HeaderThree({
 
                   const baseBtn =
                     "px-3 py-2 rounded-xl text-sm transition-all flex items-center gap-2 " +
-                    "hover:bg-red-600/20 active:bg-red-600/30";
+                    "hover:bg-[var(--scolor)]/20 active:bg-[var(--scolor)]/30";
 
                   if (m.hasSubmenu && cfg) {
                     return (
@@ -93,7 +93,7 @@ export default function HeaderThree({
                           setOpenDropdown(cfg.key === openDropdown ? null : cfg.key);
                           fetchDropdownItems(cfg.key, cfg.apiEndpoint);
                         }}
-                        className={`${baseBtn} ${opened ? "bg-red-600 text-white" : "text-gray-300"
+                        className={`${baseBtn} ${opened ? "bg-[var(--scolor)] text-[var(--theme-text-primary)]" : "text-[var(--theme-text-muted)]"
                           }`}
                       >
                         <m.icon size={16} />
@@ -114,7 +114,7 @@ export default function HeaderThree({
                     <button
                       key={m.label}
                       onClick={() => navigate(m.url)}
-                      className={`${baseBtn} ${active ? "bg-red-600 text-white" : "text-gray-300"
+                      className={`${baseBtn} ${active ? "bg-[var(--scolor)] text-white" : "text-gray-300"
                         }`}
                     >
                       <m.icon size={16} />
@@ -129,7 +129,7 @@ export default function HeaderThree({
             <div className="flex items-center">
               {/* Mobile Hamburger */}
               <button
-                className="md:hidden h-9 w-9 flex items-center justify-center rounded-full bg-red-600 hover:bg-red-700 active:scale-95 transition text-white"
+                className="md:hidden h-9 w-9 flex items-center justify-center rounded-full bg-[var(--scolor)] hover:bg-[var(--scolor-contrast)] active:scale-95 transition text-white"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -139,7 +139,7 @@ export default function HeaderThree({
 
           {/* MOBILE MENU */}
           {isMenuOpen && (
-            <div className="md:hidden mt-2 bg-black/95 backdrop-blur-xl rounded-2xl border border-red-600/30 shadow-lg p-3 animate-in fade-in-20">
+            <div className="md:hidden mt-2 bg-[var(--theme-secondary-bg)]/95 backdrop-blur-xl rounded-2xl border border-[var(--scolor)]/30 shadow-lg p-3 animate-in fade-in-20">
               {menuItems.map((m) => {
                 const active = currentPath === m.url;
                 const cfg = finalDropdowns.find((d) => d.key === m.key);
@@ -153,7 +153,7 @@ export default function HeaderThree({
                           setOpenDropdown(opened ? null : cfg.key);
                           fetchDropdownItems(cfg.key, cfg.apiEndpoint);
                         }}
-                        className="w-full flex justify-between items-center px-4 py-3 rounded-xl bg-red-600/20 hover:bg-red-600/30 transition text-white"
+                        className="w-full flex justify-between items-center px-4 py-3 rounded-xl bg-[var(--scolor)]/20 hover:bg-[var(--scolor)]/30 transition text-white"
                       >
                         <div className="flex items-center gap-2">
                           <m.icon size={17} className="text-white" />
@@ -174,7 +174,7 @@ export default function HeaderThree({
                                 navigate(cfg.urlPattern.replace("{id}", item[cfg.idField]));
                                 setIsMenuOpen(false);
                               }}
-                              className="bg-black border border-red-600/30 rounded-xl shadow-sm p-2 hover:shadow-md hover:border-red-600 transition"
+                              className="bg-black border border-[var(--scolor)]/30 rounded-xl shadow-sm p-2 hover:shadow-md hover:border-[var(--scolor)] transition"
                             >
                               <img
                                 src={`${IMAGE_URL}/uploads/${item[cfg.thumbnailField]}`}
@@ -199,7 +199,7 @@ export default function HeaderThree({
                       navigate(m.url);
                       setIsMenuOpen(false);
                     }}
-                    className={`w-full flex items-center gap-2 px-4 py-3 rounded-xl mb-1 ${active ? "bg-red-600 text-white" : "bg-red-600/20 hover:bg-red-600/30 text-gray-300"
+                    className={`w-full flex items-center gap-2 px-4 py-3 rounded-xl mb-1 ${active ? "bg-[var(--scolor)] text-white" : "bg-[var(--scolor)]/20 hover:bg-[var(--scolor)]/30 text-gray-300"
                       }`}
                   >
                     <m.icon size={17} className={active ? "text-white" : "text-gray-300"} />
@@ -222,10 +222,10 @@ export default function HeaderThree({
 
           <div className="hidden md:block fixed left-0 right-0 top-16 z-40">
             <div className="max-w-7xl mx-auto px-4">
-              <div className="bg-black/95 backdrop-blur-xl rounded-3xl shadow-xl border border-red-600/30 p-6">
+              <div className="bg-[var(--theme-secondary-bg)]/95 backdrop-blur-xl rounded-3xl shadow-xl border border-[var(--scolor)]/30 p-6">
                 {dropdownLoading[openDropdown] ? (
                   <div className="flex justify-center py-12">
-                    <Loader2 size={28} className="animate-spin text-red-600" />
+                    <Loader2 size={28} className="animate-spin text-[var(--scolor)]" />
                   </div>
                 ) : (
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -242,7 +242,7 @@ export default function HeaderThree({
                               cfg.urlPattern.replace("{id}", item[cfg.idField])
                             )
                           }
-                          className="bg-black border border-red-600/30 rounded-2xl shadow-sm p-3 hover:shadow-lg hover:border-red-600 transition"
+                          className="bg-black border border-[var(--scolor)]/30 rounded-2xl shadow-sm p-3 hover:shadow-lg hover:border-[var(--scolor)] transition"
                         >
                           <img
                             src={`${IMAGE_URL}/uploads/${item[cfg.thumbnailField]}`}

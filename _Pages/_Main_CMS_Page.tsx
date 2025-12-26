@@ -18,8 +18,9 @@ const Page: React.FC<Props> = ({ dataSource, headingTitle, subHeadingTitle }) =>
 
   return (
     <IonPage>
-      <HeaderSwitcher styleNo={8} headingField={displayTitle} />
+
       <IonContent fullscreen>
+        <HeaderSwitcher headingField={displayTitle} />
         <div className='min-h-screen p-5 bg-white'>
           <MainCMS
             dataSource={dataSource}

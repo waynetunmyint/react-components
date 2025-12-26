@@ -104,12 +104,12 @@ export const FooterOne: React.FC<Props> = () => {
     }
 
     return (
-        <footer style={{ backgroundColor: '#18181b' }}>
+        <footer className="bg-[var(--theme-footer-bg)]">
             <div className="max-w-7xl mx-auto px-4 py-12 text-gray-100">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {/* Column 1: Google Map */}
                     <div className="space-y-4">
-                        <h3 className="text-lg font-bold uppercase tracking-wide mb-4" style={{ color: 'var(--theme-footer-text, #F9FAFB)' }}>Find Us</h3>
+                        <h3 className="text-lg font-bold uppercase tracking-wide mb-4" style={{ color: 'var(--theme-footer-text)' }}>Find Us</h3>
                         {data.GoogleMapCode ? (
                             <div
                                 className="w-full h-64 rounded-lg overflow-hidden"
@@ -124,16 +124,16 @@ export const FooterOne: React.FC<Props> = () => {
 
                     {/* Column 2: About + QR Code */}
                     <div className="space-y-4">
-                        <h3 className="text-lg font-bold uppercase tracking-wide mb-4" style={{ color: 'var(--theme-footer-text, #F9FAFB)' }}>{data.Title || "About Us"}</h3>
+                        <h3 className="text-lg font-bold uppercase tracking-wide mb-4" style={{ color: 'var(--theme-footer-text)' }}>{data.Title || "About Us"}</h3>
                         <div className="flex items-center gap-3 mb-4">
                             <img
                                 src={`${IMAGE_URL}/uploads/${data?.Thumbnail}`}
                                 alt="Logo"
                                 className="w-12 h-12 object-contain rounded-lg"
                             />
-                            <h4 className="text-xl font-bold" style={{ color: 'var(--theme-footer-text, #F9FAFB)' }}>{data.Title || "Company Name"}</h4>
+                            <h4 className="text-xl font-bold" style={{ color: 'var(--theme-footer-text)' }}>{data.Title || "Company Name"}</h4>
                         </div>
-                        <p className="text-sm leading-relaxed line-clamp-4" style={{ color: 'var(--theme-footer-text-muted, #9CA3AF)' }}>
+                        <p className="text-sm leading-relaxed line-clamp-4" style={{ color: 'var(--theme-footer-text-muted)' }}>
                             {data.Description || "We provide exceptional services and solutions to help your business grow and succeed in the digital world."}
                         </p>
 
@@ -233,11 +233,11 @@ export const FooterOne: React.FC<Props> = () => {
 
                     {/* Column 3: Contact Information */}
                     <div className="space-y-4">
-                        <h3 className="text-lg font-bold uppercase tracking-wide mb-4" style={{ color: 'var(--theme-footer-text, #F9FAFB)' }}>Contact Info</h3>
+                        <h3 className="text-lg font-bold uppercase tracking-wide mb-4" style={{ color: 'var(--theme-footer-text)' }}>Contact Info</h3>
                         <div className="space-y-4">
                             {data.Address && (
                                 <div className="flex items-start gap-3">
-                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}>
+                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg)' }}>
                                         <MapPin size={16} className="text-white" />
                                     </div>
                                     <div className="flex-1">
@@ -248,7 +248,7 @@ export const FooterOne: React.FC<Props> = () => {
                             )}
                             {data.PhoneOne && (
                                 <div className="flex items-start gap-3">
-                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}>
+                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg)' }}>
                                         <Phone size={16} className="text-white" />
                                     </div>
                                     <div className="flex-1">
@@ -264,7 +264,7 @@ export const FooterOne: React.FC<Props> = () => {
                             )}
                             {data.Email && (
                                 <div className="flex items-start gap-3">
-                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}>
+                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg)' }}>
                                         <Mail size={16} className="text-white" />
                                     </div>
                                     <div className="flex-1">
@@ -280,7 +280,7 @@ export const FooterOne: React.FC<Props> = () => {
                             )}
                             {isValidUrl(data.WebsiteURL) && (
                                 <div className="flex items-start gap-3">
-                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}>
+                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg)' }}>
                                         <Globe size={16} className="text-white" />
                                     </div>
                                     <div className="flex-1">
@@ -298,7 +298,7 @@ export const FooterOne: React.FC<Props> = () => {
                             )}
                             {isValidUrl(data.FacebookURL) && (
                                 <div className="flex items-start gap-3">
-                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}>
+                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg)' }}>
                                         <Facebook size={16} className="text-white" />
                                     </div>
                                     <div className="flex-1">
@@ -316,7 +316,7 @@ export const FooterOne: React.FC<Props> = () => {
                             )}
                             {isValidUrl(data.TwitterURL) && (
                                 <div className="flex items-start gap-3">
-                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}>
+                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg)' }}>
                                         <Twitter size={16} className="text-white" />
                                     </div>
                                     <div className="flex-1">
@@ -334,7 +334,7 @@ export const FooterOne: React.FC<Props> = () => {
                             )}
                             {isValidUrl(data.InstagramURL) && (
                                 <div className="flex items-start gap-3">
-                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}>
+                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg)' }}>
                                         <Instagram size={16} className="text-white" />
                                     </div>
                                     <div className="flex-1">
@@ -352,7 +352,7 @@ export const FooterOne: React.FC<Props> = () => {
                             )}
                             {isValidUrl(data.LinkedinURL || data.LinkedInURL) && (
                                 <div className="flex items-start gap-3">
-                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}>
+                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg)' }}>
                                         <Linkedin size={16} className="text-white" />
                                     </div>
                                     <div className="flex-1">
@@ -370,7 +370,7 @@ export const FooterOne: React.FC<Props> = () => {
                             )}
                             {isValidUrl(data.YoutubeURL) && (
                                 <div className="flex items-start gap-3">
-                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}>
+                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg)' }}>
                                         <Youtube size={16} className="text-white" />
                                     </div>
                                     <div className="flex-1">
@@ -388,7 +388,7 @@ export const FooterOne: React.FC<Props> = () => {
                             )}
                             {isValidUrl(data.TiktokURL || data.TikTokURL) && (
                                 <div className="flex items-start gap-3">
-                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}>
+                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg)' }}>
                                         <SquareRoundCorner size={16} className="text-white" />
                                     </div>
                                     <div className="flex-1">
@@ -406,7 +406,7 @@ export const FooterOne: React.FC<Props> = () => {
                             )}
                             {isValidUrl(data.TelegramURL) && (
                                 <div className="flex items-start gap-3">
-                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}>
+                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg)' }}>
                                         <Send size={16} className="text-white" />
                                     </div>
                                     <div className="flex-1">
@@ -424,12 +424,12 @@ export const FooterOne: React.FC<Props> = () => {
                             )}
                             {data.OpenTime && (
                                 <div className="flex items-start gap-3">
-                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg, #5FA310)' }}>
-                                        <Clock size={16} className="text-white" />
+                                    <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--theme-primary-bg)' }}>
+                                        <Clock size={16} className="text-[var(--theme-primary-text)]" />
                                     </div>
                                     <div className="flex-1">
-                                        <p className="font-semibold text-sm mb-1" style={{ color: 'var(--theme-footer-text, #F9FAFB)' }}>Open:</p>
-                                        <p className="text-sm" style={{ color: 'var(--theme-footer-text-muted, #9CA3AF)' }}>{data.OpenTime}</p>
+                                        <p className="font-semibold text-sm mb-1" style={{ color: 'var(--theme-footer-text)' }}>Open:</p>
+                                        <p className="text-sm" style={{ color: 'var(--theme-footer-text-muted)' }}>{data.OpenTime}</p>
                                     </div>
                                 </div>
                             )}
@@ -437,7 +437,7 @@ export const FooterOne: React.FC<Props> = () => {
                     </div>
                 </div>
                 {/* Bottom Bar */}
-                <div className="border-t mt-12 pt-6 text-center" style={{ borderColor: 'rgba(255,255,255,0.2)' }}>
+                <div className="border-t mt-12 pt-6 text-center" style={{ borderColor: 'var(--theme-border-primary)' }}>
                     <p className="text-sm text-gray-200" >
                         © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
                     </p>

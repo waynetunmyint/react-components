@@ -42,29 +42,29 @@ const RegistrationForm = memo(function RegistrationForm({
 
     return (
         <div
-            className="flex-1 flex flex-col items-center justify-center p-6 text-center bg-gradient-to-b from-slate-900 to-slate-950 overflow-y-auto scrollbar-hide"
+            className="flex-1 flex flex-col items-center justify-center p-6 text-center bg-gradient-to-b from-[var(--theme-secondary-bg)] to-[var(--theme-secondary-bg)]/95 overflow-y-auto scrollbar-hide"
             role="form"
             aria-label="Chat registration form"
         >
             {/* Animated Icon */}
             <div className="relative mb-5">
-                <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-blue-500/20 transform -rotate-3 animate-float">
-                    <User size={26} className="text-white" />
+                <div className="w-14 h-14 bg-gradient-to-br from-[var(--theme-accent)] to-[var(--scolor-contrast)] rounded-2xl flex items-center justify-center shadow-2xl shadow-[var(--theme-accent)]/20 transform -rotate-3 animate-float">
+                    <User size={26} className="text-[var(--theme-text-primary)]" />
                 </div>
-                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center border-2 border-slate-900">
-                    <CheckCircle size={12} className="text-white" />
+                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[var(--scolor)] rounded-full flex items-center justify-center border-2 border-[var(--theme-secondary-bg)]">
+                    <CheckCircle size={12} className="text-[var(--theme-text-primary)]" />
                 </div>
             </div>
 
-            <h4 className="text-lg font-bold text-white mb-1">Let's Get Started</h4>
-            <p className="text-[11px] text-slate-400 mb-6 max-w-[220px] leading-relaxed">
+            <h4 className="text-lg font-bold text-[var(--theme-text-primary)] mb-1">Let's Get Started</h4>
+            <p className="text-[11px] text-[var(--theme-text-muted)] mb-6 max-w-[220px] leading-relaxed">
                 Quick registration to get personalized assistance
             </p>
 
             {/* Security Badge */}
-            <div className="flex items-center gap-1.5 mb-4 px-3 py-1.5 bg-slate-800/50 rounded-full border border-slate-700/50">
-                <Lock size={10} className="text-green-400" />
-                <span className="text-[9px] text-slate-400 font-medium">Your data is secure & encrypted</span>
+            <div className="flex items-center gap-1.5 mb-4 px-3 py-1.5 bg-[var(--theme-text-secondary)]/10 rounded-full border border-[var(--theme-text-secondary)]/20">
+                <Lock size={10} className="text-[var(--scolor)]" />
+                <span className="text-[9px] text-[var(--theme-text-muted)] font-medium">Your data is secure & encrypted</span>
             </div>
 
             <form onSubmit={handleSubmit} className="w-full space-y-3 max-w-[280px]">
@@ -72,10 +72,10 @@ const RegistrationForm = memo(function RegistrationForm({
                 <div className="space-y-1.5 text-left">
                     <label
                         htmlFor="guest-name"
-                        className="text-[9px] font-bold text-slate-500 uppercase px-1 tracking-wider flex items-center gap-1"
+                        className="text-[9px] font-bold text-[var(--theme-text-muted)] uppercase px-1 tracking-wider flex items-center gap-1"
                     >
                         <User size={10} />
-                        Full Name <span className="text-red-400">*</span>
+                        Full Name <span className="text-[var(--theme-accent)]">*</span>
                     </label>
                     <div className="relative">
                         <input
@@ -86,11 +86,11 @@ const RegistrationForm = memo(function RegistrationForm({
                             onFocus={() => setFocusedField('name')}
                             onBlur={() => setFocusedField(null)}
                             placeholder="Your full name"
-                            className={`w-full bg-slate-800/60 border text-white rounded-xl px-4 py-3 text-xs focus:outline-none transition-all placeholder:text-slate-600 ${focusedField === 'name'
-                                ? 'border-blue-500/50 ring-2 ring-blue-500/20'
+                            className={`w-full bg-[var(--theme-text-secondary)]/10 border text-[var(--theme-text-primary)] rounded-xl px-4 py-3 text-xs focus:outline-none transition-all placeholder:text-[var(--theme-text-muted)]/50 ${focusedField === 'name'
+                                ? 'border-[var(--theme-accent)]/50 ring-2 ring-[var(--theme-accent)]/20'
                                 : guestName && !isNameValid
-                                    ? 'border-red-500/50'
-                                    : 'border-white/5 hover:border-white/10'
+                                    ? 'border-[var(--theme-accent)]/50'
+                                    : 'border-[var(--theme-text-primary)]/5 hover:border-[var(--theme-text-primary)]/10'
                                 }`}
                             aria-required="true"
                             aria-invalid={guestName.length > 0 && !isNameValid}
@@ -98,9 +98,9 @@ const RegistrationForm = memo(function RegistrationForm({
                         {guestName && (
                             <div className="absolute right-3 top-1/2 -translate-y-1/2">
                                 {isNameValid ? (
-                                    <CheckCircle size={14} className="text-green-400" />
+                                    <CheckCircle size={14} className="text-[var(--scolor)]" />
                                 ) : (
-                                    <AlertCircle size={14} className="text-red-400" />
+                                    <AlertCircle size={14} className="text-[var(--theme-accent)]" />
                                 )}
                             </div>
                         )}
@@ -204,8 +204,8 @@ const RegistrationForm = memo(function RegistrationForm({
                             onBlur={() => setFocusedField(null)}
                             placeholder="Your company name"
                             className={`w-full bg-slate-800/60 border text-white rounded-xl px-4 py-3 text-xs focus:outline-none transition-all placeholder:text-slate-600 ${focusedField === 'company'
-                                    ? 'border-blue-500/50 ring-2 ring-blue-500/20'
-                                    : 'border-white/5 hover:border-white/10'
+                                ? 'border-blue-500/50 ring-2 ring-blue-500/20'
+                                : 'border-white/5 hover:border-white/10'
                                 }`}
                         />
                         {guestCompany && (
@@ -221,8 +221,8 @@ const RegistrationForm = memo(function RegistrationForm({
                     type="submit"
                     disabled={!canSubmit || isSubmitting}
                     className={`w-full font-bold py-3.5 rounded-xl shadow-lg transition-all mt-3 flex items-center justify-center gap-2 text-sm ${canSubmit && !isSubmitting
-                        ? 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-blue-500/20 hover:shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.98]'
-                        : 'bg-slate-800 text-slate-500 cursor-not-allowed'
+                        ? 'bg-gradient-to-r from-[var(--theme-accent)] to-[var(--scolor-contrast)] text-[var(--theme-primary-text)] shadow-[var(--theme-accent)]/20 hover:shadow-[var(--theme-accent)]/30 hover:scale-[1.02] active:scale-[0.98]'
+                        : 'bg-[var(--theme-text-secondary)]/10 text-[var(--theme-text-muted)] cursor-not-allowed'
                         }`}
                     aria-disabled={!canSubmit || isSubmitting}
                 >
@@ -240,7 +240,7 @@ const RegistrationForm = memo(function RegistrationForm({
                 </button>
 
                 {/* Privacy Note */}
-                <p className="text-[8px] text-slate-600 text-center mt-3 leading-relaxed">
+                <p className="text-[8px] text-[var(--theme-text-muted)]/50 text-center mt-3 leading-relaxed">
                     By starting a chat, you agree to our terms of service
                 </p>
             </form>

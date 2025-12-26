@@ -522,8 +522,8 @@ export default function FormAdminUpdate({ dataSource, fields, imageSize, customR
                 </h1>
                 <p className="text-gray-600">Make changes to the information below</p>
               </div>
-              <div className="bg-[#e6f5e6] p-3 rounded-xl">
-                <FileText className="text-[#004D25]" size={28} />
+              <div className="p-3 rounded-xl bg-[var(--theme-primary-bg)]/10">
+                <FileText className="text-[var(--theme-primary-bg)]" size={28} />
               </div>
             </div>
           </div>
@@ -592,7 +592,7 @@ export default function FormAdminUpdate({ dataSource, fields, imageSize, customR
                 disabled={isSaving}
                 className={`flex items-center gap-3 px-8 py-3 rounded-xl font-semibold transition-all shadow-lg ${isSaving
                   ? "bg-gray-400 cursor-not-allowed text-white"
-                  : "bg-gradient-to-r from-[#004D25] to-[#00381b] text-white hover:from-[#00381b] hover:to-black hover:shadow-xl transform hover:-translate-y-0.5"
+                  : "bg-[var(--theme-primary-bg)] text-[var(--theme-primary-text)] hover:brightness-110 hover:shadow-xl transform hover:-translate-y-0.5"
                   }`}
               >
                 {isSaving ? (
@@ -618,7 +618,7 @@ export default function FormAdminUpdate({ dataSource, fields, imageSize, customR
           <div className="bg-white rounded-2xl p-8 shadow-2xl flex flex-col items-center gap-4 animate-in zoom-in-95 duration-200">
             <div className="relative">
               <div className="w-16 h-16 border-4 border-gray-200 rounded-full"></div>
-              <div className="w-16 h-16 border-4 border-[#004D25] border-t-transparent rounded-full animate-spin absolute top-0 left-0"></div>
+              <div className="w-16 h-16 border-4 border-[var(--theme-primary-bg)] border-t-transparent rounded-full animate-spin absolute top-0 left-0"></div>
             </div>
             <div className="text-center">
               <h3 className="text-lg font-semibold text-gray-900 mb-1">Updating...</h3>
