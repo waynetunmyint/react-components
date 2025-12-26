@@ -197,11 +197,6 @@ export default function BlockSwitcherComp({
 
     // Author
     author1: <AuthorOne {...common} />,
-
-    // Generic fallbacks
-
-    service1: <ServiceBlockNineOne {...common} />,
-    product1: <ProductBlockNineOne {...common} />,
   };
 
   if (styleNo === null || styleNo === undefined) {

@@ -456,13 +456,16 @@ export default function FormAdminCreateComp({ dataSource, fields, imageSize, onS
             {/* Image Upload Section */}
             {fields.some((f) => f.type === "image") && (
               <div className="mb-12 bg-slate-50/50 p-8 rounded-[2rem] border border-slate-100">
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="p-2 bg-brand-gold/10 text-brand-gold rounded-xl">
-                    <ImageIcon size={20} strokeWidth={2.5} />
+                <div className="flex items-center gap-3 mb-10">
+                  <div className="p-3 bg-brand-gold/10 text-brand-gold rounded-2xl shadow-inner">
+                    <ImageIcon size={22} strokeWidth={2.5} />
                   </div>
-                  <h3 className="text-lg font-black text-slate-900 uppercase tracking-widest">
-                    Media Assets
-                  </h3>
+                  <div>
+                    <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">
+                      Visual Assets
+                    </h3>
+                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-0.5">Primary {dataSource} Media</p>
+                  </div>
                 </div>
                 <div className="flex flex-wrap gap-6">
                   {fields

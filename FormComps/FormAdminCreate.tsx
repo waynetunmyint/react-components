@@ -162,7 +162,9 @@ export default function FormAdminCreateComp({ dataSource, fields, imageSize, onS
             submitData.append(camel + "Ids", (value || []).join(","));
             break;
           case "image":
-            if (uploadImageBlobs[field.fieldName]) submitData.append(camel, uploadImageBlobs[field.fieldName]!);
+            if (uploadImageBlobs[field.fieldName]) {
+              submitData.append(camel, uploadImageBlobs[field.fieldName]!);
+            }
             break;
           case "file":
             if (fileInputs[field.fieldName]) submitData.append(camel, fileInputs[field.fieldName]);

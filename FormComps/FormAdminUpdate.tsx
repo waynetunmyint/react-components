@@ -248,7 +248,10 @@ export default function FormAdminUpdate({ dataSource, fields, imageSize, customR
             submitData.append(formField + "Ids", (formData[formField] || []).join(","));
             break;
           case "image":
-            if (uploadImageBlobs[field.fieldName]) submitData.append(formField, uploadImageBlobs[field.fieldName] as string);
+            if (uploadImageBlobs[field.fieldName] !== undefined) {
+              // If it's null (cleared) append empty string, otherwise append the new blob
+              submitData.append(formField, uploadImageBlobs[field.fieldName] ?? "");
+            }
             break;
           case "file":
             if (fileInputs[field.fieldName]) submitData.append(formField, fileInputs[field.fieldName]);
@@ -544,13 +547,16 @@ export default function FormAdminUpdate({ dataSource, fields, imageSize, customR
             {/* Image Upload Section */}
             {fields.some((f) => f.type === "image") && (
               <div className="mb-12 bg-slate-50/50 p-8 rounded-[2rem] border border-slate-100">
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="p-2 bg-brand-gold/10 text-brand-gold rounded-xl">
-                    <ImageIcon size={20} strokeWidth={2.5} />
+                <div className="flex items-center gap-3 mb-10">
+                  <div className="p-3 bg-brand-gold/10 text-brand-gold rounded-2xl shadow-inner">
+                    <ImageIcon size={22} strokeWidth={2.5} />
                   </div>
-                  <h3 className="text-lg font-black text-slate-900 uppercase tracking-widest">
-                    Media assets
-                  </h3>
+                  <div>
+                    <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">
+                      Visual Assets
+                    </h3>
+                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-0.5">Primary {dataSource} Media</p>
+                  </div>
                 </div>
                 <div className="flex flex-col gap-8">
                   {fields
