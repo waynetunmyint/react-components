@@ -397,58 +397,74 @@ export default function FormAdminCreateComp({ dataSource, fields, imageSize, onS
   };
 
   return (
-    <div className={hideBackButton ? "" : "min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8 px-4"}>
+    <div className={hideBackButton ? "" : "min-h-screen bg-brand-beige py-12 px-4 relative overflow-hidden"}>
+      {!hideBackButton && (
+        <div className="fixed top-0 left-0 w-full h-96 bg-gradient-to-b from-brand-gold/10 to-transparent pointer-events-none -z-10" />
+      )}
+
       {/* Loading Overlay */}
       {loading && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 animate-in fade-in duration-200">
-          <div className="bg-white px-8 py-6 rounded-2xl shadow-2xl text-center animate-in zoom-in-95 duration-200">
-            <div className="relative mx-auto mb-4 w-16 h-16">
-              <div className="w-16 h-16 border-4 border-gray-200 rounded-full"></div>
-              <div className="w-16 h-16 border-4 border-[var(--theme-primary-bg)] border-t-transparent rounded-full animate-spin absolute top-0 left-0"></div>
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-md flex items-center justify-center z-[200] animate-in fade-in duration-300">
+          <div className="bg-white px-10 py-8 rounded-[2.5rem] shadow-2xl text-center animate-in zoom-in-95 duration-500 max-w-xs w-full">
+            <div className="relative mx-auto mb-6 w-20 h-20">
+              <div className="w-20 h-20 border-4 border-slate-100 rounded-full"></div>
+              <div className="w-20 h-20 border-4 border-brand-green border-t-transparent rounded-full animate-spin absolute top-0 left-0"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Save className="text-brand-green/20" size={24} />
+              </div>
             </div>
-            <p className="text-xl font-semibold text-gray-900 mb-1">Creating Entry</p>
-            <p className="text-sm text-gray-600">Please wait while we save your data...</p>
+            <p className="text-2xl font-black text-slate-900 mb-2 uppercase tracking-tighter">Saving</p>
+            <p className="text-sm text-slate-500 font-medium">Writing your data to the cloud...</p>
           </div>
         </div>
       )}
 
-      <div className={hideBackButton ? "" : "max-w-7xl mx-auto"}>
+      <div className={hideBackButton ? "" : "max-w-4xl mx-auto"}>
         {/* Header Card */}
         {!hideBackButton && (
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6">
+          <div className="bg-white rounded-[2rem] shadow-xl shadow-brand-green/5 border border-slate-200/50 p-8 mb-8 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/5 rounded-full blur-3xl -mr-32 -mt-32 transition-transform group-hover:scale-110 duration-700" />
+
             <button
               onClick={() => window.history.back()}
-              className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4 transition-colors group"
+              className="flex items-center gap-2 text-slate-400 hover:text-brand-green mb-6 transition-all group/back active:scale-95"
             >
-              <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-              <span className="font-medium">Back</span>
+              <div className="p-2 rounded-xl bg-slate-50 group-hover/back:bg-brand-green group-hover/back:text-white transition-colors">
+                <ArrowLeft size={18} strokeWidth={3} className="group-hover/back:-translate-x-0.5 transition-transform" />
+              </div>
+              <span className="font-black uppercase tracking-widest text-[10px]">Back to List</span>
             </button>
 
-            <div className="flex items-start justify-between">
+            <div className="flex items-center justify-between relative z-10">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                  Create New <span className="">{dataSource}</span>
+                <span className="text-brand-gold font-black uppercase tracking-[0.2em] text-[10px] mb-2 block">New Entry</span>
+                <h1 className="text-4xl font-black text-slate-900 mb-2 uppercase tracking-tighter">
+                  Create {dataSource}
                 </h1>
-                <p className="text-gray-600">Fill in the information below to create a new entry</p>
+                <p className="text-slate-500 font-medium">Enter the details below to publish your content.</p>
               </div>
-              <div className="p-3 rounded-xl shadow-lg bg-[var(--theme-primary-bg)]">
-                <FileText className="text-[var(--theme-primary-text)]" size={28} />
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-green to-[#00381b] flex items-center justify-center shadow-lg shadow-brand-green/30 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                <FileText className="text-white" size={32} strokeWidth={2.5} />
               </div>
             </div>
           </div>
         )}
 
         {/* Form Card */}
-        <div className={hideBackButton ? "" : "bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden"}>
-          <form onSubmit={handleSubmit} className="p-6 md:p-8">
+        <div className={hideBackButton ? "" : "bg-white rounded-[2.5rem] shadow-2xl shadow-slate-200/50 border border-slate-100 overflow-hidden"}>
+          <form onSubmit={handleSubmit} className="p-8 md:p-12">
             {/* Image Upload Section */}
             {fields.some((f) => f.type === "image") && (
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                  <ImageIcon size={20} className="" />
-                  Images
-                </h3>
-                <div className="flex flex-wrap gap-4">
+              <div className="mb-12 bg-slate-50/50 p-8 rounded-[2rem] border border-slate-100">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="p-2 bg-brand-gold/10 text-brand-gold rounded-xl">
+                    <ImageIcon size={20} strokeWidth={2.5} />
+                  </div>
+                  <h3 className="text-lg font-black text-slate-900 uppercase tracking-widest">
+                    Media Assets
+                  </h3>
+                </div>
+                <div className="flex flex-wrap gap-6">
                   {fields
                     .filter((f) => f.type === "image")
                     .map((field) => {
@@ -473,7 +489,7 @@ export default function FormAdminCreateComp({ dataSource, fields, imageSize, onS
             )}
 
             {/* Other Fields */}
-            <div className="space-y-6">
+            <div className="space-y-8">
               {fields
                 .filter((f) => f.type !== "image")
                 .map((field) => renderField(field))}
@@ -481,38 +497,40 @@ export default function FormAdminCreateComp({ dataSource, fields, imageSize, onS
 
             {/* Submit Error */}
             {errors.submit && (
-              <div className="mt-6 bg-red-50 border-2 border-red-200 rounded-xl p-4 flex items-center gap-3">
-                <AlertCircle className="text-red-600 flex-shrink-0" size={20} />
-                <span className="text-red-700 font-medium">{errors.submit}</span>
+              <div className="mt-8 bg-red-50 border border-red-100 rounded-2xl p-5 flex items-center gap-4 animate-in shake duration-500">
+                <div className="p-2 bg-red-100 text-red-600 rounded-xl">
+                  <AlertCircle size={20} strokeWidth={3} />
+                </div>
+                <span className="text-red-700 font-bold text-sm">{errors.submit}</span>
               </div>
             )}
 
             {/* Action Buttons */}
-            <div className="flex items-center justify-between gap-4 pt-8 mt-8 border-t-2 border-gray-100">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-12 pt-10 border-t-2 border-slate-100">
               <button
                 type="button"
-                onClick={() => window.history.back()}
-                className="px-6 py-3 border-2 border-gray-300 rounded-xl text-gray-700 font-semibold hover:bg-gray-50 transition-all"
+                onClick={() => hideBackButton ? onSuccess?.() : window.history.back()}
+                className="w-full sm:flex-1 px-8 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-500 font-black uppercase tracking-widest text-[10px] hover:bg-slate-100 hover:text-slate-900 transition-all active:scale-95"
               >
-                Cancel
+                Discard
               </button>
               <button
                 type="submit"
                 disabled={loading}
-                className={`flex items-center gap-3 px-8 py-3 rounded-xl font-semibold transition-all shadow-lg ${loading
-                  ? "bg-gray-400 cursor-not-allowed text-white"
-                  : "bg-[var(--theme-primary-bg)] text-[var(--theme-primary-text)] hover:brightness-110 hover:shadow-xl transform hover:-translate-y-0.5"
+                className={`w-full sm:flex-[2] flex items-center justify-center gap-3 px-10 py-4 rounded-2xl font-black uppercase tracking-widest text-xs transition-all shadow-xl ${loading
+                  ? "bg-slate-200 cursor-not-allowed text-slate-400"
+                  : "bg-brand-gold text-slate-900 shadow-brand-gold/20 hover:shadow-2xl hover:brightness-110 transform hover:-translate-y-1 active:scale-[0.98]"
                   }`}
               >
                 {loading ? (
                   <>
-                    <Loader2 size={20} className="animate-spin" />
-                    Creating...
+                    <Loader2 size={18} strokeWidth={3} className="animate-spin text-slate-400" />
+                    Processing...
                   </>
                 ) : (
                   <>
-                    <Save size={20} />
-                    Save
+                    <Save size={18} strokeWidth={3} />
+                    <span>Confirm & Save</span>
                   </>
                 )}
               </button>

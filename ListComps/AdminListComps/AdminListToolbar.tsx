@@ -36,75 +36,71 @@ export const AdminListToolbar: React.FC<AdminListToolbarProps> = ({
     setShowModal
 }) => {
     return (
-        <div className="sticky top-0 z-100 bg-white/80 backdrop-blur-xl pb-4 pt-4 border-b border-slate-100 mb-4 px-1">
-            <div className="mx-auto w-full space-y-4">
-                <div className="flex items-center gap-3">
-                    <Search
-                        id={searchInputId}
-                        initialValue={search}
-                        placeholder={`Search ${dataSource}...`}
-                        onSearch={(val: string) => {
-                            setSearch(val);
-                            fetchSearchData(val);
-                        }}
-                        onClear={() => {
-                            setSearch("");
-                            fetchData(1);
-                        }}
-                        className="flex-1 h-11"
-                    />
+        <div className="sticky top-0 z-40 bg-white/70 backdrop-blur-xl pb-5 pt-6 border-b border-slate-200/50 mb-6 px-2 -mx-2 sm:mx-0">
+            <div className="mx-auto w-full space-y-5">
+                <div className="flex items-center gap-4">
+                    <div className="flex-1 relative group">
+                        <Search
+                            id={searchInputId}
+                            initialValue={search}
+                            placeholder={`Search ${dataSource}...`}
+                            onSearch={(val: string) => {
+                                setSearch(val);
+                                fetchSearchData(val);
+                            }}
+                            onClear={() => {
+                                setSearch("");
+                                fetchData(1);
+                            }}
+                            className="w-full h-12 bg-white/50 border-slate-200 group-focus-within:border-brand-green group-focus-within:ring-4 group-focus-within:ring-brand-green/5 transition-all rounded-2xl"
+                        />
+                    </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2.5">
                         <button
                             onClick={handleRefresh}
                             disabled={refreshing}
-                            className="p-2.5 text-slate-400 hover:text-slate-900 bg-slate-50 border border-slate-100 rounded-xl transition-all active:scale-95"
+                            className="p-3 text-slate-500 hover:text-brand-green bg-white border border-slate-200 rounded-2xl transition-all active:scale-90 shadow-sm hover:shadow-md disabled:opacity-50 group"
                         >
-                            <RefreshCw size={20} className={refreshing ? "animate-spin" : ""} />
+                            <RefreshCw size={22} strokeWidth={2.5} className={refreshing ? "animate-spin" : "group-hover:rotate-180 transition-transform duration-500"} />
                         </button>
 
                         <button
                             onClick={() => setShowFilters((prev) => !prev)}
-                            style={{
-                                backgroundColor: showFilters ? 'var(--theme-primary-bg)' : 'rgb(248 250 252)',
-                                color: showFilters ? 'var(--theme-primary-text)' : 'rgb(100 116 139)',
-                            }}
-                            className="p-2.5 rounded-xl transition-all active:scale-95 border border-slate-100"
+                            className={`p-3 rounded-2xl transition-all active:scale-90 border shadow-sm hover:shadow-md ${showFilters
+                                ? 'bg-brand-green text-white border-brand-green'
+                                : 'bg-white text-slate-500 border-slate-200 hover:text-brand-green'
+                                }`}
                         >
-                            <Filter size={20} strokeWidth={showFilters ? 2.5 : 2} />
+                            <Filter size={22} strokeWidth={showFilters ? 3 : 2.5} />
                         </button>
 
                         {!IsBill && (
                             <button
                                 onClick={() => setShowModal('create')}
-                                style={{
-                                    backgroundColor: 'var(--theme-primary-bg)',
-                                    color: 'var(--theme-primary-text)'
-                                }}
-                                className="p-2.5 rounded-xl shadow-lg active:scale-95 transition-all"
+                                className="p-3 bg-gradient-to-br from-brand-green to-[#00381b] text-white rounded-2xl shadow-lg shadow-brand-green/30 active:scale-90 transition-all border border-brand-green group"
                             >
-                                <Plus size={22} strokeWidth={3} />
+                                <Plus size={24} strokeWidth={3} className="group-hover:rotate-90 transition-transform duration-300 text-gray-900" />
                             </button>
                         )}
                     </div>
                 </div>
 
                 {showFilters && (
-                    <div className="p-2 bg-slate-50 rounded-2xl border border-slate-200/50 flex flex-wrap gap-2 animate-in slide-in-from-top-2 duration-200">
+                    <div className="p-1.5 bg-slate-100/50 backdrop-blur-sm rounded-[1.25rem] border border-slate-200/50 flex flex-wrap gap-1 animate-in slide-in-from-top-4 fade-in duration-300">
                         {[
-                            { id: null, label: "All", bg: 'bg-white', text: 'text-slate-600', activeBg: 'var(--theme-secondary-bg)', activeText: 'var(--theme-secondary-text)' },
-                            { id: 1, label: "Active", bg: 'bg-white', text: 'text-slate-600', activeBg: 'var(--theme-primary-bg)', activeText: 'var(--theme-primary-text)' },
-                            { id: 0, label: "Inactive", bg: 'bg-white', text: 'text-slate-600', activeBg: '#ef4444', activeText: '#ffffff' },
-                            { id: 2, label: "Sold Out", bg: 'bg-white', text: 'text-slate-600', activeBg: '#f59e0b', activeText: '#ffffff' },
+                            { id: null, label: "All Items", activeClass: 'bg-white text-slate-900 shadow-sm border-slate-200' },
+                            { id: 1, label: "Active", activeClass: 'bg-brand-green text-white shadow-brand-green/20' },
+                            { id: 0, label: "Inactive", activeClass: 'bg-red-500 text-white shadow-red-500/20' },
+                            { id: 2, label: "Sold Out", activeClass: 'bg-amber-500 text-white shadow-amber-500/20' },
                         ].map((f) => (
                             <button
                                 key={String(f.id)}
                                 onClick={() => setStatusFilter(f.id as any)}
-                                style={{
-                                    backgroundColor: statusFilter === f.id ? f.activeBg : 'transparent',
-                                    color: statusFilter === f.id ? f.activeText : 'var(--theme-text-secondary)',
-                                }}
-                                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all active:scale-95 ${statusFilter !== f.id && 'hover:bg-white'} border border-transparent`}
+                                className={`flex-1 px-4 py-2.5 rounded-[1rem] text-[11px] font-black uppercase tracking-widest transition-all duration-300 border border-transparent ${statusFilter === f.id
+                                    ? `${f.activeClass} scale-[1.02] shadow-md`
+                                    : 'text-slate-500 hover:text-slate-800 hover:bg-white/50'
+                                    }`}
                             >
                                 {f.label}
                             </button>

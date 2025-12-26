@@ -89,29 +89,22 @@ export function ProductCardPremium({ item, dataSource }: Props) {
 
             {/* Content Section */}
             <div className="p-7 flex flex-col flex-1 bg-[var(--theme-secondary-bg)]/20">
-                <div className="flex items-center gap-2 mb-4">
-                    <span className="w-8 h-[1px] bg-[var(--theme-text-primary)]/10" />
-                    <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[var(--theme-text-muted)]">
-                        Collection 2024
-                    </span>
-                </div>
 
-                <h3 className="font-extrabold text-[var(--theme-text-primary)] text-2xl mb-6 line-clamp-1 group-hover:tracking-tight transition-all duration-300">
+                <h3 className="font-extrabold text-[var(--theme-text-primary)] text-2xl mb-6 line-clamp-2 group-hover:tracking-tight transition-all duration-300">
                     {title}
                 </h3>
 
                 <div className="mt-auto flex items-end justify-between pt-6 border-t border-[var(--theme-text-primary)]/5">
                     <div className="flex flex-col">
-                        <span className="text-[var(--theme-text-muted)] text-[9px] font-black uppercase tracking-[0.2em] mb-1.5 opacity-60">Investment</span>
                         <div className="flex items-baseline gap-1">
-                            <span className="text-3xl font-black text-[var(--theme-text-primary)] tracking-tighter">
-                                {price ? priceFormatter(price) : "P.O.R"}
+                            <span className="text-xl font-black text-[var(--theme-text-primary)] tracking-tighter">
+                                {price ? priceFormatter(price) : "View Details"}
                             </span>
                             {price && <span className="text-[10px] font-bold text-[var(--theme-text-muted)]">MMK</span>}
                         </div>
                     </div>
 
-                    <div className="relative w-14 h-14 group/btn">
+                    <div className="relative w-10 h-10 group/btn">
                         <div className="absolute inset-0 bg-[var(--theme-text-primary)]/10 rounded-2xl transition-all duration-500 group-hover:bg-[var(--theme-accent)] group-hover:rotate-[15deg] group-hover:shadow-xl" />
                         <div className="absolute inset-0 flex items-center justify-center text-[var(--theme-text-muted)] group-hover:text-[var(--theme-primary-text)] transition-colors duration-300">
                             <ArrowRight size={24} className="transition-all duration-500 group-hover:translate-x-1" />

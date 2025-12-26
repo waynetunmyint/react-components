@@ -162,26 +162,26 @@ const BillChecker: React.FC<Props> = ({ pageId = PAGE_ID }) => {
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm z-[100] px-4 animate-in fade-in duration-300">
-            <div className="bg-[var(--theme-secondary-bg)] w-full max-w-sm rounded-[2rem] overflow-hidden shadow-2xl animate-in zoom-in-95 slide-in-from-bottom-5 duration-300 relative">
+            <div className="bg-white w-full max-w-sm rounded-[2rem] overflow-hidden shadow-2xl animate-in zoom-in-95 slide-in-from-bottom-5 duration-300 relative">
 
                 {/* Header with Premium Gradient */}
-                <div className="bg-gradient-to-br from-[var(--scolor)] to-[var(--scolor-contrast)] p-8 text-center relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-40 h-40 bg-[var(--theme-primary-text)]/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none" />
+                <div className="bg-gradient-to-br from-brand-gold to-brand-green p-8 text-center relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none" />
                     <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-full blur-2xl -ml-10 -mb-10 pointer-events-none" />
 
                     <div className="relative z-10 flex flex-col items-center">
-                        <div className="w-16 h-16 bg-[var(--theme-primary-text)]/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-4 shadow-inner ring-1 ring-[var(--theme-primary-text)]/30">
-                            <Receipt className="w-8 h-8 text-[var(--theme-primary-text)] drop-shadow-md" />
+                        <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-4 shadow-inner ring-1 ring-white/30">
+                            <Receipt className="w-8 h-8 text-white drop-shadow-md" />
                         </div>
-                        <h2 className="text-2xl font-bold text-[var(--theme-primary-text)] tracking-tight mb-1">Payment Notice</h2>
-                        <span className="inline-block px-3 py-1 bg-[var(--theme-primary-text)]/20 backdrop-blur-md rounded-full text-xs font-semibold text-[var(--theme-primary-text)]/90 border border-[var(--theme-primary-text)]/10">
+                        <h2 className="text-2xl font-bold text-white tracking-tight mb-1">Payment Notice</h2>
+                        <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold text-white/90 border border-white/10">
                             Outstanding Bill
                         </span>
                     </div>
 
                     <button
                         onClick={handleClose}
-                        className="absolute top-4 right-4 p-2 bg-[var(--theme-primary-text)]/10 hover:bg-[var(--theme-primary-text)]/20 rounded-full text-[var(--theme-primary-text)]/80 hover:text-[var(--theme-primary-text)] transition-all backdrop-blur-sm"
+                        className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white/80 hover:text-white transition-all backdrop-blur-sm"
                     >
                         <X size={20} />
                     </button>
@@ -190,8 +190,8 @@ const BillChecker: React.FC<Props> = ({ pageId = PAGE_ID }) => {
                 {/* Content */}
                 <div className="p-6 md:p-8 space-y-6">
                     <div className="text-center space-y-2">
-                        <div className="bg-[var(--scolor)]/5 rounded-xl p-4 border border-[var(--scolor)]/10">
-                            <p className="text-[var(--scolor-contrast)] font-medium leading-relaxed">
+                        <div className="bg-brand-gold/5 rounded-xl p-4 border border-brand-gold/10">
+                            <p className="text-brand-green font-medium leading-relaxed">
                                 You have an outstanding balance.<br />
                                 <span className="text-sm opacity-80">Please settle your payment to enable full access.</span>
                             </p>
@@ -201,7 +201,7 @@ const BillChecker: React.FC<Props> = ({ pageId = PAGE_ID }) => {
                     <div className="space-y-3">
                         <button
                             onClick={handleViewBill}
-                            className="w-full py-3.5 bg-[var(--scolor-contrast)] text-[var(--theme-primary-text)] font-bold text-lg rounded-xl shadow-lg shadow-[var(--scolor-contrast)]/20 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group"
+                            className="w-full py-3.5 bg-brand-green text-white font-bold text-lg rounded-xl shadow-lg shadow-brand-green/20 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group"
                         >
                             <FileText className="w-5 h-5 group-hover:rotate-3 transition-transform" />
                             View Bill Details
@@ -209,13 +209,13 @@ const BillChecker: React.FC<Props> = ({ pageId = PAGE_ID }) => {
 
                         <button
                             onClick={handleClose}
-                            className="w-full py-3.5 bg-[var(--theme-text-primary)]/5 text-[var(--theme-text-primary)]/60 font-semibold text-base rounded-xl border border-[var(--theme-text-primary)]/10 hover:bg-[var(--theme-text-primary)]/10 hover:text-[var(--theme-text-primary)] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+                            className="w-full py-3.5 bg-slate-100 text-slate-500 font-semibold text-base rounded-xl border border-slate-200 hover:bg-slate-200 hover:text-slate-700 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
                         >
                             I'll Pay Later
                         </button>
                     </div>
 
-                    <p className="text-[10px] text-center text-[var(--theme-text-muted)] uppercase tracking-widest font-semibold">
+                    <p className="text-[10px] text-center text-slate-400 uppercase tracking-widest font-semibold">
                         Daily Reminder
                     </p>
                 </div>

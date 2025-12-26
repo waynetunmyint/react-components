@@ -56,8 +56,7 @@ export const AdminListCard: React.FC<AdminListCardProps> = ({
             style={{ animationDelay: `${index * 50}ms` }}
         >
             <div
-                style={{ backgroundColor: 'var(--theme-primary-bg)' }}
-                className="absolute top-0 left-0 w-1 h-full scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top rounded-l-2xl"
+                className="absolute top-0 left-0 w-1.5 h-full scale-y-0 group-hover:scale-y-100 transition-transform duration-700 origin-top rounded-l-2xl bg-gradient-to-b from-brand-gold via-brand-green to-brand-green shadow-[0_0_15px_rgba(232,159,29,0.3)]"
             />
 
             <div className="p-4 sm:p-5 relative z-10">
@@ -65,24 +64,25 @@ export const AdminListCard: React.FC<AdminListCardProps> = ({
                     {/* Leading Image - iOS Style Rounded */}
                     {imageField && item?.[imageField] && item?.[imageField] !== "logo.png" && (
                         <div className="relative shrink-0">
-                            <div className="w-[70px] sm:w-[90px] aspect-[4/5] rounded-xl overflow-hidden bg-slate-50 border border-slate-200/50 shadow-sm group-hover:shadow-soft transition-all duration-500">
+                            <div className="w-[80px] sm:w-[100px] aspect-[4/5] rounded-2xl overflow-hidden bg-white border border-slate-200/60 shadow-md group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-700 ease-out">
                                 <img
                                     src={imageSrc}
                                     alt="Item"
-                                    className="w-full  group-hover:scale-105 transition-transform duration-700"
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
                                     onError={(e) => {
                                         (e.target as HTMLImageElement).src = `https://via.placeholder.com/400x400?text=No+Image`;
                                     }}
                                 />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             </div>
 
                             {badgeSrc && (
-                                <div className="absolute -top-1.5 -right-1.5 w-7 h-7 rounded-lg bg-white p-1 shadow-md z-10 border border-slate-100">
-                                    <img src={badgeSrc} alt="Badge" className="w-full h-full rounded-md object-cover" />
+                                <div className="absolute -top-2 -right-2 w-8 h-8 rounded-xl bg-white p-1.5 shadow-lg z-10 border border-brand-gold/20 transform group-hover:rotate-12 transition-transform">
+                                    <img src={badgeSrc} alt="Badge" className="w-full h-full rounded-lg object-contain" />
                                 </div>
                             )}
 
-                            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 z-20 group-hover:-translate-y-0.5 transition-transform duration-300">
+                            <div className="absolute text-gray-900 -bottom-3 left-1/2 -translate-x-1/2 z-20 transform group-hover:-translate-y-1 transition-all duration-500">
                                 {item?.Status !== undefined && renderStatus(item?.Status)}
                             </div>
                         </div>
@@ -90,9 +90,9 @@ export const AdminListCard: React.FC<AdminListCardProps> = ({
 
                     {/* Content Area */}
                     <div className="flex-1 min-w-0">
-                        <div className="flex justify-between items-start gap-2 mb-1">
+                        <div className="flex justify-between items-start gap-3 mb-2">
                             {headingField && (
-                                <h3 className="text-lg font-bold text-slate-900 leading-snug tracking-tight group-hover:text-[var(--theme-primary-bg)] transition-colors line-clamp-2">
+                                <h3 className="text-xl font-extrabold text-slate-900 leading-tight tracking-tight group-hover:text-brand-green transition-colors line-clamp-2">
                                     {item?.[headingField]}
                                 </h3>
                             )}
@@ -103,9 +103,9 @@ export const AdminListCard: React.FC<AdminListCardProps> = ({
                                     e.stopPropagation();
                                     setOpenDropdown(openDropdown === index.toString() ? null : index.toString());
                                 }}
-                                className="p-2 -mt-1 text-slate-400 hover:text-slate-900 bg-slate-50 border border-slate-100 rounded-full transition-all active:scale-90"
+                                className="p-2.5 text-slate-400 hover:text-brand-green bg-slate-50/50 hover:bg-white border border-slate-100 rounded-2xl transition-all active:scale-90 shadow-sm hover:shadow-md"
                             >
-                                <EllipsisVertical size={18} />
+                                <EllipsisVertical size={18} strokeWidth={2.5} />
                             </button>
                         </div>
 
@@ -144,12 +144,14 @@ export const AdminListCard: React.FC<AdminListCardProps> = ({
                                         }
 
                                         return (
-                                            <div key={idx} className="flex items-center justify-between text-xs py-0.5 border-b border-slate-100/50">
-                                                <span className="flex items-center gap-2 text-slate-400 font-semibold shrink-0">
-                                                    {getFieldIcon(field)}
-                                                    <span className="uppercase tracking-wider text-[10px]">{formatLabel(field)}</span>
+                                            <div key={idx} className="flex items-center justify-between text-xs py-2 border-b border-slate-50 last:border-0 group/field">
+                                                <span className="flex items-center gap-2 text-slate-400 font-bold shrink-0">
+                                                    <div className="p-1 px-1.5 rounded-lg bg-slate-50 group-hover/field:bg-brand-gold/10 group-hover/field:text-brand-gold transition-colors">
+                                                        {getFieldIcon(field)}
+                                                    </div>
+                                                    <span className="uppercase tracking-widest text-[9px] opacity-80">{formatLabel(field)}</span>
                                                 </span>
-                                                <span className="text-slate-800 text-right font-bold truncate ml-4">{content}</span>
+                                                <span className="text-slate-700 text-right font-black truncate ml-4 group-hover/field:text-slate-900 transition-colors">{content}</span>
                                             </div>
                                         );
                                     })}
@@ -168,11 +170,7 @@ export const AdminListCard: React.FC<AdminListCardProps> = ({
                                             return (
                                                 <span
                                                     key={idx}
-                                                    style={{
-                                                        backgroundColor: isZoom ? 'var(--theme-primary-bg)' : 'rgb(241 245 249)',
-                                                        color: isZoom ? 'var(--theme-primary-text)' : 'rgb(71 85 105)'
-                                                    }}
-                                                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm"
+                                                    className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm ${isZoom ? 'bg-brand-green text-white' : 'bg-slate-100 text-slate-600'}`}
                                                 >
                                                     {isZoom ? <CheckCircle size={10} /> : <PauseCircle size={10} />}
                                                     {isZoom ? "Zoom Live" : "In Class"}

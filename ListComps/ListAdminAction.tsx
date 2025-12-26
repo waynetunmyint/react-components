@@ -210,15 +210,14 @@ export default function ListAdminActionComp({
   const renderStatus = (status?: string) => {
     const s = Number(status);
     const config: any = {
-      0: { text: "Inactive", color: "#fee2e2", textColor: "#b91c1c" },
-      1: { text: "Active", color: 'var(--theme-primary-bg)', textColor: 'var(--theme-primary-text)' },
-      2: { text: "Sold", color: "#fef3c7", textColor: "#b45309" },
-    }[s] || { text: "Unknown", color: "#f1f5f9", textColor: "#64748b" };
+      0: { text: "Inactive", className: "bg-red-50 text-red-600 border-red-100" },
+      1: { text: "Active", className: "bg-brand-green text-white border-brand-green/20" },
+      2: { text: "Sold", className: "bg-amber-50 text-amber-600 border-amber-100" },
+    }[s] || { text: "Unknown", className: "bg-slate-50 text-slate-500 border-slate-100" };
 
     return (
       <span
-        style={{ backgroundColor: config.color, color: config.textColor }}
-        className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm backdrop-blur-md border border-white/20"
+        className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm backdrop-blur-md border ${config.className}`}
       >
         {config.text}
       </span>
@@ -241,12 +240,15 @@ export default function ListAdminActionComp({
 
   return (
     <div
-      className="min-h-screen bg-slate-50/50 pb-24 transition-colors duration-500"
+      className="min-h-screen bg-brand-beige pb-32 transition-colors duration-500 overflow-x-hidden"
       onTouchStart={(e) => { if (window.scrollY === 0) touchStartY.current = e.touches[0].clientY; }}
       onTouchMove={(e) => touchEndY.current = e.touches[0].clientY}
       onTouchEnd={() => { if (touchEndY.current - touchStartY.current > 100 && !refreshing) handleRefresh(); }}
     >
-      <div className="w-full px-4 sm:px-6">
+      {/* Subtle Background Accent */}
+      <div className="fixed top-0 left-0 w-full h-96 bg-gradient-to-b from-brand-gold/5 to-transparent pointer-events-none -z-10" />
+
+      <div className="w-full px-4 sm:px-8">
         <AdminListToolbar
           dataSource={dataSource} search={search} refreshing={refreshing} showFilters={showFilters}
           statusFilter={statusFilter} IsBill={IsBill} searchInputId={searchInputId}
@@ -259,12 +261,12 @@ export default function ListAdminActionComp({
           <AdminListSkeleton />
         ) : filteredData.length === 0 ? (
           <AdminListEmpty
-            emptyTitle={search || statusFilter !== null ? "No results matched" : `No ${dataSource} yet`}
-            emptyDescription="Try adjusting your filters or create a new entry."
+            emptyTitle={search || statusFilter !== null ? "No matching results" : `Empty ${dataSource}`}
+            emptyDescription={search || statusFilter !== null ? "We couldn't find what you're looking for. Try different filters?" : `Your ${dataSource} list is currently empty. Ready to create your first entry?`}
             onRefresh={handleRefresh} onCreate={() => setShowModal('create')}
           />
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-5">
             {filteredData.map((item, index) => (
               <AdminListCard
                 key={item.Id || index} item={item} index={index}
@@ -280,12 +282,15 @@ export default function ListAdminActionComp({
             ))}
 
             {hasMore && !isFetching && !search && (
-              <div className="pt-8 flex justify-center">
+              <div className="pt-12 pb-8 flex justify-center">
                 <button
                   onClick={() => fetchData(page + 1)}
-                  className="flex items-center gap-2 px-8 py-4 bg-white text-slate-900 font-bold rounded-2xl border border-slate-200 shadow-sm active:scale-95 transition-all"
+                  className="group flex items-center gap-3 px-10 py-5 bg-white text-slate-900 font-black uppercase tracking-widest rounded-[2rem] border border-slate-200 shadow-lg hover:shadow-2xl hover:border-brand-green hover:-translate-y-1 active:scale-95 transition-all duration-500"
                 >
-                  Explore More <ArrowDown size={18} />
+                  Explore More
+                  <div className="p-1 rounded-full bg-slate-100 group-hover:bg-brand-green group-hover:text-white transition-colors">
+                    <ArrowDown size={18} strokeWidth={3} className="group-hover:translate-y-0.5 transition-transform" />
+                  </div>
                 </button>
               </div>
             )}
@@ -294,10 +299,10 @@ export default function ListAdminActionComp({
       </div>
 
       {isFetching && data.length > 0 && (
-        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-bottom-5">
-          <div className="flex items-center gap-2 px-5 py-2.5 bg-white rounded-full shadow-2xl border border-slate-100 ring-1 ring-black/5">
-            <RefreshCw size={14} className="animate-spin text-[var(--theme-primary-bg)]" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Updating...</span>
+        <div className="fixed bottom-12 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-bottom-5">
+          <div className="flex items-center gap-3 px-6 py-3 bg-slate-900/90 backdrop-blur-md rounded-full shadow-2xl border border-white/10 ring-1 ring-black/5">
+            <RefreshCw size={16} strokeWidth={3} className="animate-spin text-brand-gold" />
+            <span className="text-[11px] font-black uppercase tracking-widest text-white">Syncing Data...</span>
           </div>
         </div>
       )}
@@ -307,17 +312,6 @@ export default function ListAdminActionComp({
         imageSize={imageSize} selectedItem={selectedItem} setShowModal={setShowModal as any}
         setSelectedItem={setSelectedItem} fetchData={fetchData}
       />
-
-      <style>{`
-        .skeleton-shimmer {
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-          background-size: 200% 100%;
-          animation: shimmer 1.5s infinite;
-        }
-        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
-        .shadow-soft { box-shadow: 0 4px 20px -4px rgba(0,0,0,0.05), 0 2px 8px -2px rgba(0,0,0,0.03); }
-        .shadow-theme { box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2); }
-      `}</style>
     </div>
   );
 }
