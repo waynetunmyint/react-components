@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { BASE_URL, IMAGE_URL } from "../../config";
+import { BASE_URL, IMAGE_URL } from "../../../config";
 import { Calendar, ImageIcon, ExternalLink } from "lucide-react";
 
 const SkeletonLoader = () => (
@@ -47,13 +47,13 @@ const ViewCompTwo: React.FC<Props> = ({ customAPI }) => {
       setError(null);
 
       const response = await fetch(`${BASE_URL}${customAPI}`);
-      
+
       if (!response.ok) {
         throw new Error(`Failed to fetch: ${response.status}`);
       }
 
       const result = await response.json();
-      
+
       // Handle array or single object response
       const item = Array.isArray(result) ? result[0] : result;
       setData(item);
@@ -75,10 +75,10 @@ const ViewCompTwo: React.FC<Props> = ({ customAPI }) => {
     if (!dateString) return null;
     try {
       const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
       });
     } catch {
       return dateString;
@@ -92,14 +92,14 @@ const ViewCompTwo: React.FC<Props> = ({ customAPI }) => {
 
   const renderLinkButton = (url: string | undefined, label: string, icon?: React.ReactNode) => {
     if (!url || url === "null" || url === "-" || url.trim() === "") return null;
-    
+
     const colorClasses: Record<string, string> = {
       Website: "bg-blue-50 text-blue-700 hover:bg-blue-100 border-blue-200",
       Facebook: "bg-blue-600 text-white hover:bg-blue-700 border-blue-600",
       Android: "bg-green-50 text-green-700 hover:bg-green-100 border-green-200",
       iOS: "bg-gray-800 text-white hover:bg-gray-900 border-gray-800",
     };
-    
+
     return (
       <button
         onClick={() => handleOpenLink(url)}
@@ -136,7 +136,7 @@ const ViewCompTwo: React.FC<Props> = ({ customAPI }) => {
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-12 text-center">
           <ImageIcon size={64} className="mx-auto text-gray-300 mb-4" />
           <h3 className="text-xl font-semibold text-gray-700 mb-2">Article Not Found</h3>
-          <p className="text-gray-500">The article you're looking for doesn't exist.</p>
+          <p className="text-gray-500">The article you&apos;re looking for doesn&apos;t exist.</p>
         </div>
       </div>
     );
@@ -148,9 +148,9 @@ const ViewCompTwo: React.FC<Props> = ({ customAPI }) => {
   const createdDate = formatDate(data.CreatedAt || data.CreatedDate || data.Date);
   const viewCount = data.ViewCount;
 
-return (
+  return (
     <div className="min-h-screen">
-{/* Hero Section with Image and Title Overlay */}
+      {/* Hero Section with Image and Title Overlay */}
       <div className="relative w-full ">
         {imageUrl && !imageError ? (
           <>
@@ -168,14 +168,14 @@ return (
             <p className="mt-4 text-lg">No Image Available</p>
           </div>
         )}
-        
+
         {/* Title Overlay */}
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
           <div className="max-w-6xl mx-auto">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">
               {title}
             </h1>
-            
+
             {/* Meta Info */}
             <div className="flex flex-wrap items-center gap-4 text-sm text-white/90">
               {createdDate && (
@@ -203,14 +203,14 @@ return (
 
 
 
-        {/* Description at Bottom */}
-        {description && (
-          <div className="bg-white p-5">
-            <div className="text-base text-gray-700 leading-relaxed whitespace-pre-wrap">
-              {description}
-            </div>
+      {/* Description at Bottom */}
+      {description && (
+        <div className="bg-white p-5">
+          <div className="text-base text-gray-700 leading-relaxed whitespace-pre-wrap">
+            {description}
           </div>
-        )}
+        </div>
+      )}
     </div>
   );
 };

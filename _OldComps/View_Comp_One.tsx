@@ -119,7 +119,7 @@ const ViewCompOne: React.FC<Props> = ({ customAPI }) => {
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-sm p-12 text-center">
           <ImageIcon size={64} className="mx-auto text-gray-300 mb-4" />
           <h3 className="text-xl font-semibold text-gray-700 mb-2">Article Not Found</h3>
-          <p className="text-gray-500">The article you're looking for doesn't exist.</p>
+          <p className="text-gray-500">The article you&apos;re looking for doesn&apos;t exist.</p>
         </div>
       </div>
     );
