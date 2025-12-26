@@ -23,7 +23,9 @@ type ShoppingContextValue = {
 
 const ShoppingCartContext = createContext<ShoppingContextValue | undefined>(undefined);
 
-const STORAGE_KEY = "StoredCart";
+import { PAGE_ID } from "../../../config";
+
+const STORAGE_KEY = `StoredCart_${PAGE_ID}`;
 
 export const ShoppingCartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<StoredCart>(() => {
