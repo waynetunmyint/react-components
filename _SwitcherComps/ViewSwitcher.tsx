@@ -6,9 +6,9 @@ import { useCachedFetch } from "../_hooks/useCachedFetch";
 import { BASE_URL, PAGE_ID, PAGE_TYPE } from "../../../config";
 import BlockSwitcherComp from "../_SwitcherComps/BlockSwitcher";
 import { IonRefresher, IonRefresherContent } from "@ionic/react";
-import BookViewOne from "../ViewComps/Book_ViewOne";
+import BookViewOne from "../BookComps/BookViewOne";
 import ProductViewOne from "../ViewComps/Product_ViewOne";
-import { BookAuthorViewOne } from "../ViewComps/BookAuthor_ViewOne";
+import { BookAuthorViewOne } from "../BookComps/BookAuthorViewOne";
 import { DetailViewOne } from "../ViewComps/DetailViewOne";
 // import { ViewOne } from "./ViewOne";
 

@@ -53,7 +53,7 @@ const PageView: React.FC<Props> = ({ dataSource, headingTitle, subHeadingTitle }
     <IonPage>
       <IonContent fullscreen>
         <HeaderSwitcher headingField={displayTitle} />
-        <div className='min-h-screen bg-[#0d0d21]'>
+        <div className='min-h-screen bg-[var(--bg-100)]'>
           <div className="max-w-7xl mx-auto py-12 md:py-20">
 
             <BlockSwitcherComp

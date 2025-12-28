@@ -106,7 +106,7 @@ export default function AdminMenu() {
                 <Home className="w-5 h-5 text-[var(--text-light)]" />
               </div>
               <div>
-                <h2 className="text-[var(--text-light)] font-bold tracking-tight">Royal Forest</h2>
+                <h2 className="text-[var(--text-light)] font-bold tracking-tight">Welcome</h2>
                 <p className="text-[var(--accent-500)] text-[10px] font-bold uppercase tracking-widest">Admin Portal</p>
               </div>
             </div>

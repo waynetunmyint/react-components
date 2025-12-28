@@ -28,7 +28,7 @@ export default function HomePage() {
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
         <HeaderSwitcher headingField="Home" />
-        <div className="mt-100">
+        <div className="mt-100 bg-[var(--bg-100)]">
           {loading ? (
             <div className="space-y-4 p-4">
               <div className="w-full h-64 bg-gray-100 rounded-xl animate-pulse" />

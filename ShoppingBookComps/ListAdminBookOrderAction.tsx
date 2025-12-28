@@ -208,13 +208,13 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
       case 0:
         return { label: "Rejected", color: "red", bgColor: "bg-red-50", textColor: "text-red-700", borderColor: "border-red-200", icon: XCircle };
       case 1:
-        return { label: "Active", color: "green", bgColor: "bg-green-50", textColor: "text-green-700", borderColor: "border-green-200", icon: CheckCircle };
+        return { label: "Active", color: "green", bgColor: "bg-[var(--bg-200)]", textColor: "text-[var(--accent-600)]", borderColor: "border-[var(--bg-300)]", icon: CheckCircle };
       case 2:
         return { label: "Pending", color: "yellow", bgColor: "bg-yellow-50", textColor: "text-yellow-700", borderColor: "border-yellow-200", icon: Clock };
       case 3:
         return { label: "Completed", color: "blue", bgColor: "bg-blue-50", textColor: "text-blue-700", borderColor: "border-blue-200", icon: PackageCheck };
       default:
-        return { label: "Unknown", color: "gray", bgColor: "bg-gray-50", textColor: "text-gray-700", borderColor: "border-gray-200", icon: Clock };
+        return { label: "Unknown", color: "gray", bgColor: "bg-[var(--bg-200)]", textColor: "text-[var(--text-muted)]", borderColor: "border-[var(--bg-300)]", icon: Clock };
     }
   };
 
@@ -263,7 +263,7 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
   }, [dataSource, effectivePageId]);
 
   const Toolbar = () => (
-    <div className="sticky top-0 z-20 bg-white border-b border-gray-100 shadow-sm">
+    <div className="sticky top-0 z-20 bg-[var(--bg-100)] border-b border-[var(--bg-300)] shadow-sm">
       <div className="py-3 px-4 mx-auto w-full">
         {/* Top Header */}
         <div className="flex items-center justify-between mb-3">
@@ -297,16 +297,16 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
 
         {/* Search Bar - Compact */}
         <div className="relative group mb-3">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[var(--theme-primary-bg)] transition-colors" size={18} />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--text-muted)] group-focus-within:text-[var(--accent-600)] transition-colors" size={18} />
           <input
             type="text"
             placeholder="Search by customer name..."
             value={search}
             onChange={(e) => handleSearchChange(e.target.value)}
-            className="w-full pl-11 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm text-gray-900 placeholder:text-gray-500 focus:ring-4 focus:ring-gray-100 focus:border-[var(--theme-primary-bg)] focus:bg-white transition-all duration-300"
+            className="w-full pl-11 pr-12 py-3 bg-[var(--bg-200)] border border-[var(--bg-300)] rounded-2xl text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:ring-4 focus:ring-[var(--bg-300)] focus:border-[var(--accent-600)] focus:bg-[var(--bg-100)] transition-all duration-300"
           />
           {search && (
-            <button onClick={() => { setSearch(""); fetchData(1); }} className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-400">
+            <button onClick={() => { setSearch(""); fetchData(1); }} className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-[var(--text-muted)]">
               <X size={14} />
             </button>
           )}
@@ -330,7 +330,7 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
                   flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all active:scale-95
                   ${isActive
                     ? "bg-[var(--theme-primary-bg)] text-[var(--accent-600)] shadow-md ring-1 ring-white"
-                    : "bg-white border border-gray-100 text-gray-600 hover:bg-gray-50 shadow-sm"
+                    : "bg-[var(--bg-100)] border border-[var(--bg-300)] text-[var(--text-muted)] hover:bg-[var(--bg-200)] shadow-sm"
                   }
                 `}
               >
@@ -346,12 +346,12 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
 
   if (!isFetching && data.length === 0) {
     return (
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-[var(--bg-100)]">
         <Toolbar />
         <div className="flex flex-col items-center justify-center py-20 px-4 text-center">
-          <ShoppingBag size={48} className="text-gray-200 mb-4" />
-          <h3 className="text-lg font-bold text-gray-900">No orders found</h3>
-          <p className="text-sm text-gray-500 mt-1">Try changing your filters or search terms.</p>
+          <ShoppingBag size={48} className="text-[var(--bg-300)] mb-4" />
+          <h3 className="text-lg font-bold text-[var(--text-primary)]">No orders found</h3>
+          <p className="text-sm text-[var(--text-muted)] mt-1">Try changing your filters or search terms.</p>
         </div>
       </div>
     );
@@ -359,7 +359,7 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
 
   return (
     <div
-      className="min-h-screen bg-gray-50 md:ml-10"
+      className="min-h-screen bg-[var(--bg-200)] md:ml-10"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -367,35 +367,35 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
       <Toolbar />
 
       <div className="mx-auto w-full px-3 py-3 space-y-2">
-        <div className="bg-white rounded-[24px] border border-gray-100 shadow-sm overflow-hidden">
+        <div className="bg-[var(--bg-100)] rounded-[24px] border border-[var(--bg-300)] shadow-sm overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-gray-100 bg-gray-50/50">
-                  <th className="p-5 text-xs font-black text-gray-400 uppercase tracking-widest whitespace-nowrap">Order #</th>
-                  <th className="p-5 text-xs font-black text-gray-400 uppercase tracking-widest whitespace-nowrap">Customer Info</th>
-                  <th className="p-5 text-xs font-black text-gray-400 uppercase tracking-widest whitespace-nowrap">Status</th>
-                  <th className="p-5 text-xs font-black text-gray-400 uppercase tracking-widest text-right whitespace-nowrap">Total</th>
-                  <th className="p-5 text-xs font-black text-gray-400 uppercase tracking-widest text-right whitespace-nowrap">Print</th>
-                  <th className="p-5 text-xs font-black text-gray-400 uppercase tracking-widest text-right whitespace-nowrap">Actions</th>
+                <tr className="border-b border-[var(--bg-300)] bg-[var(--bg-200)]">
+                  <th className="p-5 text-xs font-black text-[var(--text-muted)] uppercase tracking-widest whitespace-nowrap">Order #</th>
+                  <th className="p-5 text-xs font-black text-[var(--text-muted)] uppercase tracking-widest whitespace-nowrap">Customer Info</th>
+                  <th className="p-5 text-xs font-black text-[var(--text-muted)] uppercase tracking-widest whitespace-nowrap">Status</th>
+                  <th className="p-5 text-xs font-black text-[var(--text-muted)] uppercase tracking-widest text-right whitespace-nowrap">Total</th>
+                  <th className="p-5 text-xs font-black text-[var(--text-muted)] uppercase tracking-widest text-right whitespace-nowrap">Print</th>
+                  <th className="p-5 text-xs font-black text-[var(--text-muted)] uppercase tracking-widest text-right whitespace-nowrap">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-50">
+              <tbody className="divide-y divide-[var(--bg-200)]">
                 {data
                   .filter(item => statusFilter === null || (item.OrderStatus ?? 2) === statusFilter)
                   .map((item, index) => {
                     const statusConfig = getStatusConfig(item.OrderStatus ?? 2);
                     return (
-                      <tr key={item.Id || index} className="hover:bg-gray-50/80 transition-colors group">
+                      <tr key={item.Id || index} className="hover:bg-[var(--bg-200)] transition-colors group">
                         <td className="p-5 w-24">
-                          <span className="font-bold text-gray-500">#{item.Id}</span>
-                          <div className="text-[10px] text-gray-400 font-medium mt-1 whitespace-nowrap">{convertDateTime(item.CreatedAt).split(',')[0]}</div>
+                          <span className="font-bold text-[var(--text-muted)]">#{item.Id}</span>
+                          <div className="text-[10px] text-[var(--text-muted)] opacity-60 font-medium mt-1 whitespace-nowrap">{convertDateTime(item.CreatedAt).split(',')[0]}</div>
                         </td>
                         <td className="p-5">
                           <div className="flex flex-col">
-                            <span className="font-bold text-gray-900">{item.CustomerName || "Anonymous"}</span>
+                            <span className="font-bold text-[var(--text-primary)]">{item.CustomerName || "Anonymous"}</span>
                             {item.CustomerPhone && (
-                              <div className="flex items-center gap-1 text-gray-400 mt-1">
+                              <div className="flex items-center gap-1 text-[var(--text-muted)] mt-1">
                                 <Phone size={10} />
                                 <span className="text-xs font-medium">{item.CustomerPhone}</span>
                               </div>
@@ -409,7 +409,7 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
                           </div>
                         </td>
                         <td className="p-5 text-right w-40">
-                          <span className="font-black block text-sm" style={{ color: 'var(--theme-primary-bg)' }}>{formatPrice(Number(item.OrderGrandTotal) || 0)}</span>
+                          <span className="font-black block text-sm text-[var(--text-primary)]" >{formatPrice(Number(item.OrderGrandTotal) || 0)}</span>
                           <div className="flex gap-1 justify-end mt-2">
                             {[
                               { s: 2, l: "P" },
@@ -421,8 +421,8 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
                                 key={st.s}
                                 onClick={() => handleStatusClick(item, st.s)}
                                 className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-black transition-all ${item.OrderStatus === st.s
-                                  ? "bg-gray-900 text-white shadow-md"
-                                  : "bg-gray-100 text-gray-400 hover:bg-gray-200"
+                                  ? "bg-[var(--accent-600)] text-[var(--text-light)] shadow-md"
+                                  : "bg-[var(--bg-200)] text-[var(--text-muted)] hover:bg-[var(--bg-300)]"
                                   }`}
                                 title={st.s === 2 ? 'Pending' : st.s === 1 ? 'Active' : st.s === 3 ? 'Done' : 'Rejected'}
                               >
@@ -433,8 +433,8 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
                         </td>
                         <td className="p-5 text-right w-32">
                           <div className="flex justify-end gap-2">
-                            <button onClick={() => handlePrintCustomer(item)} className="p-2 bg-gray-50 text-gray-400 rounded-lg hover:bg-gray-900 hover:text-white transition-all" title="Customer Copy"><User size={16} /></button>
-                            <button onClick={() => handlePrintReceipt(item)} className="p-2 bg-gray-50 text-gray-400 rounded-lg hover:bg-gray-900 hover:text-white transition-all" title="Receipt"><Receipt size={16} /></button>
+                            <button onClick={() => handlePrintCustomer(item)} className="p-2 bg-[var(--bg-200)] text-[var(--text-muted)] rounded-lg hover:bg-[var(--accent-600)] hover:text-[var(--text-light)] transition-all" title="Customer Copy"><User size={16} /></button>
+                            <button onClick={() => handlePrintReceipt(item)} className="p-2 bg-[var(--bg-200)] text-[var(--text-muted)] rounded-lg hover:bg-[var(--accent-600)] hover:text-[var(--text-light)] transition-all" title="Receipt"><Receipt size={16} /></button>
                           </div>
                         </td>
                         <td className="p-5 text-right w-32">
@@ -459,7 +459,7 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
             <button
               onClick={() => fetchData(pageRef.current + 1)}
               disabled={fetchingRef.current}
-              className="px-6 py-2.5 rounded-xl bg-white border border-gray-100 text-gray-600 text-[10px] font-bold uppercase tracking-wider hover:bg-gray-50 transition-all shadow-sm"
+              className="px-6 py-2.5 rounded-xl bg-[var(--bg-100)] border border-[var(--bg-300)] text-[var(--text-muted)] text-[10px] font-bold uppercase tracking-wider hover:bg-[var(--bg-200)] transition-all shadow-sm"
             >
               {fetchingRef.current ? "Loading..." : "Load More Orders"}
             </button>
@@ -469,15 +469,15 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
 
       {/* Status Update Confirmation Modal */}
       {showStatusModal && selectedItem && selectedStatus !== null && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+          <div className="bg-[var(--bg-100)] rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
             <div className="p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-1">Confirm Update</h3>
-              <p className="text-xs text-gray-500 mb-6">Update <span className="text-gray-900 font-bold">{selectedItem.CustomerName}</span> to <span className="text-gray-900 font-bold text-blue-600">{getStatusConfig(selectedStatus).label}</span>?</p>
+              <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1">Confirm Update</h3>
+              <p className="text-xs text-[var(--text-muted)] mb-6">Update <span className="text-[var(--text-primary)] font-bold">{selectedItem.CustomerName}</span> to <span className="text-[var(--accent-600)] font-black uppercase tracking-widest">{getStatusConfig(selectedStatus).label}</span>?</p>
 
               <div className="flex gap-2">
-                <button onClick={() => setShowStatusModal(false)} className="flex-1 py-2.5 rounded-xl bg-gray-50 text-gray-500 text-xs font-bold hover:bg-gray-100 transition-all">Cancel</button>
-                <button onClick={handleUpdateStatus} className="flex-1 py-2.5 rounded-xl bg-[var(--theme-primary-bg)] text-[var(--theme-primary-text)] text-xs font-bold shadow-lg hover:opacity-90 transition-all">Confirm</button>
+                <button onClick={() => setShowStatusModal(false)} className="flex-1 py-2.5 rounded-xl bg-[var(--bg-200)] text-[var(--text-muted)] text-xs font-bold hover:bg-[var(--bg-300)] transition-all">Cancel</button>
+                <button onClick={handleUpdateStatus} className="flex-1 py-2.5 rounded-xl bg-[var(--accent-600)] text-[var(--text-light)] text-xs font-bold shadow-lg hover:opacity-90 transition-all">Confirm</button>
               </div>
             </div>
           </div>

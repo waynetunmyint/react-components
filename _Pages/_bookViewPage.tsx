@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import HeaderSwitcher from "../_SwitcherComps/HeaderSwitcher";
 import { BASE_URL, FOOTER_STYLE, PAGE_ID } from '../../../config';
 import FooterSwitchComp from '../_SwitcherComps/FooterSwitcher';
-import { BookViewOne } from '../ViewComps/Book_ViewOne';
+import BookViewOne from '../BookComps/BookViewOne';
 
 interface Props {
   dataSource: string;

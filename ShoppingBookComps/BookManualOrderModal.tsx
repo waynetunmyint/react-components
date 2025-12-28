@@ -344,7 +344,7 @@ export default function ManualOrderModal({ isOpen, onClose, onCreated, orderData
             type="submit"
             disabled={submitting}
             onClick={handleSubmit}
-            className="flex-1 px-4 py-2 bg-[var(--accent-600)] rounded-2xl text-white rounded text-sm font-bold  shadow hover:opacity-90 active:translate-y-0.5 transition-all disabled:opacity-50"
+            className="flex-1 px-4 py-2 bg-[var(--accent-600)] rounded-2xl text-gray-900 rounded text-sm font-bold  shadow hover:opacity-90 active:translate-y-0.5 transition-all disabled:opacity-50"
           >
             {submitting ? (isEditMode ? 'Updating...' : 'Saving...') : (isEditMode ? 'Update Order' : 'Create Order')}
           </button>

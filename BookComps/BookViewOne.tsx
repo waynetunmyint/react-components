@@ -94,7 +94,7 @@ export default function BookViewOne({ item }: Props) {
 
 
   return (
-    <div className="min-h-screen bg-gray-50 mt-10">
+    <div className="min-h-screen bg-[var(--bg-100)]">
       <div className="max-w-7xl mx-auto px-4 py-6 md:py-10">
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
 
@@ -287,7 +287,7 @@ export default function BookViewOne({ item }: Props) {
                 <button
                   type="button"
                   onClick={() => setShowFullDescription((s) => !s)}
-                  className="text-sm  font-medium hover:underline"
+                  className="text-sm  font-medium hover:underline text-[var(--text-primary)]"
                   aria-expanded={showFullDescription}
                 >
                   {showFullDescription ? 'View less' : 'View more'}

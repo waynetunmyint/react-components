@@ -32,11 +32,11 @@ export const BookAuthorViewOne: React.FC<Props> = ({ item }) => {
 
   if (isLoading) {
     return (
-      <div id="page-background-light-gray" className="min-h-screen flex items-center justify-center py-12 px-4">
+      <div className="min-h-screen bg-[var(--bg-100)] flex items-center justify-center py-12 px-4">
         <div className="animate-pulse text-center">
-          <div className="w-20 h-20 bg-gray-300 rounded-full mx-auto mb-4"></div>
-          <div className="h-6 bg-gray-300 rounded w-40 mx-auto mb-3"></div>
-          <div className="h-4 bg-gray-300 rounded w-56 mx-auto"></div>
+          <div className="w-20 h-20 bg-[var(--bg-300)] rounded-full mx-auto mb-4"></div>
+          <div className="h-6 bg-[var(--bg-300)] rounded w-40 mx-auto mb-3"></div>
+          <div className="h-4 bg-[var(--bg-300)] rounded w-56 mx-auto"></div>
         </div>
       </div>
     );
@@ -44,19 +44,19 @@ export const BookAuthorViewOne: React.FC<Props> = ({ item }) => {
 
   if (!item) {
     return (
-      <div id="page-background-light-gray" className="min-h-screen flex items-center justify-center py-12 px-4">
+      <div className="min-h-screen bg-[var(--bg-100)] flex items-center justify-center py-12 px-4">
         <div className="max-w-sm text-center">
-          <div id="page-empty-icon-bg" className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="w-20 h-20 rounded-full bg-[var(--bg-200)] flex items-center justify-center mx-auto mb-4 text-[var(--text-muted)]">
             <ImageIcon size={40} strokeWidth={1.5} />
           </div>
-          <h3 id="page-empty-title">Author Not Found</h3>
-          <p id="page-empty-message" className="mb-6">
+          <h3 className="text-xl font-bold text-[var(--text-primary)]">Author Not Found</h3>
+          <p className="text-[var(--text-muted)] mb-6 text-sm">
             The author you're looking for doesn't exist or has been removed.
           </p>
           <button
             onClick={() => window.history.back()}
             className="px-6 py-3 text-base font-medium rounded-xl transition-colors text-white hover:opacity-90"
-            style={{ backgroundColor: 'var(--theme-primary-bg)' }}
+            style={{ backgroundColor: 'var(--accent-600)' }}
           >
             Go Back
           </button>
@@ -70,25 +70,25 @@ export const BookAuthorViewOne: React.FC<Props> = ({ item }) => {
   const description = item.Description || "";
 
   return (
-    <div id="page-background-light-gray" className="min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 py-6 mt-20">
+    <div className="min-h-screen bg-[var(--bg-100)]">
+      <div className="max-w-7xl mx-auto px-4 py-8 md:py-12 mt-10 md:mt-20">
 
-        <div className="overflow-hidden mb-6">
-          <div className="flex flex-col md:flex-row">
+        <div className="overflow-hidden mb-12">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
 
             {/* Thumbnail */}
-            <div id="page-background-light-gray" className="md:w-1/3 p-6 flex items-start justify-center">
-              <div className="w-full max-w-xs">
-                <div className="relative w-full aspect-[3/4] overflow-hidden">
+            <div className="w-full md:w-1/3 flex justify-center">
+              <div className="w-full max-w-[280px] md:max-w-xs">
+                <div className="relative w-full aspect-[3/4] overflow-hidden rounded-2xl shadow-xl border border-[var(--bg-300)]">
                   {imageUrl && !imageError ? (
                     <img
                       src={imageUrl}
                       alt={title}
-                      className="w-full object-square"
+                      className="w-full h-full object-cover"
                       onError={() => setImageError(true)}
                     />
                   ) : (
-                    <div id="page-image-placeholder" className="w-full h-full flex flex-col items-center justify-center">
+                    <div className="w-full h-full bg-[var(--bg-200)] flex flex-col items-center justify-center text-[var(--text-muted)]">
                       <ImageIcon size={56} strokeWidth={1.5} />
                       <p className="mt-3 text-sm font-medium">No Image</p>
                     </div>
@@ -98,9 +98,8 @@ export const BookAuthorViewOne: React.FC<Props> = ({ item }) => {
             </div>
 
             {/* Info */}
-            <div className="flex-1 p-6">
-              <h1 className="text-gray-900 text-2xl mb-10">{title}</h1>
-
+            <div className="flex-1 w-full text-center md:text-left">
+              <h1 className="text-[var(--text-primary)] text-3xl md:text-4xl font-black mb-6 tracking-tight leading-tight">{title}</h1>
               {/* Description */}
               {description && (() => {
                 const lines = description.split("\n");
@@ -108,16 +107,16 @@ export const BookAuthorViewOne: React.FC<Props> = ({ item }) => {
                 const shown = expandDescription ? lines : lines.slice(0, 5);
 
                 return (
-                  <div>
-                    <div className="whitespace-pre-wrap text-gray-700">
+                  <div className="relative">
+                    <div className="whitespace-pre-wrap text-[var(--text-muted)] text-lg leading-relaxed font-medium">
                       {shown.join("\n")}
                     </div>
 
                     {hasMore && (
                       <button
                         onClick={() => setExpandDescription(!expandDescription)}
-                        className="inline-flex items-center gap-1 mt-3 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors hover:opacity-80"
-                        style={{ color: 'var(--theme-primary-bg)' }}
+                        className="inline-flex items-center gap-1 mt-4 px-4 py-2 text-sm font-bold rounded-xl transition-all hover:bg-[var(--bg-200)] border border-[var(--bg-300)]"
+                        style={{ color: 'var(--accent-600)' }}
                       >
                         {expandDescription ? (
                           <>
@@ -140,11 +139,13 @@ export const BookAuthorViewOne: React.FC<Props> = ({ item }) => {
         </div>
 
         {/* Books by author */}
-        <CommonOne
-          headingTitle="Book by this Author"
-          customAPI={`/book/api/byPageId/byBookAuthorId/${PAGE_ID}/${item.Id}`}
-          dataSource="book"
-        />
+        <div className="border-t border-[var(--bg-300)] pt-12">
+          <CommonOne
+            headingTitle="Books by this Author"
+            customAPI={`/book/api/byPageId/byBookAuthorId/${PAGE_ID}/${item.Id}`}
+            dataSource="book"
+          />
+        </div>
       </div>
     </div>
   );
