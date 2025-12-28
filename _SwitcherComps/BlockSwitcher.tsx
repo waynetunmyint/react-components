@@ -32,6 +32,10 @@ import AddressSixteen from "../AddressComps/AddressSixteen";
 import SliderSix from "../SliderComps/SliderSix";
 import ArticleEleven from "../ArticleComps/ArticleEleven";
 import BlockOne from "../BlockComps/BlockOne";
+import DreamCategoryOne from "../DreamComps/DreamCategoryOne";
+import DreamOne from "../DreamComps/DreamOne";
+import DreamNumberOne from "../DreamComps/DreamNumberOne";
+import SliderSevenTeen from "../SliderComps/SliderSevenTeen";
 
 interface Props {
   dataSource: string;
@@ -163,6 +167,8 @@ export default function BlockSwitcherComp({
     slider4: <SliderFour {...common} />,
     slider5: <SliderFive {...common} />,
     slider6: <SliderSix {...common} />,
+    slider17: <SliderSevenTeen {...common} />,
+
     // Course
     course12: <CourseTwelve {...common} />,
 
@@ -172,9 +178,17 @@ export default function BlockSwitcherComp({
     customSlider21: <SliderTwelve {...common} />,
     customSlider212: <SliderTwelve {...common} />,
 
+    //dream
+    dream1: <DreamOne {...common} />,
+    dreamNumber1: <DreamNumberOne {...common} />,
+    dreamCategory1: <DreamCategoryOne {...common} />,
+
+
     // Book
     book1: <BookOne {...common} />,
     book6: <BookAuthorSix {...common} />,
+
+
 
     // Client/Page
     page1: <ClientOne {...common} />,

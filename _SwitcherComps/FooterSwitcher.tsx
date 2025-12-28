@@ -25,6 +25,12 @@ export default function FooterSwitchComp({
 
   const renderVariant = () => {
     switch (view) {
+      case 0:
+        return <></>
+        break;
+      case 1:
+        return <FooterOne {...common} />
+        break;
 
       default:
         return <FooterOne {...common} />

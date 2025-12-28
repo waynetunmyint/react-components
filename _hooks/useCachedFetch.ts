@@ -114,14 +114,20 @@ export function useCachedFetch<T = any>(
             else if (result?.item && !Array.isArray(result?.item)) resolved = result.item;
             else resolved = result;
 
-            // Update state with fresh data
-            setData(resolved);
-            setIsFromCache(false);
+            // Smart update: Only replace if data changed
+            const isIdentical = JSON.stringify(resolved) === JSON.stringify(data);
 
-            // Save to cache for next time
-            if (resolved !== null) {
-                setCachedData(url, resolved);
+            if (!isIdentical) {
+                // Update state with fresh data
+                setData(resolved);
+
+                // Save to cache for next time
+                if (resolved !== null) {
+                    setCachedData(url, resolved);
+                }
             }
+
+            setIsFromCache(false);
         } catch (err) {
             const message = err instanceof Error ? err.message : 'Error fetching data';
             console.error(message, err);

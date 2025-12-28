@@ -10,7 +10,7 @@ interface Props {
     dataSource: string;
     /** Optional title for the header */
     title?: string;
-    /** Optional custom view component - defaults to CommonViewOne */
+    /** Optional custom view component - defaults to DetailViewOne */
     ViewComponent?: React.ComponentType<{ item: any }>;
     /** The child data source for related items (e.g., "book", "article") - optional */
     childDataSource?: string;

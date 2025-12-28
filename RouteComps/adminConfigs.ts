@@ -304,6 +304,63 @@ export const ADMIN_PAGE_CONFIGS: Record<string, AdminPageConfig> = {
         ],
     },
 
+
+    dream: {
+        dataSource: "dream",
+        headingField: "Title",
+        subHeadingFields: ["Description"],
+        gridFields: ["PageTitle"],
+        imageSize: "large",
+        activeInActiveToggle: true,
+        fields: [
+            { fieldName: "Title", type: "text" },
+            { fieldName: "Description", type: "textarea" },
+        ],
+    },
+
+    dreamKnowledge: {
+        dataSource: "dreamKnowledge",
+        headingField: "Title",
+        subHeadingFields: ["Description"],
+        gridFields: ["PageTitle"],
+        imageSize: "large",
+        activeInActiveToggle: true,
+        fields: [
+            { fieldName: "Title", type: "text" },
+            { fieldName: "Description", type: "textarea" },
+        ],
+    },
+
+    dreamNumber: {
+        dataSource: "dreamNumber",
+        headingField: "Title",
+        gridFields: ["PageTitle"],
+        imageSize: "large",
+        activeInActiveToggle: true,
+        fields: [
+            { fieldName: "Code", type: "text" },
+            { fieldName: "Title", type: "text" },
+            { fieldName: "Number", type: "text" },
+        ],
+    },
+
+
+
+    dreamCategory: {
+        dataSource: "dreamCategory",
+        headingField: "Title",
+        subHeadingFields: ["Description"],
+        gridFields: ["PageTitle"],
+        imageSize: "large",
+        activeInActiveToggle: true,
+        fields: [
+            { fieldName: "Title", type: "text" },
+            { fieldName: "ShortCod", type: "text" },
+            { fieldName: "Description", type: "textarea" },
+        ],
+    },
+
+
     guardian: {
         dataSource: "guardian",
         headingField: "Title",

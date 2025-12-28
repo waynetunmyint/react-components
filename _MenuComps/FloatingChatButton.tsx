@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MessageCircle, X } from "lucide-react";
 import CustomerChatModal from "./CustomerChatModal";
+import { ENABLE_CUSTOMER_CHAT } from "../../../config";
 
 const FloatingChatButton: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +10,10 @@ const FloatingChatButton: React.FC = () => {
 
     useEffect(() => {
         const checkVisibility = () => {
+            if (ENABLE_CUSTOMER_CHAT === false) {
+                setIsVisible(false);
+                return;
+            }
             const path = window.location.pathname;
             const isExcluded = path.startsWith('/admin') || path === '/login' || path === '/register';
             setIsVisible(!isExcluded);

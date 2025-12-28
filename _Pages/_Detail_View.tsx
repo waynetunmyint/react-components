@@ -21,7 +21,7 @@ interface Props {
   childrenConfigs?: ChildConfig[];
 }
 
-const CommonViewPage: React.FC<Props> = ({
+const DetailView: React.FC<Props> = ({
   dataSource,
   headingTitle,
   styleNo,
@@ -41,7 +41,7 @@ const CommonViewPage: React.FC<Props> = ({
 
       <IonContent fullscreen>
         <HeaderSwitcher headingField={displayTitle} />
-        <div className='min-h-screen bg-white '>
+        <div className='min-h-screen'>
           <ViewSwitcher
             dataSource={dataSource}
             idField={id || ''}
@@ -59,4 +59,4 @@ const CommonViewPage: React.FC<Props> = ({
   );
 };
 
-export default CommonViewPage;
+export default DetailView;

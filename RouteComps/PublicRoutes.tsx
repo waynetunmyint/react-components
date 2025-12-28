@@ -3,8 +3,10 @@ import HomePage from '../_Pages/HomePage';
 import ContactPage from '../_Pages/ContactPage';
 import LoginPage from '../_Pages/LoginPage';
 import PricingPage from '../_Pages/PricingPage';
-import MainPage from '../_Pages/_Main_CMS_Page';
-import ViewPage from '../_Pages/_View_CMS_Page';
+import PageView from '../_Pages/_Page_View';
+
+import DetailPage from '../_Pages/_Detail_View';
+
 import RewardPage from '../_Pages/RewardPage';
 import PDFViewPage from '../_Pages/_PDF_ViewPage';
 import PlacementTestPage from '../_Pages/PlacementTestPage';
@@ -20,23 +22,49 @@ import ProductListPage from '../_Pages/ProductListPage';
  */
 export const getPublicRoutes = () => [
 
-    // Home Routes
-    <Route key="home-root" path="/" component={HomePage} exact={true} />,
-    <Route key="home" path="/home" component={HomePage} exact={true} />,
+    // Advantage Routes
+    <Route key="advantage" path="/advantage" exact={true} render={() =>
+        <PageView dataSource="advantage" headingTitle="Advantages" subHeadingTitle="Our Advantages" />
+    } />,
+    <Route key="advantage-view" path="/advantage/view/:id" exact={true} render={() =>
+        <DetailPage dataSource="advantage" styleNo={PAGE_VIEW_STYLE} />
+    } />,
 
-    <Route key="privacy" path="/privacy" component={PrivacyPolicyPage} exact={true} />,
+    // Blog / Article Routes
+    <Route key="article" path="/article" exact={true} render={() =>
+        <PageView dataSource="article" headingTitle="Blog" subHeadingTitle="Commitment to best Quality" />
+    } />,
+    <Route key="article-view" path="/article/view/:id" exact={true} render={() =>
+        <DetailPage dataSource="article" styleNo={PAGE_VIEW_STYLE} />
+    } />,
+    <Route key="blog" path="/blog" exact={true} render={() =>
+        <PageView dataSource="article" headingTitle="Blog" subHeadingTitle="Commitment to best Quality" />
+    } />,
+    <Route key="blog-view" path="/blog/view/:id" exact={true} render={() =>
+        <DetailPage dataSource="article" styleNo={PAGE_VIEW_STYLE} />
+    } />,
 
-    // Contact Routes
-    <Route key="about-us" path="/about-us" component={ContactPage} exact={true} />,
-    <Route key="contact" path="/contact" component={ContactPage} exact={true} />,
-    <Route key="contact-us" path="/contact-us" component={ContactPage} exact={true} />,
+    // Auth & Other
+    <Route key="login" path="/login" component={LoginPage} exact={true} />,
+    <Route key="pricing" path="/pricing" component={PricingPage} exact={true} />,
+    <Route key="reward" path="/reward" component={RewardPage} exact={true} />,
+    // PDF Preview
+    <Route key="pdf" path="/book-preview-pdf" component={PDFViewPage} exact={true} />,
+
+    // Book Routes
+    <Route key="book" path="/book" exact={true} render={() =>
+        <PageView dataSource="book" headingTitle="Books" subHeadingTitle="Discover Our Collection" />
+    } />,
+    <Route key="book-view" path="/book/view/:id" exact={true} render={() =>
+        <DetailPage dataSource="book" styleNo={1} />
+    } />,
 
     // Book Author Routes
     <Route key="bookAuthor" path="/bookAuthor" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="bookAuthor" headingTitle="Authors" subHeadingTitle="Authors Behind Our Books" />
+        <PageView dataSource="bookAuthor" headingTitle="Authors" subHeadingTitle="Authors Behind Our Books" />
     } />,
     <Route key="bookAuthor-view" path="/bookAuthor/view/:id" exact={true} render={() =>
-        <ViewPage
+        <DetailPage
             dataSource="bookAuthor"
             headingTitle="Author"
             childrenConfigs={[
@@ -49,20 +77,12 @@ export const getPublicRoutes = () => [
         />
     } />,
 
-    // Book Routes
-    <Route key="book" path="/book" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="book" headingTitle="Books" subHeadingTitle="Discover Our Collection" />
-    } />,
-    <Route key="book-view" path="/book/view/:id" exact={true} render={() =>
-        <ViewPage dataSource="book" styleNo={1} />
-    } />,
-
     // Book Category Routes
     <Route key="bookCategory" path="/bookCategory" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="bookCategory" headingTitle="Categories" subHeadingTitle="Categories of Our Books" />
+        <PageView dataSource="bookCategory" headingTitle="Categories" subHeadingTitle="Categories of Our Books" />
     } />,
     <Route key="bookCategory-view" path="/bookCategory/view/:id" exact={true} render={() =>
-        <ViewPage
+        <DetailPage
             dataSource="bookCategory"
             headingTitle="Category"
             childrenConfigs={[
@@ -77,17 +97,18 @@ export const getPublicRoutes = () => [
 
     // Book Review Routes
     <Route key="bookReview" path="/bookReview" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="bookReview" headingTitle="Reviews" subHeadingTitle="Reviews of Our Books" />
+        <PageView dataSource="bookReview" headingTitle="Reviews" subHeadingTitle="Reviews of Our Books" />
     } />,
     <Route key="bookReview-view" path="/bookReview/view/:id" exact={true} render={() =>
-        <ViewPage dataSource="bookReview" styleNo={1} />
+        <DetailPage dataSource="bookReview" styleNo={1} />
     } />,
+
     // Brand Routes
     <Route key="brand" path="/brand" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="brand" headingTitle="Brands" subHeadingTitle="Our Brands" />
+        <PageView dataSource="brand" headingTitle="Brands" subHeadingTitle="Our Brands" />
     } />,
     <Route key="brand-view" path="/brand/view/:id" exact={true} render={() =>
-        <ViewPage
+        <DetailPage
             dataSource="brand"
             headingTitle="Brand"
             childrenConfigs={[
@@ -100,12 +121,31 @@ export const getPublicRoutes = () => [
         />
     } />,
 
+    // Certificate Verification
+    <Route key="cert-search" path="/certificate-search" component={CertificateSearchPage} exact={true} />,
+    <Route key="cert-verify" path="/certificate-verification" component={CertificateSearchPage} exact={true} />,
+    <Route key="cert-check" path="/verify-certificate" component={CertificateSearchPage} exact={true} />,
+    <Route key="cert-check-alt" path="/check-certificate" component={CertificateSearchPage} exact={true} />,
+
+    // Client / Page Routes
+    <Route key="client" path="/client" exact={true} render={() =>
+        <PageView dataSource="page" headingTitle="Clients" subHeadingTitle="These are our clients/app/website" />
+    } />,
+    <Route key="client-view" path="/client/view/:id" exact={true} render={() =>
+        <DetailPage dataSource="page" styleNo={PAGE_VIEW_STYLE} />
+    } />,
+
+    // Contact Routes
+    <Route key="about-us" path="/about-us" component={ContactPage} exact={true} />,
+    <Route key="contact" path="/contact" component={ContactPage} exact={true} />,
+    <Route key="contact-us" path="/contact-us" component={ContactPage} exact={true} />,
+
     // Country Routes
     <Route key="country" path="/country" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="country" headingTitle="Our Education Partners" subHeadingTitle="View Details of Institutations" />
+        <PageView dataSource="country" headingTitle="Our Education Partners" subHeadingTitle="View Details of Institutations" />
     } />,
     <Route key="country-view" path="/country/view/:id" exact={true} render={() =>
-        <ViewPage
+        <DetailPage
             dataSource="country"
             headingTitle="Country"
             childrenConfigs={[
@@ -114,38 +154,16 @@ export const getPublicRoutes = () => [
                     sectionTitle: "Universities",
                     apiPattern: "/university/api/byPageId/byCountryId/{PAGE_ID}/{ITEM_ID}"
                 },
-                // Add more child sections here easily:
-                // {
-                //     dataSource: "scholarship",
-                //     sectionTitle: "Scholarships Available",
-                //     apiPattern: "/scholarship/api/byPageId/byCountryId/{PAGE_ID}/{ITEM_ID}"
-                // }
             ]}
         />
     } />,
 
-    // Advantage Routes
-    <Route key="advantage" path="/advantage" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="advantage" headingTitle="Advantages" subHeadingTitle="Our Advantages" />
-    } />,
-    <Route key="advantage-view" path="/advantage/view/:id" exact={true} render={() =>
-        <ViewPage dataSource="advantage" styleNo={PAGE_VIEW_STYLE} />
-    } />,
-
-    // Courses
-    <Route key="course" path="/course" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="course" headingTitle="Courses" subHeadingTitle="Our Featured Courses" />
-    } />,
-    <Route key="course-view" path="/course/view/:id" exact={true} render={() =>
-        <ViewPage dataSource="course" styleNo={PAGE_VIEW_STYLE} />
-    } />,
-
     //CourseLevel
     <Route key="course-level" path="/courseLevel" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="courseLevel" headingTitle="Courses" subHeadingTitle="Our Featured Courses" />
+        <PageView dataSource="courseLevel" headingTitle="Courses" subHeadingTitle="Our Featured Courses" />
     } />,
     <Route key="courseLevel-view" path="/courseLevel/view/:id" exact={true} render={() =>
-        <ViewPage
+        <DetailPage
             dataSource="courseLevel"
             headingTitle="Course Level"
             childrenConfigs={[
@@ -158,49 +176,94 @@ export const getPublicRoutes = () => [
         />
     } />,
 
-    // Blog / Article Routes
-    <Route key="article" path="/article" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="article" headingTitle="Blog" subHeadingTitle="Commitment to best Quality" />
+    // Courses
+    <Route key="course" path="/course" exact={true} render={() =>
+        <PageView dataSource="course" headingTitle="Courses" subHeadingTitle="Our Featured Courses" />
     } />,
-    <Route key="article-view" path="/article/view/:id" exact={true} render={() =>
-        <ViewPage dataSource="article" styleNo={PAGE_VIEW_STYLE} />
-    } />,
-    <Route key="blog" path="/blog" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="article" headingTitle="Blog" subHeadingTitle="Commitment to best Quality" />
-    } />,
-    <Route key="blog-view" path="/blog/view/:id" exact={true} render={() =>
-        <ViewPage dataSource="article" styleNo={PAGE_VIEW_STYLE} />
+    <Route key="course-view" path="/course/view/:id" exact={true} render={() =>
+        <DetailPage dataSource="course" styleNo={PAGE_VIEW_STYLE} />
     } />,
 
-    // Client / Page Routes
-    <Route key="client" path="/client" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="page" headingTitle="Clients" subHeadingTitle="These are our clients/app/website" />
+
+
+
+
+
+    //Dream Routes
+    <Route key="dream" path="/dream" exact={true} render={() =>
+        <PageView dataSource="dream" headingTitle="Dreams" subHeadingTitle="Our Featured Dreams" />
     } />,
-    <Route key="client-view" path="/client/view/:id" exact={true} render={() =>
-        <ViewPage dataSource="page" styleNo={PAGE_VIEW_STYLE} />
-    } />,
-    <Route key="page-view" path="/page/view/:id" exact={true} render={() =>
-        <ViewPage dataSource="page" styleNo={PAGE_VIEW_STYLE} />
+    <Route key="dream-view" path="/dream/view/:id" exact={true} render={() =>
+        <DetailPage dataSource="dream" styleNo={PAGE_VIEW_STYLE} />
     } />,
 
-    // Project Routes
-    <Route key="project" path="/project" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="page" headingTitle="Projects" subHeadingTitle="Our Featured Projects" />
+    //DreamCategory Routes
+    <Route key="dreamCategory" path="/dreamCategory" exact={true} render={() =>
+        <PageView dataSource="dreamCategory" headingTitle="Dream Categories" subHeadingTitle="Our Featured Dream Categories" />
     } />,
-    <Route key="project-view" path="/project/view/:id" exact={true} render={() =>
-        <ViewPage dataSource="page" styleNo={PAGE_VIEW_STYLE} />
+    <Route key="dreamCategory-view" path="/dreamCategory/view/:id" exact={true} render={() =>
+        <DetailPage
+            dataSource="dreamCategory"
+            headingTitle="Dream Category"
+            childrenConfigs={[
+                {
+                    dataSource: "dream",
+                    sectionTitle: "Dreams in this Category",
+                    apiPattern: "/dream/api/byPageId/byDreamCategoryId/{PAGE_ID}/{ITEM_ID}"
+                }
+            ]}
+            styleNo={PAGE_VIEW_STYLE} />
     } />,
 
+    //DreamNumber Routes
+    <Route key="dreamNumber" path="/dreamNumber" exact={true} render={() =>
+        <PageView dataSource="dreamNumber" headingTitle="Dream Numbers" subHeadingTitle="Our Featured Dream Numbers" />
+    } />,
+    <Route key="dreamNumber-view" path="/dreamNumber/view/:id" exact={true} render={() =>
+        <DetailPage dataSource="dreamNumber" styleNo={PAGE_VIEW_STYLE} />
+    } />,
+
+    //DreamKnowledge Routes
+    <Route key="dreamKnowledge" path="/dreamKnowledge" exact={true} render={() =>
+        <PageView dataSource="dreamKnowledge" headingTitle="Dream Knowledge" subHeadingTitle="Our Featured Dream Knowledge" />
+    } />,
+    <Route key="dreamKnowledge-view" path="/dreamKnowledge/view/:id" exact={true} render={() =>
+        <DetailPage dataSource="dreamKnowledge" styleNo={PAGE_VIEW_STYLE} />
+    } />,
+
+
+
+
+
+
+
+
+
+    // Home Routes
+    <Route key="home-root" path="/" component={HomePage} exact={true} />,
+    <Route key="home" path="/home" component={HomePage} exact={true} />,
+
+    // Package Routes
+    <Route key="package" path="/package" exact={true} render={() =>
+        <PageView dataSource="package" headingTitle="Packages" subHeadingTitle="Discover Our Collection" />
+    } />,
+    <Route key="package-view" path="/package/view/:id" exact={true} render={() =>
+        <DetailPage dataSource="package" styleNo={1} />
+    } />,
 
     // Page Routes
     <Route key="page" path="/page" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="page" headingTitle="Projects/Clients" subHeadingTitle="Our Valued Clients" />
+        <PageView dataSource="page" headingTitle="Projects/Clients" subHeadingTitle="Our Valued Clients" />
     } />,
     <Route key="page-view" path="/page/view/:id" exact={true} render={() =>
-        <ViewPage dataSource="page" styleNo={PAGE_VIEW_STYLE} />
+        <DetailPage dataSource="page" styleNo={PAGE_VIEW_STYLE} />
     } />,
 
+    // Placement Test
+    <Route key="placement-test" path="/placement-test" component={PlacementTestPage} exact={true} />,
+    <Route key="assessment" path="/assessment" component={PlacementTestPage} exact={true} />,
 
+    <Route key="privacy" path="/privacy" component={PrivacyPolicyPage} exact={true} />,
 
     // Product Routes
     <Route key="product" path="/product" exact={true} render={() =>
@@ -210,58 +273,37 @@ export const getPublicRoutes = () => [
         <ProductViewPage dataSource="product" />
     } />,
 
-
-    // Package Routes
-    <Route key="package" path="/package" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="package" headingTitle="Packages" subHeadingTitle="Discover Our Collection" />
+    // Project Routes
+    <Route key="project" path="/project" exact={true} render={() =>
+        <PageView dataSource="page" headingTitle="Projects" subHeadingTitle="Our Featured Projects" />
     } />,
-    <Route key="package-view" path="/package/view/:id" exact={true} render={() =>
-        <ViewPage dataSource="package" styleNo={1} />
+    <Route key="project-view" path="/project/view/:id" exact={true} render={() =>
+        <DetailPage dataSource="page" styleNo={PAGE_VIEW_STYLE} />
     } />,
-
-
 
     // Service Routes
     <Route key="service" path="/service" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="service" headingTitle="Services" subHeadingTitle="Our Services" />
+        <PageView dataSource="service" headingTitle="Services" subHeadingTitle="Our Services" />
     } />,
     <Route key="service-view" path="/service/view/:id" exact={true} render={() =>
-        <ViewPage dataSource="service" styleNo={PAGE_VIEW_STYLE} />
+        <DetailPage dataSource="service" styleNo={PAGE_VIEW_STYLE} />
     } />,
 
     // Testimonial
     <Route key="testimonial" path="/testimonial" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="testimonial" headingTitle="Testimonials" subHeadingTitle="What Our Clients Say" />
+        <PageView dataSource="testimonial" headingTitle="Testimonials" subHeadingTitle="What Our Clients Say" />
     } />,
     <Route key="testimonial-view" path="/testimonial/view/:id" exact={true} render={() =>
-        <ViewPage dataSource="testimonial" styleNo={PAGE_VIEW_STYLE} />
+        <DetailPage dataSource="testimonial" styleNo={PAGE_VIEW_STYLE} />
     } />,
 
     // University
     <Route key="university" path="/university" exact={true} render={() =>
-        <MainPage styleNo={1} dataSource="university" headingTitle="Universities" subHeadingTitle="Our Partner Universities" />
+        <PageView dataSource="university" headingTitle="Universities" subHeadingTitle="Our Partner Universities" />
     } />,
     <Route key="university-view" path="/university/view/:id" exact={true} render={() =>
-        <ViewPage dataSource="university" styleNo={PAGE_VIEW_STYLE} />
+        <DetailPage dataSource="university" styleNo={PAGE_VIEW_STYLE} />
     } />,
-
-    // Auth & Other
-    <Route key="login" path="/login" component={LoginPage} exact={true} />,
-    <Route key="pricing" path="/pricing" component={PricingPage} exact={true} />,
-    <Route key="reward" path="/reward" component={RewardPage} exact={true} />,
-
-    // PDF Preview
-    <Route key="pdf" path="/book-preview-pdf" component={PDFViewPage} exact={true} />,
-
-    // Placement Test
-    <Route key="placement-test" path="/placement-test" component={PlacementTestPage} exact={true} />,
-    <Route key="assessment" path="/assessment" component={PlacementTestPage} exact={true} />,
-
-    // Certificate Verification
-    <Route key="cert-search" path="/certificate-search" component={CertificateSearchPage} exact={true} />,
-    <Route key="cert-verify" path="/certificate-verification" component={CertificateSearchPage} exact={true} />,
-    <Route key="cert-check" path="/verify-certificate" component={CertificateSearchPage} exact={true} />,
-    <Route key="cert-check-alt" path="/check-certificate" component={CertificateSearchPage} exact={true} />,
 ];
 
 export default getPublicRoutes;

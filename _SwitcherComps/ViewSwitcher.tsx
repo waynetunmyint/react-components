@@ -9,7 +9,7 @@ import { IonRefresher, IonRefresherContent } from "@ionic/react";
 import BookViewOne from "../ViewComps/Book_ViewOne";
 import ProductViewOne from "../ViewComps/Product_ViewOne";
 import { BookAuthorViewOne } from "../ViewComps/BookAuthor_ViewOne";
-import { ViewOne } from "../ViewComps/ViewOne";
+import { DetailViewOne } from "../ViewComps/DetailViewOne";
 // import { ViewOne } from "./ViewOne";
 
 export interface ChildConfig {
@@ -89,8 +89,8 @@ export default function ViewSwitcher({
       case "product1": ParentView = <ProductViewOne item={item} />; break;
       case "bookAuthor1": ParentView = <BookAuthorViewOne item={item} />; break;
       // University 16 uses CommonViewOne for detail, but UniversitySixteen for children
-      case "university16": ParentView = <ViewOne item={item} />; break;
-      default: ParentView = <ViewOne item={item} />;
+      case "university16": ParentView = <DetailViewOne item={item} />; break;
+      default: ParentView = <DetailViewOne item={item} />;
     }
   }
 
@@ -105,7 +105,7 @@ export default function ViewSwitcher({
   }
 
   return (
-    <div className="view-cms-container">
+    <div>
       <IonRefresher slot="fixed" onIonRefresh={() => window.location.reload()}>
         <IonRefresherContent></IonRefresherContent>
       </IonRefresher>
@@ -124,11 +124,11 @@ export default function ViewSwitcher({
         }
 
         const sectionTitle = child.sectionTitle || `Related ${child.dataSource}s`;
-
         if (!child.dataSource || !childApiUrl) return null;
-
         return (
-          <div key={`${child.dataSource}-${index}`} className="max-w-7xl mx-auto px-4 py-12 border-t border-gray-100 last:border-b-0">
+          <div
+            key={`${child.dataSource}-${index}`}
+            className="mx-auto px-4 py-12 bg-[var(--bg-100)] border-t border-gray-100 last:border-b-0">
             <BlockSwitcherComp
               headingTitle={sectionTitle}
               customAPI={childApiUrl}
