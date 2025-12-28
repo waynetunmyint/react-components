@@ -70,8 +70,7 @@ export default function HeaderOne({
   return (
     <>
       <header
-        id="page-header-primary"
-        className={`sticky top-0 left-0 right-0 z-40 transition-all duration-300 shadow-md bg-gradient-to-r from-[#004D25] to-[#00381b] text-white`}
+        className={`sticky top-0 bg-[var(--bg-100)] left-0 right-0 z-40 transition-all duration-300 shadow-md   text-white`}
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16 sm:h-20">        {/* Logo */}
