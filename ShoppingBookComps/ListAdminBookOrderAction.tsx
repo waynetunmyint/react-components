@@ -268,11 +268,11 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
         {/* Top Header */}
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-[var(--theme-primary-bg)] flex items-center justify-center shadow-lg">
-              <ShoppingBag size={20} className="text-[var(--theme-primary-text)]" />
+            <div className="w-10 h-10 rounded-xl bg-[var(--theme-primary-bg)] text-[var(--accent-600)] flex items-center justify-center shadow-lg">
+              <ShoppingBag size={20} className="text-[var(--accent-600)]" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900 leading-none">Orders</h2>
+              <h2 className="text-xl font-bold text-gray-900 leading-none text-[var(--accent-600)]">Orders</h2>
               <span className="text-xs text-gray-500 font-medium">{data.length} total</span>
             </div>
           </div>
@@ -280,7 +280,7 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
             {onAddNew && (
               <button
                 onClick={onAddNew}
-                className="p-2.5 rounded-xl bg-[var(--theme-primary-bg)] text-[var(--theme-primary-text)] hover:opacity-90 active:scale-95 transition-all shadow-md"
+                className="p-2.5 rounded-xl bg-[var(--theme-primary-bg)] text-[var(--accent-600)] hover:opacity-90 active:scale-95 transition-all shadow-md"
                 title="Add Manual Order"
               >
                 <ShoppingBag size={18} />
@@ -313,7 +313,7 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
         </div>
 
         {/* Status Filters - Compact Buttons */}
-        <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar -mx-1 px-1">
+        <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar -mx-1 px-1 text-[var(--accent-600)]">
           {[
             { id: null, label: "All", icon: ShoppingBag },
             { id: 2, label: "Pending", icon: Clock },
@@ -329,7 +329,7 @@ export default function ListAdminBookOrderAction({ dataSource, pageId, onEdit, o
                 className={`
                   flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all active:scale-95
                   ${isActive
-                    ? "bg-[var(--theme-primary-bg)] text-[var(--theme-primary-text)] shadow-md ring-1 ring-white"
+                    ? "bg-[var(--theme-primary-bg)] text-[var(--accent-600)] shadow-md ring-1 ring-white"
                     : "bg-white border border-gray-100 text-gray-600 hover:bg-gray-50 shadow-sm"
                   }
                 `}

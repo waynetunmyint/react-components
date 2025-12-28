@@ -339,12 +339,12 @@ export default function ManualOrderModal({ isOpen, onClose, onCreated, orderData
         </div>
 
         <div className="p-5 border-t border-gray-200 flex gap-3 bg-white">
-          <button type="button" onClick={() => { onClose(); resetForm(); }} className="px-4 py-2 rounded text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 transition-colors">Cancel</button>
+          <button type="button" onClick={() => { onClose(); resetForm(); }} className="px-4 py-2 rounded text-sm font-medium text-[var(--accent-600)] bg-white border border-gray-300 hover:bg-gray-50 transition-colors">Cancel</button>
           <button
             type="submit"
             disabled={submitting}
             onClick={handleSubmit}
-            className="flex-1 px-4 py-2 rounded text-sm font-bold text-white shadow hover:opacity-90 active:translate-y-0.5 transition-all disabled:opacity-50"
+            className="flex-1 px-4 py-2 text-[var(--accent-600)] rounded text-sm font-bold  shadow hover:opacity-90 active:translate-y-0.5 transition-all disabled:opacity-50"
             style={{ backgroundColor: 'var(--theme-primary-bg)' }}
           >
             {submitting ? (isEditMode ? 'Updating...' : 'Saving...') : (isEditMode ? 'Update Order' : 'Create Order')}

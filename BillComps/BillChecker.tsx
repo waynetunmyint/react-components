@@ -165,7 +165,7 @@ const BillChecker: React.FC<Props> = ({ pageId = PAGE_ID }) => {
             <div className="bg-white w-full max-w-sm rounded-[2rem] overflow-hidden shadow-2xl animate-in zoom-in-95 slide-in-from-bottom-5 duration-300 relative">
 
                 {/* Header with Premium Gradient */}
-                <div className="bg-gradient-to-br from-brand-gold to-brand-green p-8 text-center relative overflow-hidden">
+                <div className="bg-gradient-to-br bg-[var(--accent-600)] from-brand-gold to-brand-green p-8 text-center relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none" />
                     <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-full blur-2xl -ml-10 -mb-10 pointer-events-none" />
 
@@ -191,7 +191,7 @@ const BillChecker: React.FC<Props> = ({ pageId = PAGE_ID }) => {
                 <div className="p-6 md:p-8 space-y-6">
                     <div className="text-center space-y-2">
                         <div className="bg-brand-gold/5 rounded-xl p-4 border border-brand-gold/10">
-                            <p className="text-brand-green font-medium leading-relaxed">
+                            <p className="text-brand-green font-medium leading-relaxed text-[var(--accent-600)]">
                                 You have an outstanding balance.<br />
                                 <span className="text-sm opacity-80">Please settle your payment to enable full access.</span>
                             </p>
@@ -201,7 +201,7 @@ const BillChecker: React.FC<Props> = ({ pageId = PAGE_ID }) => {
                     <div className="space-y-3">
                         <button
                             onClick={handleViewBill}
-                            className="w-full py-3.5 bg-brand-green text-white font-bold text-lg rounded-xl shadow-lg shadow-brand-green/20 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group"
+                            className="w-full py-3.5 text-[var(--accent-600)] bg-brand-green font-bold text-lg rounded-xl shadow-lg shadow-brand-green/20 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group"
                         >
                             <FileText className="w-5 h-5 group-hover:rotate-3 transition-transform" />
                             View Bill Details
@@ -209,7 +209,7 @@ const BillChecker: React.FC<Props> = ({ pageId = PAGE_ID }) => {
 
                         <button
                             onClick={handleClose}
-                            className="w-full py-3.5 bg-slate-100 text-slate-500 font-semibold text-base rounded-xl border border-slate-200 hover:bg-slate-200 hover:text-slate-700 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+                            className="w-full py-3.5 text-[var(--accent-600)] bg-brand-green font-bold text-lg rounded-xl shadow-lg shadow-brand-green/20 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group"
                         >
                             I'll Pay Later
                         </button>

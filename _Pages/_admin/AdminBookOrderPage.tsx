@@ -7,7 +7,7 @@ import {
 } from "@ionic/react";
 
 import AdminMenu from "../../_MenuComps/AdminMenu";
-import ListAdminBookOrderAction from "../../ListComps/ListAdminBookOrderAction";
+import ListAdminBookOrderAction from "../../ShoppingBookComps/ListAdminBookOrderAction";
 import BookManualOrderModal from "../../ShoppingBookComps/BookManualOrderModal";
 
 // OrderItem moved into ManualOrderModal component
@@ -34,18 +34,18 @@ export default function HomePage() {
                 <IonRefresher slot="fixed" onIonRefresh={() => window.location.reload()}>
                     <IonRefresherContent></IonRefresherContent>
                 </IonRefresher>
-                  <AdminMenu />
+                <AdminMenu />
                 <div className="p-4 sm:ml-64">
-                    <ListAdminBookOrderAction 
-                        dataSource="bookOrder" 
+                    <ListAdminBookOrderAction
+                        dataSource="bookOrder"
                         onEdit={handleEdit}
                         onAddNew={() => { setEditingOrder(null); setShowManualModal(true); }}
                     />
                 </div>
 
-                <BookManualOrderModal 
-                    isOpen={showManualModal} 
-                    onClose={handleCloseModal} 
+                <BookManualOrderModal
+                    isOpen={showManualModal}
+                    onClose={handleCloseModal}
                     onCreated={() => window.location.reload()}
                     orderData={editingOrder}
                 />
