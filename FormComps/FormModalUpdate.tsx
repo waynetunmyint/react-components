@@ -8,7 +8,7 @@ import {
   Loader2,
   ArrowLeft
 } from "lucide-react";
-import { BASE_URL, IMAGE_URL } from "../../../config";
+import { BASE_URL, IMAGE_URL } from "@/config";
 import { GetStoredJWT } from "../StorageComps/StorageCompOne";
 import { resizeImage } from "../ImageComps/ImageClientComp";
 

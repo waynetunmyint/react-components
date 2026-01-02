@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { IonButtons, IonButton } from "@ionic/react";
 import { Menu, X, ChevronDown, Loader2 } from "lucide-react";
-import { IMAGE_URL } from "../../../config";
+import { IMAGE_URL } from "@/config";
 import { HeaderProps } from "../_SwitcherComps/HeaderSwitcher";
 
 export default function HeaderNine({

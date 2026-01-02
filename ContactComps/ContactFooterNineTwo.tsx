@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { MapPin, Phone, Mail, Clock, Globe, Facebook, Instagram, Linkedin, Twitter, Youtube, Send, ArrowRight } from "lucide-react";
-import { BASE_URL, IMAGE_URL, PAGE_ID } from "../../../config";
+import { BASE_URL, IMAGE_URL, PAGE_ID } from "@/config";
 
 interface ContactData {
   Thumbnail?: string;
@@ -91,7 +91,7 @@ export const ContactFooterNineTwo: React.FC = () => {
         <div className="border-b border-white/5">
           <div className="max-w-7xl mx-auto px-4 py-16 lg:py-24">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              
+
               {/* Left: Company Branding */}
               <div className="space-y-6">
                 <div className="inline-flex items-center gap-4">
@@ -108,7 +108,7 @@ export const ContactFooterNineTwo: React.FC = () => {
                     {data.Title || "Company Name"}
                   </h3>
                 </div>
-                
+
                 {data.Description && (
                   <p className="text-gray-300 text-lg leading-relaxed max-w-xl">
                     {data.Description}
@@ -152,7 +152,7 @@ export const ContactFooterNineTwo: React.FC = () => {
         <div className="border-b border-white/5">
           <div className="max-w-7xl mx-auto px-4 py-16">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              
+
               {/* Quick Links */}
               <div className="space-y-4">
                 <h4 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
@@ -191,7 +191,7 @@ export const ContactFooterNineTwo: React.FC = () => {
                     </a>
                   )}
                   {data.WebsiteURL && data.WebsiteURL !== "-" && data.WebsiteURL !== "null" && (
-                    <a 
+                    <a
                       href={data.WebsiteURL.startsWith('http') ? data.WebsiteURL : `https://${data.WebsiteURL}`}
                       target="_blank"
                       rel="noopener noreferrer"

@@ -19,7 +19,7 @@ import {
   ArrowDown,
   Video,
 } from "lucide-react";
-import { BASE_URL, IMAGE_URL, PAGE_ID } from "../../../config";
+import { BASE_URL, IMAGE_URL, PAGE_ID } from "@/config";
 import { GetStoredJWT } from "../StorageComps/StorageCompOne";
 import { convertDateTime } from "../HelperComps/TextCaseComp";
 

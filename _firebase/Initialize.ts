@@ -1,39 +1,17 @@
+// lib/Initialize.ts
 import { Capacitor } from "@capacitor/core";
 import { PushNotifications } from "@capacitor/push-notifications";
 import { Toast } from "@capacitor/toast";
-import { PAGE_ID, BASE_URL } from "../../../config";
+import { initializeFirebase } from "./firebaseConfig";
 
-export const InitializeNotification = () => {
+export const InitializeNotification = async () => {
   if (Capacitor.getPlatform() === "web") return;
-
-
-  const registerToken = async (token: string) => {
-    const formData = new FormData();
-    formData.append("pageId", String(PAGE_ID));
-    formData.append("tokenValue", token);
-
-    try {
-      const response = await fetch(`${BASE_URL}/firebaseToken/api`, {
-        method: "POST",
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-      
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      
-      const result = await response.json();
-      console.log("FCM token registered:", result);
-    } catch (err) {
-      console.error("Failed to register FCM token:", err);
-      await Toast.show({ 
-        text: "Failed to register for notifications",
-        duration: "short"
-      });
-    }
-  };
 
   const init = async () => {
     try {
+      // Initialize shared Firebase instance
+      initializeFirebase();
+
       // Request permissions
       const perm = await PushNotifications.requestPermissions();
       if (perm.receive !== "granted") {
@@ -47,7 +25,7 @@ export const InitializeNotification = () => {
       // Handle FCM token registration
       PushNotifications.addListener("registration", async ({ value }) => {
         console.log("FCM token received:", value);
-        await registerToken(value);
+        // Note: Backend token registration removed as requested
       });
 
       // Handle registration errors
@@ -77,9 +55,9 @@ export const InitializeNotification = () => {
     }
   };
 
-  init();
+  await init();
 
-  // Cleanup function
+  // Cleanup function (optional, but good practice if this were a hook)
   return () => {
     PushNotifications.removeAllListeners();
   };

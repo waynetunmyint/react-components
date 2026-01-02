@@ -8,7 +8,7 @@ import {
 
 import AdminMenu from "../../_MenuComps/AdminMenu";
 import ListAdminProductOrderAction from "../../ListComps/ListAdminProductOrderAction";
-import ProductManualOrderModal from "../../ShoppingBookComps/ProductManualOrderModal";
+import ProductManualOrderModal from "../../ProductComps/ProductManualOrderModal";
 
 export default function AdminProductOrderPage() {
     const [showManualModal, setShowManualModal] = useState(false);

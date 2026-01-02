@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { MapPin, Phone, Mail, Clock, Globe, Eye, ExternalLink } from "lucide-react";
-import { BASE_URL, PAGE_ID } from "../../../config";
+import { BASE_URL, PAGE_ID } from "@/config";
 
 const SkeletonLoader = () => (
   <div className="animate-pulse max-w-4xl mx-auto mt-20">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { BASE_URL, IMAGE_URL, PAGE_ID } from "../../../config";
-// import { BASE_URL, IMAGE_URL } from "../../config";
+import { BASE_URL, IMAGE_URL, PAGE_ID } from "@/config";
+// import { BASE_URL, IMAGE_URL } from "@/config";
 
 interface Props {
   brandId: string | number;
@@ -35,7 +35,7 @@ export default function BrandViewNine({ brandId }: Props) {
       setLoading(true);
       setError(null);
 
-      const url=`${BASE_URL}/brand/api/byPageId/view/${PAGE_ID}/${brandId}`;
+      const url = `${BASE_URL}/brand/api/byPageId/view/${PAGE_ID}/${brandId}`;
 
       const response = await fetch(url);
       if (!response.ok) {
@@ -44,7 +44,7 @@ export default function BrandViewNine({ brandId }: Props) {
 
       const result = await response.json();
       setBrand(result[0] || null);
-      console.log("Brand Data:" ,url, result);
+      console.log("Brand Data:", url, result);
     } catch (err) {
       const message = err instanceof Error ? err.message : "Error fetching brand";
       console.error(message, err);
@@ -83,7 +83,7 @@ export default function BrandViewNine({ brandId }: Props) {
     if (!thumbnail) {
       return "https://via.placeholder.com/1200x600?text=No+Image";
     }
-    const cleanThumbnail = thumbnail.startsWith(IMAGE_URL) 
+    const cleanThumbnail = thumbnail.startsWith(IMAGE_URL)
       ? thumbnail.replace(IMAGE_URL, '').replace(/^\/uploads\//, '')
       : thumbnail;
     return `${IMAGE_URL}/uploads/${cleanThumbnail}`;
@@ -132,7 +132,7 @@ export default function BrandViewNine({ brandId }: Props) {
             </div>
           </div>
         </div>
-        
+
         {/* Products Skeleton */}
         <div className="max-w-7xl mx-auto px-4 py-16">
           <div className="h-10 bg-gray-200 rounded-lg w-64 mb-12 animate-pulse" />
@@ -229,10 +229,10 @@ export default function BrandViewNine({ brandId }: Props) {
             Our Products
           </h2>
           <p className="text-gray-600 text-lg">
-            {productsLoading 
-              ? "Loading products..." 
-              : products.length === 0 
-                ? "No products available" 
+            {productsLoading
+              ? "Loading products..."
+              : products.length === 0
+                ? "No products available"
                 : `Discover ${products.length} amazing ${products.length === 1 ? 'product' : 'products'}`
             }
           </p>
@@ -268,7 +268,7 @@ export default function BrandViewNine({ brandId }: Props) {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {products.map((product, idx) => {
               const productImageUrl = getImageUrl(product.Thumbnail);
-              
+
               return (
                 <div
                   key={product.Id}
@@ -299,7 +299,7 @@ export default function BrandViewNine({ brandId }: Props) {
                     <h3 className="font-bold text-xl text-gray-900 mb-2 line-clamp-2 group-hover: transition-colors">
                       {product.Title || "Untitled Product"}
                     </h3>
-                    
+
                     {product.Description && (
                       <p className="text-gray-600 text-sm line-clamp-3 mb-4">
                         {product.Description}
@@ -327,7 +327,7 @@ export default function BrandViewNine({ brandId }: Props) {
         )}
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes fadeInUp {
           from {
             opacity: 0;

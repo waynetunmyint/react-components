@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
 import { FileText, Receipt, X, AlertCircle, CreditCard } from "lucide-react";
-import { BASE_URL, PAGE_ID } from "../../../config";
+import { BASE_URL, PAGE_ID } from "@/config";
 
 interface BillData {
     Status?: number;

@@ -5,7 +5,7 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import HeaderSwitcher from "../_SwitcherComps/HeaderSwitcher";
-import TopUpComp from "../RewardComps/TopUp_Comp";
+import TopUpComp from "../TopupComps/TopUpComp";
 
 // import DirectoryHeaderComp from "../DirectoryHeaderComp";
 // import TopUpComp from "../TopUp_Comp";

@@ -12,7 +12,7 @@ import {
   Youtube,
   Sparkles,
 } from "lucide-react";
-import { IMAGE_URL } from "../../../config";
+import { IMAGE_URL } from "@/config";
 import BlockHeader from "../BlockComps/BlockHeader";
 
 interface Props {

@@ -8,7 +8,7 @@ import HeaderSwitcher from "../_SwitcherComps/HeaderSwitcher";
 import BlockSwitcherComp from "../_SwitcherComps/BlockSwitcher";
 import FooterSwitchComp from "../_SwitcherComps/FooterSwitcher";
 import { usePageData } from "../PageComps/usePageData";
-import { FOOTER_STYLE } from "../../../config";
+import { FOOTER_STYLE } from "@/config";
 
 
 export default function HomePage() {

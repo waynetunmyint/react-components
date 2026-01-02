@@ -3,7 +3,7 @@ import { IonContent, IonPage } from '@ionic/react';
 import CertificateSearch from '../CertificateComps/CertificateSearch';
 import HeaderSwitcher from '../_SwitcherComps/HeaderSwitcher';
 import FooterSwitchComp from '../_SwitcherComps/FooterSwitcher';
-import { FOOTER_STYLE } from '../../../config';
+import { FOOTER_STYLE } from '@/config';
 
 const CertificateSearchPage: React.FC = () => {
     return (

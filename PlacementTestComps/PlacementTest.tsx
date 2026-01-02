@@ -5,7 +5,7 @@ import {
     AlertCircle, ChevronRight, ChevronLeft, RotateCcw,
     Trophy, GraduationCap, ClipboardList, Loader2
 } from "lucide-react";
-import { BASE_URL, PAGE_ID } from "../../../config";
+import { BASE_URL, PAGE_ID } from "@/config";
 
 interface SubQuestion {
     Id: number;
@@ -359,8 +359,8 @@ export default function PlacementTest() {
                             <div>
                                 <div className="mb-3">
                                     <span className={`text-[10px] font-black px-2.5 py-1 rounded-lg uppercase tracking-widest inline-block ${questions[currentQuestionIndex].QuestionType === 1 ? 'bg-blue-100/50 text-blue-600' :
-                                            questions[currentQuestionIndex].QuestionType === 2 ? 'bg-purple-100/50 text-purple-600' :
-                                                'bg-emerald-100/50 text-emerald-600'
+                                        questions[currentQuestionIndex].QuestionType === 2 ? 'bg-purple-100/50 text-purple-600' :
+                                            'bg-emerald-100/50 text-emerald-600'
                                         }`}>
                                         {questions[currentQuestionIndex].QuestionType === 1 ? 'Multiple Choice' :
                                             questions[currentQuestionIndex].QuestionType === 2 ? 'True / False' :

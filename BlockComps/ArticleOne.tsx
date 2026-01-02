@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { Package, ArrowRight, Eye, X } from "lucide-react";
-import { IMAGE_URL } from "../../../config";
+import { IMAGE_URL } from "@/config";
 import { formatPrice } from "../HelperComps/TextCaseComp";
 import BlockHeader from "../BlockComps/BlockHeader";
 

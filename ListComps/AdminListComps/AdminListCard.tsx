@@ -1,6 +1,6 @@
 import React from 'react';
 import { EllipsisVertical, Glasses, Edit2, Trash2, Printer, File, CheckCircle, PauseCircle } from 'lucide-react';
-import { IMAGE_URL } from "../../../../config";
+import { IMAGE_URL } from "@/config";
 
 interface AdminListCardProps {
     item: any;

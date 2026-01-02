@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { MapPin, Phone, Mail, Clock, Globe, Facebook, Twitter, Linkedin, Instagram, Youtube, SquareRoundCorner } from "lucide-react";
-import { APP_NAME, BASE_URL, IMAGE_URL, PAGE_ID } from "../../../config";
+import { APP_NAME, BASE_URL, IMAGE_URL, PAGE_ID } from "@/config";
 
 
 

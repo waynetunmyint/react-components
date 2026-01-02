@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { BASE_URL, PAGE_ID } from '../../../config';
+import { BASE_URL, PAGE_ID } from '@/config';
 import { setEncryptedItem, getEncryptedItem } from '../HelperComps/encryptionHelper';
-import { reinitializeFirebase } from '../_firebase/firebaseConfig';
+import { initializeFirebase } from '../_firebase/firebaseConfig';
 
 export default function GetPageInfoAndStore() {
     const [loading, setLoading] = useState(true);
@@ -12,7 +12,7 @@ export default function GetPageInfoAndStore() {
 
     const getPageInfo = async () => {
         // Check if already stored
-        if (getEncryptedItem('StoredEncryptedPage')) {
+        if (getEncryptedItem(`StoredEncryptedPage_${PAGE_ID}`)) {
             setLoading(false);
             return;
         }
@@ -20,15 +20,15 @@ export default function GetPageInfoAndStore() {
         try {
             const response = await fetch(`${BASE_URL}/page/api/${PAGE_ID}`);
             const data = await response.json();
-            
+
             if (data && data.length > 0) {
                 const pageData = data[0];
                 // Store encrypted page data
-                setEncryptedItem('StoredEncryptedPage', JSON.stringify(pageData));
+                setEncryptedItem(`StoredEncryptedPage_${PAGE_ID}`, JSON.stringify(pageData));
                 console.log('Page info stored successfully');
-                
+
                 // Reinitialize Firebase with the new config
-                reinitializeFirebase();
+                initializeFirebase();
             }
         } catch (err) {
             console.error('Failed to fetch page info:', err);
@@ -36,6 +36,6 @@ export default function GetPageInfoAndStore() {
             setLoading(false);
         }
     }
-    
+
     return null;
 }

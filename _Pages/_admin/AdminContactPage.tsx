@@ -5,7 +5,7 @@ import {
   IonRefresherContent,
 } from "@ionic/react";
 import AdminMenu from "../../_MenuComps/AdminMenu";;
-import { BASE_URL, PAGE_ID } from "../../../../config";
+import { BASE_URL, PAGE_ID } from "@/config";
 import { useEffect, useState } from "react";
 import FormUpdateContactInfo from "../../FormComps/FormUpdateContactInfo";
 
@@ -35,29 +35,49 @@ export default function Page() {
     }
   }
 
-  const fields = [
-    { fieldName: "Thumbnail", type: "image", required: false },
-    { fieldName: "Title", type: "text", required: true },
-    { fieldName: "GoogleMapCode", type: "textarea" },
-    { fieldName: "Description", type: "textarea" },
-    { fieldName: "SpecialMessage", type: "textarea" },
 
-
-    { fieldName: "PhoneOne", type: "text" },
-    { fieldName: "Email", type: "text" },
-    { fieldName: "OpenTime", type: "text" },
-    { fieldName: "Address", type: "text" },
-
-
-    { fieldName: "WebsiteURL", type: "text" },
-    { fieldName: "InstagramURL", type: "text" },
-    { fieldName: "LinkedInURL", type: "text" },
-    { fieldName: "YoutubeURL", type: "text" },
-    { fieldName: "TwitterURL", type: "text" },
-    { fieldName: "TikTokURL", type: "text" },
-
-    { fieldName: "VoucherHeaderImage", type: "image" },
+  const steps = [
+    {
+      title: "Detail Info",
+      fields: [
+        { fieldName: "Thumbnail", type: "image", required: false },
+        { fieldName: "Title", type: "text", required: true },
+        { fieldName: "Description", type: "textarea" },
+        { fieldName: "SpecialMessage", type: "textarea" },
+      ],
+    },
+    {
+      title: "Contact Info",
+      fields: [
+        { fieldName: "PhoneOne", type: "text" },
+        { fieldName: "Email", type: "text" },
+        { fieldName: "OpenTime", type: "text" },
+        { fieldName: "Address", type: "text" },
+        { fieldName: "GoogleMapCode", type: "textarea" },
+      ],
+    },
+    {
+      title: "Social Links",
+      fields: [
+        { fieldName: "WebsiteURL", type: "text" },
+        { fieldName: "InstagramURL", type: "text" },
+        { fieldName: "LinkedInURL", type: "text" },
+        { fieldName: "YoutubeURL", type: "text" },
+        { fieldName: "TwitterURL", type: "text" },
+        { fieldName: "TikTokURL", type: "text" },
+      ],
+    },
+    {
+      title: "Payment Info",
+      fields: [
+        { fieldName: "VoucherHeaderImage", type: "image" },
+        { fieldName: "KPayPhoneNumber", type: "text" },
+        { fieldName: "KPayName", type: "text" },
+        { fieldName: "KPayQR", type: "image" },
+      ],
+    },
   ];
+
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -72,7 +92,7 @@ export default function Page() {
               <p className="text-gray-500">Loading contact details...</p>
             </div>
           ) : contactInfoData ? (
-            <FormUpdateContactInfo dataSource="contactInfo" fields={fields} imageSize={"large"} />
+            <FormUpdateContactInfo dataSource="contactInfo" fields={[]} steps={steps} imageSize={"large"} />
           ) : (
             <div className="flex flex-col items-center justify-center h-64 text-center">
               <p className="text-gray-500 mb-4">No contact information found.</p>

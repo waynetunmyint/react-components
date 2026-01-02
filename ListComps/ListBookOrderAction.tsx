@@ -16,7 +16,7 @@ import {
   ShoppingBag,
   CheckCircle,
 } from "lucide-react";
-import { BASE_URL } from "../../../config";
+import { BASE_URL } from "@/config";
 import { GetStoredJWT } from "../StorageComps/StorageCompOne";
 import { convertToDateTime, formatNumber } from "../HelperComps/TextCaseComp";
 

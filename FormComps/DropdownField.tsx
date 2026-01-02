@@ -1,5 +1,5 @@
 import React from "react";
-import { IMAGE_URL } from "../../../config";
+import { IMAGE_URL } from "@/config";
 import { ChevronDown, X, Search, CheckCircle2, List } from "lucide-react";
 
 interface DropdownFieldProps {

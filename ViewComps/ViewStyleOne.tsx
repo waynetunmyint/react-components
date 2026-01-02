@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState, useCallback } from "react";
 import { Calendar, ImageIcon, ExternalLink } from "lucide-react";
-import { BASE_URL, IMAGE_URL, PAGE_ID } from "../../../config";
+import { BASE_URL, IMAGE_URL, PAGE_ID } from "@/config";
 import { handleOpenLink, normalizeUrl } from "../HelperComps/TextCaseComp";
 
 const SkeletonLoader = () => (

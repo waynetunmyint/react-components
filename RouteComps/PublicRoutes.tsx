@@ -3,18 +3,19 @@ import HomePage from '../_Pages/HomePage';
 import ContactPage from '../_Pages/ContactPage';
 import LoginPage from '../_Pages/LoginPage';
 import PricingPage from '../_Pages/PricingPage';
-import PageView from '../_Pages/_Page_View';
+import PageView from '../_Pages/PageView';
 
-import DetailPage from '../_Pages/_Detail_View';
+import DetailPage from '../_Pages/DetailView';
 
 import RewardPage from '../_Pages/RewardPage';
 import PDFViewPage from '../_Pages/_PDF_ViewPage';
 import PlacementTestPage from '../_Pages/PlacementTestPage';
 import CertificateSearchPage from '../_Pages/CertificateSearchPage';
-import { PAGE_VIEW_STYLE } from '../../../config';
+import { PAGE_VIEW_STYLE } from '@/config';
 import PrivacyPolicyPage from '../_Pages/PrivacyPage';
 import ProductViewPage from '../_Pages/_productViewPage';
 import ProductListPage from '../_Pages/ProductListPage';
+import ProfileLoginPage from '../_Pages/ProfileLoginPage';
 
 /**
  * Public routes that don't require authentication.
@@ -46,6 +47,7 @@ export const getPublicRoutes = () => [
 
     // Auth & Other
     <Route key="login" path="/login" component={LoginPage} exact={true} />,
+    <Route key="profileLogin" path="/profileLogin" component={ProfileLoginPage} exact={true} />,
     <Route key="pricing" path="/pricing" component={PricingPage} exact={true} />,
     <Route key="reward" path="/reward" component={RewardPage} exact={true} />,
     // PDF Preview

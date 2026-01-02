@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Calendar, ImageIcon, ExternalLink } from "lucide-react";
 import { formatDate, getImageUrl, getYouTubeEmbedUrl, handleOpenLink, normalizeUrl } from "../HelperComps/TextCaseComp";
-import { IMAGE_URL, PAGE_TYPE } from "../../../config";
+import { IMAGE_URL, PAGE_TYPE } from "@/config";
 
 interface Item {
   Thumbnail?: string;

@@ -15,7 +15,8 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { GetStoredJWT } from "../StorageComps/StorageCompOne";
-import { BASE_URL, IMAGE_URL } from "../../../config";
+import { BASE_URL, IMAGE_URL } from "@/config";
+import { resizeImage } from "../ImageComps/ImageClientComp";
 
 
 interface Props {
@@ -306,9 +307,8 @@ export default function FormUpdateComp({ dataSource, fields, imageSize }: Props)
                           type={f.type}
                           value={val}
                           onChange={(e) => handleChange(f.fieldName, e.target.value)}
-                          className={`w-full border rounded-xl px-4 py-3 bg-white text-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
-                            error ? "border-red-500" : "border-gray-300"
-                          }`}
+                          className={`w-full border rounded-xl px-4 py-3 bg-white text-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${error ? "border-red-500" : "border-gray-300"
+                            }`}
                           placeholder={`Enter ${f.fieldName.toLowerCase()}`}
                         />
                         {error && (
@@ -327,9 +327,8 @@ export default function FormUpdateComp({ dataSource, fields, imageSize }: Props)
                           value={val}
                           onChange={(e) => handleChange(f.fieldName, e.target.value)}
                           rows={5}
-                          className={`w-full border rounded-xl px-4 py-3 bg-white text-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none ${
-                            error ? "border-red-500" : "border-gray-300"
-                          }`}
+                          className={`w-full border rounded-xl px-4 py-3 bg-white text-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none ${error ? "border-red-500" : "border-gray-300"
+                            }`}
                           placeholder={`Enter ${f.fieldName.toLowerCase()}`}
                         />
                         {error && (
@@ -351,11 +350,10 @@ export default function FormUpdateComp({ dataSource, fields, imageSize }: Props)
                         <button
                           type="button"
                           onClick={() => setDropdownOpen((p) => ({ ...p, [f.fieldName]: true }))}
-                          className={`w-full rounded-xl px-4 py-3 text-left transition-all flex items-center justify-between ${
-                            sel
-                              ? "bg-blue-50 border-2 border-blue-500 text-blue-900"
-                              : "bg-white border border-gray-300 text-gray-600 hover:border-gray-400"
-                          }`}
+                          className={`w-full rounded-xl px-4 py-3 text-left transition-all flex items-center justify-between ${sel
+                            ? "bg-blue-50 border-2 border-blue-500 text-blue-900"
+                            : "bg-white border border-gray-300 text-gray-600 hover:border-gray-400"
+                            }`}
                         >
                           <span className="flex items-center gap-2">
                             {selectedOption?.Thumbnail && (
@@ -416,11 +414,10 @@ export default function FormUpdateComp({ dataSource, fields, imageSize }: Props)
                                     return (
                                       <div
                                         key={valOpt}
-                                        className={`flex items-center gap-3 px-4 py-3 cursor-pointer transition-colors ${
-                                          isSelected
-                                            ? "bg-blue-50 text-blue-700 font-semibold"
-                                            : "text-gray-800 hover:bg-gray-50"
-                                        }`}
+                                        className={`flex items-center gap-3 px-4 py-3 cursor-pointer transition-colors ${isSelected
+                                          ? "bg-blue-50 text-blue-700 font-semibold"
+                                          : "text-gray-800 hover:bg-gray-50"
+                                          }`}
                                         onClick={() => {
                                           handleChange(f.fieldName, valOpt, true);
                                           setDropdownOpen((p) => ({ ...p, [f.fieldName]: false }));
@@ -461,11 +458,10 @@ export default function FormUpdateComp({ dataSource, fields, imageSize }: Props)
                               return (
                                 <label
                                   key={valOpt}
-                                  className={`flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer transition-all ${
-                                    checked
-                                      ? "bg-blue-500 text-white shadow-md"
-                                      : "bg-white text-gray-700 border border-gray-300 hover:border-blue-500"
-                                  }`}
+                                  className={`flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer transition-all ${checked
+                                    ? "bg-blue-500 text-white shadow-md"
+                                    : "bg-white text-gray-700 border border-gray-300 hover:border-blue-500"
+                                    }`}
                                 >
                                   <input
                                     type="checkbox"
@@ -624,11 +620,10 @@ export default function FormUpdateComp({ dataSource, fields, imageSize }: Props)
             <button
               type="submit"
               disabled={isSaving}
-              className={`flex items-center gap-2 px-8 py-3 rounded-xl text-white font-semibold shadow-lg transition-all ${
-                isSaving
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 hover:shadow-xl"
-              }`}
+              className={`flex items-center gap-2 px-8 py-3 rounded-xl text-white font-semibold shadow-lg transition-all ${isSaving
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 hover:shadow-xl"
+                }`}
             >
               {isSaving ? (
                 <>

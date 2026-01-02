@@ -1,16 +1,13 @@
 
 
-import AboutDeveloperComp from '../_appComponents/AboutDeveloperComp';
-import DirectoryHeaderComp from '../_components/DirectoryHeaderComp';
 import { IonPage, IonHeader, IonToolbar, IonContent, IonRefresher, IonRefresherContent, IonFooter } from '@ionic/react';
-import { ChatGroupGridComp } from '../_components/Chat_GroupGridComp';
 
 const Page: React.FC = () => {
   return (
     <IonPage id="main-content">
       <IonHeader>
         <IonToolbar>
-           <DirectoryHeaderComp headingField='Chat Groups'/>
+          {/* DirectoryHeaderComp removed */}
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -19,16 +16,11 @@ const Page: React.FC = () => {
         </IonRefresher>
 
         <div className={`min-h-screen  px-4 py-5`}>
-          <ChatGroupGridComp
-            dataSource={'chatGroup'}
-            imageField='Thumbnail'
-            headingField='Title'
-            customAPI={'/chatGroup/api'}
-            subHeadingField='LastMessage' categoryNameField={''}         />
+          {/* ChatGroupGridComp removed */}
         </div>
       </IonContent>
       <IonFooter>
-        <AboutDeveloperComp />
+        {/* AboutDeveloperComp removed */}
       </IonFooter>
     </IonPage>
   );

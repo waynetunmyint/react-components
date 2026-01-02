@@ -1,130 +1,85 @@
-import { BASE_URL } from "../../../config";
+"use client";
+import { BASE_URL } from "@/config";
 
 /* -----------------------------
    Local Storage Utility
 ----------------------------- */
+
+/** ✅ Get generic data from localStorage */
 export function GetStoredData<T = any>(keyString: string): T | null {
-  if (typeof window === "undefined") return null; // Prevent SSR errors
+  if (typeof window === "undefined") return null;
 
   try {
     const stored = localStorage.getItem(keyString);
-    return stored ? (JSON.parse(stored) as T) : null;
+    if (!stored) return null;
+    return JSON.parse(stored) as T;
   } catch (error) {
     console.error(`Failed to parse localStorage item: ${keyString}`, error);
     return null;
   }
 }
 
-export const StoredChatGroupInfo = async (chatGroupId: string) => {
-  try {
-    const cached = localStorage.getItem("StoredChatGroupItem");
-    const parsed = cached ? JSON.parse(cached) : null;
-    if (parsed?.Id?.toString() === chatGroupId.toString()) return parsed;
-    const res = await fetch(`${BASE_URL}/chatGroup/api/${chatGroupId}`);
-    if (!res.ok) return null;
-    const data = (await res.json())?.[0] || null;
-    if (data) localStorage.setItem("StoredChatGroupItem", JSON.stringify(data));
-    return data;
-  } catch (e) {
-    console.error("UniversalGetChatGroupInfo error:", e);
-    return null;
-  }
-};
+/** ✅ Set generic data in localStorage */
+export function SetStoredData(keyString: string, data: any): void {
+  if (typeof window === "undefined") return;
 
+  try {
+    localStorage.setItem(keyString, JSON.stringify(data));
+  } catch (error) {
+    console.error(`Failed to set localStorage item: ${keyString}`, error);
+  }
+}
+
+/** ✅ Get JWT from storage */
 export function GetStoredJWT(): string | null {
   if (typeof window === "undefined") return null;
   return localStorage.getItem("StoredJWT");
 }
 
-
-/** ✅ Fetch Chat Group Member Info */
-export async function GetChatGroupMemberInfo(chatGroupId: string) {
-  if (!chatGroupId) return null;
-  const storedProfile = GetStoredProfile();
-  const token = GetStoredJWT();
-
-  try {
-    const formData = new FormData();
-    formData.append("email", storedProfile?.Email);
-    formData.append("chatGroupId", chatGroupId);
-
-    const res = await fetch(`${BASE_URL}/chatGroupMember/api/byEmail`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
-      body: formData,
-    });
-
-    const resJson = await res.json();
-   // console.log("Stored Group Member Info", resJson);
-
-    if (!res.ok) {
-      console.error("Failed to fetch chat group member info:", res.statusText);
-      return null;
-    }
-
-    return resJson;
-  } catch (err) {
-    console.error("UniversalGetChatGroupMemberInfo error:", err);
-    return null;
-  }
-}
-
-
-export function returnStringLocalStored(): string | null {
-  return GetStoredJWT();
-}
-
-  /** Membership verification */
-  // eslint-disable-next-line react-refresh/only-export-components
-  export const getAppInfoByAppName = async (appName:string)=>{
-    const token = GetStoredJWT();
-    try {
-      const res = await fetch(`${BASE_URL}/application/api/byName/${appName}`, {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const data = await res.json();
-     // console.log("Application Information:", data[0]);
-      return data[0];
-    } catch (err) {
-      console.error(" Application Get error:", err);
-    }
-  };
-
-
-  /** Membership verification */
-  export const checkChatMembership = async (chatGroupId:string)=>{
-    const storedProfile = GetStoredProfile();
-    const token =GetStoredJWT();
-    try {
-      const formData = new FormData();
-      formData.append("chatGroupId", chatGroupId);
-      formData.append("profileEmail", storedProfile?.Email);
-      const res = await fetch(`${BASE_URL}/chatGroupMember/api/purchaseMembership`, {
-        method: "POST",
-        body: formData,
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const data = await res.json();
-     // console.log("Membership check:", data);
-    } catch (err) {
-      console.error("Membership check error:", err);
-    }
-  };
+/* -----------------------------
+   Specific Storage Getters
+----------------------------- */
+export const GetStoredProfile = () => GetStoredData("StoredProfile");
+export const GetStoredItem = () => GetStoredData("StoredItem");
+export const GetStoredPage = () => GetStoredData("StoredPage");
+export const GetStoredUser = () => GetStoredData("StoredUser");
 
 /* -----------------------------
    API Helpers
 ----------------------------- */
 
+/** ✅ Fetch Chat Group Info (with caching) */
+export async function GetChatGroupInfo(chatGroupId: string): Promise<any | null> {
+  if (!chatGroupId) return null;
+
+  try {
+    const cached = GetStoredData("StoredChatGroupItem");
+    if (cached?.Id?.toString() === chatGroupId.toString()) return cached;
+
+    const res = await fetch(`${BASE_URL}/chatGroup/api/${chatGroupId}`);
+    if (!res.ok) return null;
+
+    const data = await res.json();
+    const group = data?.[0] || data;
+    if (group) SetStoredData("StoredChatGroupItem", group);
+    return group;
+  } catch (e) {
+    console.error("GetChatGroupInfo error:", e);
+    return null;
+  }
+}
+
 /** ✅ Fetch Chat Group Member Info */
-export async function StoredChatGroupMemberInfo(chatGroupId: string) {
+export async function GetChatGroupMemberInfo(chatGroupId: string): Promise<any | null> {
   if (!chatGroupId) return null;
   const storedProfile = GetStoredProfile();
   const token = GetStoredJWT();
 
+  if (!storedProfile?.Email || !token) return null;
+
   try {
     const formData = new FormData();
-    formData.append("email", storedProfile?.Email);
+    formData.append("email", storedProfile.Email);
     formData.append("chatGroupId", chatGroupId);
 
     const res = await fetch(`${BASE_URL}/chatGroupMember/api/byEmail`, {
@@ -133,30 +88,20 @@ export async function StoredChatGroupMemberInfo(chatGroupId: string) {
       body: formData,
     });
 
-    const resJson = await res.json();
-   // console.log("Stored Group Member Info", resJson);
-
-    if (!res.ok) {
-      console.error("Failed to fetch chat group member info:", res.statusText);
-      return null;
-    }
-
-    return resJson;
+    if (!res.ok) return null;
+    return await res.json();
   } catch (err) {
-    console.error("UniversalGetChatGroupMemberInfo error:", err);
+    console.error("GetChatGroupMemberInfo error:", err);
     return null;
   }
 }
 
 /** ✅ Join Group */
-export async function joinGroup(chatGroupId: string, email: string) {
-  if (!chatGroupId || !email) return null;
+export async function joinGroup(chatGroupId: string, email: string): Promise<boolean> {
+  if (!chatGroupId || !email) return false;
 
   const token = GetStoredJWT();
-  if (!token) {
-    console.error("JWT token not found");
-    return null;
-  }
+  if (!token) return false;
 
   try {
     const formData = new FormData();
@@ -169,29 +114,19 @@ export async function joinGroup(chatGroupId: string, email: string) {
       body: formData,
     });
 
-    if (!res.ok) {
-      console.error("Failed to join group:", res.statusText);
-    }
-
     return res.ok;
   } catch (err) {
     console.error("joinGroup error:", err);
-    return null;
+    return false;
   }
 }
 
-
-
-
 /** ✅ Fetch Profile by Email */
-export async function UniversalFetchProfileByEmail(email: string) {
+export async function GetProfileByEmail(email: string): Promise<any | null> {
   if (!email) return null;
 
   const token = GetStoredJWT();
-  if (!token) {
-    console.error("JWT token not found");
-    return null;
-  }
+  if (!token) return null;
 
   try {
     const formData = new FormData();
@@ -203,29 +138,54 @@ export async function UniversalFetchProfileByEmail(email: string) {
       body: formData,
     });
 
+    if (!res.ok) return null;
     const data = await res.json();
-    console.log("Profile Data By Api", data);
-
-    if (!res.ok) {
-      console.error("Failed to fetch profile:", res.statusText);
-      return null;
-    }
-
-    // If backend returns array, take first element
     return Array.isArray(data) ? data[0] : data;
   } catch (err) {
-    console.error("Fetch profile error:", err);
+    console.error("GetProfileByEmail error:", err);
     return null;
   }
 }
 
-/* -----------------------------
-   Specific Storage Getters
------------------------------ */
-export const GetStoredProfile = () =>GetStoredData("StoredProfile");
+/** ✅ Get App Information */
+export async function getAppInfoByAppName(appName: string): Promise<any | null> {
+  if (!appName) return null;
+  const token = GetStoredJWT();
 
-export const GetStoredItem = () =>GetStoredData("StoredItem");
+  try {
+    const res = await fetch(`${BASE_URL}/application/api/byName/${appName}`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
-export const GetStoredPage = () =>GetStoredData("StoredPage");
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data?.[0] || data;
+  } catch (err) {
+    console.error("getAppInfoByAppName error:", err);
+    return null;
+  }
+}
 
-export const GetStoredUser = () =>GetStoredData("StoredUser");
+/** ✅ Check/Purchase Chat Membership */
+export async function checkChatMembership(chatGroupId: string): Promise<void> {
+  const storedProfile = GetStoredProfile();
+  const token = GetStoredJWT();
+
+  if (!storedProfile?.Email || !token) return;
+
+  try {
+    const formData = new FormData();
+    formData.append("chatGroupId", chatGroupId);
+    formData.append("profileEmail", storedProfile.Email);
+
+    await fetch(`${BASE_URL}/chatGroupMember/api/purchaseMembership`, {
+      method: "POST",
+      body: formData,
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  } catch (err) {
+    console.error("checkChatMembership error:", err);
+  }
+}
+

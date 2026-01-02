@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { Menu, X, LucideIcon } from "lucide-react";
 import { useHistory, useLocation } from "react-router-dom";
-import { IMAGE_URL, BASE_URL, PAGE_ID } from "../../config";
+import { IMAGE_URL, BASE_URL, PAGE_ID } from "@/config";
 
 /* -------------------------------------------------------------------------- */
 /*                                Types                                       */

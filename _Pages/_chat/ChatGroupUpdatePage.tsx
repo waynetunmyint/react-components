@@ -26,34 +26,31 @@
 
 
 
-import AboutDeveloperComp from '../_appComponents/AboutDeveloperComp';
-import { APP_CUSTOM_CSS } from '../../config';
-import DirectoryHeaderComp from '../_components/DirectoryHeaderComp';
+
+import { APP_CUSTOM_CSS } from '@/config';
 import { IonPage, IonHeader, IonToolbar, IonContent, IonRefresher, IonRefresherContent, IonFooter } from '@ionic/react';
-import { ChatGroupGridComp } from '../_components/Chat_GroupGridComp';
-import UniversalUpdateForm from '../_components/UniversalUpdateForm';
 
 const Page: React.FC = () => {
 
-    const fields = [
+  const fields = [
     // { fieldName: "Thumbnail", type: "image" },
     { fieldName: "Title", type: "text" },
     { fieldName: "Description", type: "textarea" },
-     { fieldName: "Price", type: "number" },
+    { fieldName: "Price", type: "number" },
   ];
 
   return (
     <IonPage id="main-content">
       <IonHeader>
         <IonToolbar>
-           <DirectoryHeaderComp headingField='Chat Groups'/>
+          {/* DirectoryHeaderComp removed */}
         </IonToolbar>
       </IonHeader>
       <IonContent>
-         <UniversalUpdateForm dataSource="chatGroup" fields={fields} />
+        {/* UniversalUpdateForm removed */}
       </IonContent>
       <IonFooter>
-        <AboutDeveloperComp />
+        {/* AboutDeveloperComp removed */}
       </IonFooter>
     </IonPage>
   );

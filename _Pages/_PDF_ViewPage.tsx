@@ -1,7 +1,7 @@
 import { IonContent, IonPage } from '@ionic/react';
 import { useState, useEffect } from 'react';
 import HeaderSwitcher from "../_SwitcherComps/HeaderSwitcher";
-import { BASE_URL, FOOTER_STYLE, IMAGE_URL, PAGE_ID } from '../../../config';
+import { BASE_URL, FOOTER_STYLE, IMAGE_URL, PAGE_ID } from '@/config';
 import FooterSwitchComp from '../_SwitcherComps/FooterSwitcher';
 import { FileText, ExternalLink, ChevronDown } from 'lucide-react';
 

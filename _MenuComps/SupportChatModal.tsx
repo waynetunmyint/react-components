@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import { BASE_URL, PAGE_ID } from "../../../config";
+import { BASE_URL, PAGE_ID } from "@/config";
 import { Message, Thread } from "./SupportChatParts/types";
 import ChatHeader from "./SupportChatParts/ChatHeader";
 import ThreadList from "./SupportChatParts/ThreadList";

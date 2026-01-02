@@ -265,7 +265,7 @@ const PricingPage = () => {
 
 
 
-  const PackageCard = ({ pkg, index }) => (
+  const PackageCard = ({ pkg, index }: { pkg: any; index: any }) => (
     <div className={`relative bg-white rounded-lg shadow-lg overflow-hidden ${pkg.popular ? 'ring-2 ring-[var(--theme-accent)]' : ''}`}>
       {pkg.popular && (
         <div className="absolute top-0 right-0 bg-[var(--theme-accent)] text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
@@ -281,7 +281,7 @@ const PricingPage = () => {
       </div>
       <div className="p-6">
         <ul className="space-y-3 mb-6">
-          {pkg.features.map((feature, idx) => (
+          {pkg.features.map((feature: any, idx: any) => (
             <li key={idx} className="flex items-start gap-2 text-sm">
               {feature.included ? (
                 <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />

@@ -1,5 +1,5 @@
 "use client";
-import FloatingChatButton from "./_MenuComps/FloatingChatButton";
+import FloatingChatButton from "./_AiComps/FloatingChatButton";
 
 export default function AiChatWidget() {
     return <FloatingChatButton />;

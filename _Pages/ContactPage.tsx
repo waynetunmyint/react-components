@@ -2,7 +2,7 @@
 
 import { IonPage, IonHeader, IonToolbar, IonContent, IonRefresher, IonRefresherContent } from '@ionic/react';
 import HeaderSwitcher from "../_SwitcherComps/HeaderSwitcher";
-import { CONTACT_VIEW_STYLE, FOOTER_STYLE } from '../../../config';
+import { CONTACT_VIEW_STYLE, FOOTER_STYLE } from '@/config';
 import FooterSwitchComp from '../_SwitcherComps/FooterSwitcher';
 import ContactViewSwitcher from '../_SwitcherComps/ContactViewSwiter';
 

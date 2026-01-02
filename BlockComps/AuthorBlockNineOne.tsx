@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { IMAGE_URL } from "../../../config";
+import { IMAGE_URL } from "@/config";
 import { ArrowRight, Users, BookOpen } from "lucide-react";
 import BlockHeader from "../BlockComps/BlockHeader";
 

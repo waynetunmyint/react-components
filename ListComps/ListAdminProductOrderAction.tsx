@@ -15,12 +15,11 @@ import {
     PackageCheck,
     Edit,
 } from "lucide-react";
-import { BASE_URL, PAGE_ID } from "../../../config";
+import { BASE_URL, PAGE_ID } from "@/config";
 import { GetStoredJWT } from "../StorageComps/StorageCompOne";
-import { formatPrice } from "../UniversalComps/Universal_FormatterComp";
-import { printBookOrderCustomer as printProductOrderCustomer } from "../PrintComps/BookOrderCustomer";
-import { printBookOrderReceipt as printProductOrderReceipt } from "../PrintComps/BookOrderReceipt";
-import { convertDateTime } from "../HelperComps/TextCaseComp";
+import { printBookOrderCustomer as printProductOrderCustomer } from "../BookComps/BookOrderCustomer";
+import { printBookOrderReceipt as printProductOrderReceipt } from "../BookComps/BookOrderReceipt";
+import { convertDateTime, formatPrice } from "../HelperComps/TextCaseComp";
 
 interface Props {
     dataSource: string;

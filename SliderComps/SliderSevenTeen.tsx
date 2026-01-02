@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { BASE_URL, IMAGE_URL, PAGE_ID, PAGE_TYPE } from "../../../config";
+import { BASE_URL, IMAGE_URL, PAGE_ID, PAGE_TYPE } from "@/config";
 
 interface Props {
     dataSource: string;

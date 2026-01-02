@@ -36,12 +36,11 @@ import {
   Copy,
 } from "lucide-react";
 import * as LucideIcons from "lucide-react";
-import { BASE_URL, IMAGE_URL } from "../../../config";
+import { BASE_URL, IMAGE_URL } from "@/config";
 import { GetStoredJWT } from "../StorageComps/StorageCompOne";
 import FormModalCreate from "../FormComps/FormModalCreate";
 import FormModalUpdate from "../FormComps/FormModalUpdate";
-import { convertDateTime, convertToDateTime, formatNumber } from "../HelperComps/TextCaseComp";
-import { formatPrice } from "../UniversalComps/Universal_FormatterComp";
+import { convertDateTime, convertToDateTime, formatNumber, formatPrice } from "../HelperComps/TextCaseComp";
 
 
 

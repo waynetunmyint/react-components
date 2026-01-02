@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, Loader2, Clock, Mail, Headphones } from "lucide-react";
-import { IMAGE_URL } from "../../../config";
+import { IMAGE_URL } from "@/config";
 import { HeaderProps } from "../_SwitcherComps/HeaderSwitcher";
 
 export default function HeaderSixteen({

@@ -4,7 +4,7 @@ import { IonContent, IonPage, IonRefresher, IonRefresherContent } from "@ionic/r
 import { Search, SlidersHorizontal, Grid, List as ListIcon } from "lucide-react";
 import HeaderSwitcher from "../_SwitcherComps/HeaderSwitcher";
 import FooterSwitchComp from "../_SwitcherComps/FooterSwitcher";
-import { BASE_URL, PAGE_ID, FOOTER_STYLE } from "../../../config";
+import { BASE_URL, PAGE_ID, FOOTER_STYLE } from "@/config";
 import { ProductCardPremium } from "../PageComps/ProductCardPremium";
 
 const ProductListPage: React.FC = () => {

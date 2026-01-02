@@ -1,4 +1,4 @@
-import { PAGE_ID } from "../../../config";
+import { PAGE_ID } from "@/config";
 
 /**
  * Centralized configuration for all admin pages.

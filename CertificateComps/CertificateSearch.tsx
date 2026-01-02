@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Search, Award, AlertCircle, Loader2, X } from 'lucide-react';
-import { BASE_URL, IMAGE_URL, PAGE_ID } from '../../../config';
+import { BASE_URL, IMAGE_URL, PAGE_ID } from '@/config';
 
 export default function CertificateSearch() {
     const [certNumber, setCertNumber] = useState('');

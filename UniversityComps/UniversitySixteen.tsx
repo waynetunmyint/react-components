@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { LayoutGrid, List, Package, ArrowRight, X } from "lucide-react";
-import { BASE_URL, IMAGE_URL, PAGE_ID } from "../../../config";
+import { BASE_URL, IMAGE_URL, PAGE_ID } from "@/config";
 import { priceFormatter, handleOpenLink } from "../HelperComps/TextCaseComp";
 
 interface Props {

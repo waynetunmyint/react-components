@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BASE_URL, PAGE_ID, PAGE_TYPE } from "../../../config";
+import { BASE_URL, PAGE_ID, PAGE_TYPE } from "@/config";
 
 import SliderOne from "../SliderComps/SliderOne";
 import SliderTwo from "../SliderComps/SliderTwo";
@@ -9,21 +9,19 @@ import SliderFive from "../SliderComps/SliderFive";
 import SliderTwelve from "../SliderComps/SliderTwelve";
 
 import CommonOne from "../BlockComps/CommonOne";
-import BookOne from "../BlockComps/BookOne";
+import BookOne from "../BookComps/BookOne";
 import BrandOne from "../BlockComps/BrandOne";
 import ClientOne from "../BlockComps/ClientOne";
 import AdvantageOne from "../BlockComps/AdvantageOne";
-import ArticleOne from "../BlockComps/ArticleOne";
 import AuthorBlockNineOne from "../BlockComps/AuthorBlockNineOne";
 import AuthorOne from "../BlockComps/AuthorOne";
-import BookBlockNineOne from "../BlockComps/BookBlockNineOne";
-import Display_Block_Nine from "../BlockComps/Display_Block_Nine";
+import DisplayBlockNine from "../BlockComps/DisplayBlockNine";
 import GridBlockNineOne from "../BlockComps/GridBlockNineOne";
 import GridBlockNineTwo from "../BlockComps/GridBlockNineTwo";
 import ProductBlockNineOne from "../BlockComps/ProductBlockNineOne";
 import ServiceBlockNineOne from "../BlockComps/ServiceBlockNineOne";
 import AboutBlockNineOne from "../BlockComps/AboutBlockNineOne";
-import BookAuthorSix from "../BlockComps/BookAuthorSix";
+import BookAuthorSix from "../BookComps/BookAuthorSix";
 
 import TestimonialTwelve from "../TestimonialComps/TestimonialTwelve";
 import TestimonialOne from "../TestimonialComps/TestimonialOne";
@@ -200,14 +198,14 @@ export default function BlockSwitcherComp({
     // Brand
     brand1: <BrandOne {...common} />,
 
-    author91: <AuthorBlockNineOne {...common} />,
-    book91: <BookBlockNineOne {...common} />,
-    display91: <Display_Block_Nine {...common} />,
-    grid91: <GridBlockNineOne {...common} />,
-    grid92: <GridBlockNineTwo {...common} />,
-    product91: <ProductBlockNineOne {...common} />,
-    service91: <ServiceBlockNineOne {...common} />,
-    about91: <AboutBlockNineOne {...common} />,
+    // author91: <AuthorBlockNineOne {...common} />,
+    // book91: <BookBlockNineOne {...common} />,
+    // display91: <DisplayBlockNine {...common} />,
+    // grid91: <GridBlockNineOne {...common} />,
+    // grid92: <GridBlockNineTwo {...common} />,
+    // product91: <ProductBlockNineOne {...common} />,
+    // service91: <ServiceBlockNineOne {...common} />,
+    // about91: <AboutBlockNineOne {...common} />,
 
     // Author
     author1: <AuthorOne {...common} />,

@@ -1,4 +1,4 @@
-import { IMAGE_URL } from "../../../config";
+import { IMAGE_URL } from "@/config";
 
 
 // utils/dateFormat.ts

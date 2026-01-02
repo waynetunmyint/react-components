@@ -1,12 +1,12 @@
 import { IonContent, IonPage } from '@ionic/react';
-import UserLoginComp from '../AuthComps/User_Login_Comp';
+import UserLoginComp from '../_AuthComps/UserLoginComp';
 
 
 const LoginPage: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
-       <UserLoginComp />
+        <UserLoginComp />
       </IonContent>
     </IonPage>
   );

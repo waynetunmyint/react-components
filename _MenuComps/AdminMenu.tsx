@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { Menu, X, LogOut, File, Home, ChevronRight, MessageCircle, Users, Settings } from "lucide-react";
-import { BASE_URL, PAGE_ID } from "../../../config";
+import { Menu, X, LogOut, File, Home, ChevronRight, MessageCircle } from "lucide-react";
+import { BASE_URL, PAGE_ID } from "@/config";
 import BillChecker from "../BillComps/BillChecker";
 import SupportChatModal from "./SupportChatModal";
-import CustomerChatModal from "./CustomerChatModal";
+import CustomerChatModal from "../_AiComps/CustomerChatModal";
 
 interface MenuItem {
   Title: string;

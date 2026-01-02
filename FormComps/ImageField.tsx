@@ -1,6 +1,6 @@
 import React from "react";
 import { X, ImagePlus, AlertCircle, Camera, Check, UploadCloud } from "lucide-react";
-import { IMAGE_URL } from "../../../config";
+import { IMAGE_URL } from "@/config";
 
 interface ImageFieldProps {
   field: any;

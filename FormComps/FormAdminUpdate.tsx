@@ -14,7 +14,7 @@ import {
   Search,
   ArrowLeft
 } from "lucide-react";
-import { BASE_URL, PAGE_ID, IMAGE_URL } from "../../../config";
+import { BASE_URL, PAGE_ID, IMAGE_URL } from "@/config";
 import { resizeImage } from "../ImageComps/ImageClientComp";
 import { GetStoredJWT } from "../StorageComps/StorageCompOne";
 

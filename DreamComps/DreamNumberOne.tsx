@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { X, ChevronRight, Sparkles } from "lucide-react";
-import { IMAGE_URL } from "../../../config";
+import { IMAGE_URL } from "@/config";
 
 interface Props {
     dataSource: string;

@@ -2,9 +2,9 @@ import { IonContent, IonPage } from '@ionic/react';
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import HeaderSwitcher from "../_SwitcherComps/HeaderSwitcher";
-import { BASE_URL, FOOTER_STYLE, PAGE_ID } from '../../../config';
+import { BASE_URL, FOOTER_STYLE, PAGE_ID } from '@/config';
 import FooterSwitchComp from '../_SwitcherComps/FooterSwitcher';
-import Product_ViewOne from '../ViewComps/Product_ViewOne';
+import ProductViewOne from '../ProductComps/ProductViewOne';
 
 interface Props {
     dataSource: string;
@@ -40,7 +40,7 @@ const ProductViewPage: React.FC<Props> = ({ dataSource, title }) => {
             <IonContent fullscreen>
                 <HeaderSwitcher headingField={displayTitle} />
                 <div className='min-h-screen p-5 bg-white text-black'>
-                    <Product_ViewOne item={item} />
+                    <ProductViewOne item={item} />
                 </div>
                 <FooterSwitchComp styleNo={FOOTER_STYLE} />
             </IonContent>

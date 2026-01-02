@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { List, LayoutGrid, ArrowRight, X, Video, Users, Clock, Layers } from "lucide-react";
-import { IMAGE_URL } from "../../../config";
+import { IMAGE_URL } from "@/config";
 import BlockHeader from "../BlockComps/BlockHeader";
 
 interface Props {

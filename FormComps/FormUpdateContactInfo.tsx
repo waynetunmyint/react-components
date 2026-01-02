@@ -13,7 +13,7 @@ import {
   Search,
   ArrowLeft,
 } from "lucide-react";
-import { BASE_URL, IMAGE_URL, PAGE_ID } from "../../../config";
+import { BASE_URL, IMAGE_URL, PAGE_ID } from "@/config";
 import { resizeImage } from "../ImageComps/ImageClientComp";
 import { GetStoredJWT } from "../StorageComps/StorageCompOne";
 
@@ -23,6 +23,7 @@ interface Props {
   dataSource: string;
   fields: any[];
   imageSize: string;
+  steps?: { title: string; fields: any[] }[];
 }
 
 interface DropdownOptions {
@@ -33,7 +34,7 @@ interface UploadImageBlobs {
   [key: string]: string | null;
 }
 
-export default function FormUpdateTwo({ dataSource, fields, imageSize }: Props) {
+export default function FormUpdateTwo({ dataSource, fields, imageSize, steps }: Props) {
   const [formData, setFormData] = useState<Record<string, any>>({});
   const [fileInputs, setFileInputs] = useState<Record<string, string>>({});
   const [dropdownOptions, setDropdownOptions] = useState<DropdownOptions>({});
@@ -45,6 +46,7 @@ export default function FormUpdateTwo({ dataSource, fields, imageSize }: Props) 
   const [isSaving, setIsSaving] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [currentStep, setCurrentStep] = useState(0);
 
   const toCamelCase = (s: string) =>
     s.replace(/[-_\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : "")).replace(/^(.)/, (m) => m.toLowerCase());
@@ -94,7 +96,10 @@ export default function FormUpdateTwo({ dataSource, fields, imageSize }: Props) 
 
   // Fetch dropdown options
   useEffect(() => {
-    fields.forEach(async (field) => {
+    // If steps are present, aggregate all fields from all steps to fetch dropdowns
+    const allFields = steps ? steps.flatMap(s => s.fields) : fields;
+
+    allFields.forEach(async (field) => {
       if (field.type === "dropdown" || field.type === "multiple") {
         try {
           const url = field.customAPI
@@ -136,7 +141,7 @@ export default function FormUpdateTwo({ dataSource, fields, imageSize }: Props) 
         }
       }
     });
-  }, [fields]);
+  }, [fields, steps]);
 
   const handleChange = (field: string, value: any, isDropdown = false) => {
     setFormData((p) => ({
@@ -144,6 +149,14 @@ export default function FormUpdateTwo({ dataSource, fields, imageSize }: Props) 
       [isDropdown ? toCamelCase(field) + "Id" : toCamelCase(field)]: value,
     }));
     setTouched((p) => ({ ...p, [field]: true }));
+    // Clear error if exists
+    if (errors[field]) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[field];
+        return newErrors;
+      });
+    }
   };
 
   const handleFile = async (field: string, file: File | null, isImg = false) => {
@@ -182,7 +195,8 @@ export default function FormUpdateTwo({ dataSource, fields, imageSize }: Props) 
       const fd = new FormData();
       fd.append("id", formData.id || formData.Id || "");
 
-      fields.forEach((f) => {
+      const allFields = steps ? steps.flatMap(s => s.fields) : fields;
+      allFields.forEach((f) => {
         const c = toCamelCase(f.fieldName);
         const val = formData[c];
         const ddlVal = formData[c + "Id"];
@@ -273,14 +287,58 @@ export default function FormUpdateTwo({ dataSource, fields, imageSize }: Props) 
           </div>
         </div>
 
+
+        {/* Step Indicator */}
+        {steps && steps.length > 0 && (
+          <div className="mb-8 overflow-x-auto">
+            <div className="flex items-center min-w-max">
+              {steps.map((step, index) => {
+                const isCurrent = currentStep === index;
+                const isCompleted = index < currentStep;
+                const isLast = index === steps.length - 1;
+
+                return (
+                  <div key={index} className="flex items-center">
+                    <div className="flex items-center gap-2">
+                      <div
+                        className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold transition-all ${isCurrent
+                          ? "bg-blue-600 text-white shadow-lg scale-110"
+                          : isCompleted
+                            ? "bg-green-500 text-white"
+                            : "bg-gray-200 text-gray-500"
+                          }`}
+                      >
+                        {isCompleted ? <CheckCircle size={16} /> : index + 1}
+                      </div>
+                      <span
+                        className={`font-medium ${isCurrent ? "text-blue-900" : isCompleted ? "text-green-600" : "text-gray-500"
+                          }`}
+                      >
+                        {step.title}
+                      </span>
+                    </div>
+                    {!isLast && (
+                      <div className={`h-0.5 w-12 mx-4 ${isCompleted ? "bg-green-500" : "bg-gray-200"}`} />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
             <div className="space-y-6">
-              {fields.map((f) => {
+              {(steps && steps.length > 0 ? steps[currentStep].fields : fields).map((f) => {
                 const c = toCamelCase(f.fieldName);
                 const val = formData[c] || "";
                 const opts = dropdownOptions[f.fieldName] ?? [];
+
+                // For KPayQR or any image/file fields in new steps, we need to ensure they are handled if not present in initial formData
+                // The existing logic for image/file layout should work as long as f.fieldName is passed correctly.
+
                 const error = errors[f.fieldName];
 
                 const Label = (
@@ -292,7 +350,7 @@ export default function FormUpdateTwo({ dataSource, fields, imageSize }: Props) 
 
                 // Left-label layout: label in first column, control in second column
                 const LeftLayout = (control: React.ReactNode) => (
-                  <div key={f.fieldName} className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+                  <div key={f.fieldName} className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start animate-in fade-in slide-in-from-bottom-2 duration-300">
                     <div className="col-span-1">{Label}</div>
                     <div className="col-span-2">{control}</div>
                   </div>
@@ -352,8 +410,8 @@ export default function FormUpdateTwo({ dataSource, fields, imageSize }: Props) 
                           type="button"
                           onClick={() => setDropdownOpen((p) => ({ ...p, [f.fieldName]: true }))}
                           className={`w-full rounded-xl px-4 py-3 text-left transition-all flex items-center justify-between ${sel
-                              ? "bg-blue-50 border-2 border-blue-500 text-blue-900"
-                              : "bg-white border border-gray-300 text-gray-600 hover:border-gray-400"
+                            ? "bg-blue-50 border-2 border-blue-500 text-blue-900"
+                            : "bg-white border border-gray-300 text-gray-600 hover:border-gray-400"
                             }`}
                         >
                           <span className="flex items-center gap-2">
@@ -416,8 +474,8 @@ export default function FormUpdateTwo({ dataSource, fields, imageSize }: Props) 
                                       <div
                                         key={valOpt}
                                         className={`flex items-center gap-3 px-4 py-3 cursor-pointer transition-colors ${isSelected
-                                            ? "bg-blue-50 text-blue-700 font-semibold"
-                                            : "text-gray-800 hover:bg-gray-50"
+                                          ? "bg-blue-50 text-blue-700 font-semibold"
+                                          : "text-gray-800 hover:bg-gray-50"
                                           }`}
                                         onClick={() => {
                                           handleChange(f.fieldName, valOpt, true);
@@ -460,8 +518,8 @@ export default function FormUpdateTwo({ dataSource, fields, imageSize }: Props) 
                                 <label
                                   key={valOpt}
                                   className={`flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer transition-all ${checked
-                                      ? "bg-blue-500 text-white shadow-md"
-                                      : "bg-white text-gray-700 border border-gray-300 hover:border-blue-500"
+                                    ? "bg-blue-500 text-white shadow-md"
+                                    : "bg-white text-gray-700 border border-gray-300 hover:border-blue-500"
                                     }`}
                                 >
                                   <input
@@ -505,6 +563,7 @@ export default function FormUpdateTwo({ dataSource, fields, imageSize }: Props) 
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   setUploadImageBlobs((p) => ({ ...p, [f.fieldName]: null }));
+                                  setFormData((p) => ({ ...p, [c]: null }));
                                 }}
                                 className="absolute top-2 right-2 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-red-50 hover:text-red-600 transition-colors"
                               >
@@ -611,33 +670,124 @@ export default function FormUpdateTwo({ dataSource, fields, imageSize }: Props) 
 
           {/* Action Buttons */}
           <div className="flex items-center justify-between gap-4">
-            <button
-              type="button"
-              onClick={() => window.history.back()}
-              className="px-6 py-3 border border-gray-300 rounded-xl text-gray-700 font-semibold hover:bg-gray-50 transition-colors"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={isSaving}
-              className={`flex items-center gap-2 px-8 py-3 rounded-xl text-white font-semibold shadow-lg transition-all ${isSaving
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 hover:shadow-xl"
-                }`}
-            >
-              {isSaving ? (
-                <>
-                  <Loader2 size={20} className="animate-spin" />
-                  Saving...
-                </>
-              ) : (
-                <>
-                  <Save size={20} />
-                  Update
-                </>
-              )}
-            </button>
+
+            {steps && steps.length > 0 ? (
+              <>
+                {currentStep === 0 ? (
+                  <button
+                    type="button"
+                    onClick={() => window.history.back()}
+                    className="px-6 py-3 border border-gray-300 rounded-xl text-gray-700 font-semibold hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCurrentStep(prev => prev - 1);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="px-6 py-3 border border-gray-300 rounded-xl text-gray-700 font-semibold hover:bg-gray-50 transition-colors"
+                  >
+                    Back
+                  </button>
+                )}
+
+                {currentStep < steps.length - 1 ? (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const currentFields = steps[currentStep].fields;
+                      const newErrors: Record<string, string> = {};
+                      let isValid = true;
+
+                      currentFields.forEach(field => {
+                        if (field.required) {
+                          const c = toCamelCase(field.fieldName);
+                          const val = formData[c];
+                          // Check for empty string, null, undefined, or empty array (for multiple)
+                          if (val === null || val === undefined || val === "" || (Array.isArray(val) && val.length === 0)) {
+                            // Special check for image/file relying on blobs or existing data
+                            if ((field.type === 'image' || field.type === 'file') && !uploadImageBlobs[field.fieldName] && !formData[c]) {
+                              newErrors[field.fieldName] = `${field.fieldName} is required`;
+                              isValid = false;
+                            } else if (field.type !== 'image' && field.type !== 'file') {
+                              newErrors[field.fieldName] = `${field.fieldName} is required`;
+                              isValid = false;
+                            }
+                          }
+                        }
+                      });
+
+                      if (!isValid) {
+                        setErrors(prev => ({ ...prev, ...newErrors }));
+                        // Optional: scroll to first error
+                        return;
+                      }
+
+                      setErrors({}); // Clear errors on success
+                      setCurrentStep(prev => prev + 1);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="flex items-center gap-2 px-8 py-3 rounded-xl text-white font-semibold shadow-lg transition-all bg-blue-600 hover:bg-blue-700"
+                  >
+                    Next
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    disabled={isSaving}
+                    className={`flex items-center gap-2 px-8 py-3 rounded-xl text-white font-semibold shadow-lg transition-all ${isSaving
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 hover:shadow-xl"
+                      }`}
+                  >
+                    {isSaving ? (
+                      <>
+                        <Loader2 size={20} className="animate-spin" />
+                        Saving...
+                      </>
+                    ) : (
+                      <>
+                        <Save size={20} />
+                        Update
+                      </>
+                    )}
+                  </button>
+                )}
+              </>
+            ) : (
+              <>
+                <button
+                  type="button"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSaving}
+                  className={`flex items-center gap-2 px-8 py-3 rounded-xl text-white font-semibold shadow-lg transition-all ${isSaving
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 hover:shadow-xl"
+                    }`}
+                >
+                  {isSaving ? (
+                    <>
+                      <Loader2 size={20} className="animate-spin" />
+                      Saving...
+                    </>
+                  ) : (
+                    <>
+                      <Save size={20} />
+                      Update
+                    </>
+                  )}
+                </button>
+              </>
+            )}
+
           </div>
         </form>
       </div>

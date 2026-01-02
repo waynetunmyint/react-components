@@ -1,13 +1,14 @@
 import ProtectedRoute from './RouteProtectorComp';
 import AdminPage from '../_Pages/_admin/AdminPage';
-import AdminBookOrderPage from '../_Pages/_admin/AdminBookOrderPage';
+import AdminBookOrderPage from '../BookComps/AdminBookOrderPage';
 import AdminProductOrderPage from '../_Pages/_admin/AdminProductOrderPage';
 import AdminContactPage from '../_Pages/_admin/AdminContactPage';
-import GenericAdminPage from '../_Pages/_admin/_AdminPage';
+import GenericAdminPage from '../_Pages/_admin/AdminPage';
 import AdminSchoolBillPage from '../_Pages/_admin/AdminSchoolBillPage';
 import PrintInvoicePage from '../_Pages/_admin/PrintInvoicePage';
 import PrintReceiptPage from '../_Pages/_admin/PrintReceiptPage';
 import { ADMIN_PAGE_CONFIGS } from './adminConfigs';
+import ProtectProfileRoute from './ProtectProfileRoute';
 
 /**
  * Protected routes that require authentication.

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Play, Pause, ArrowRight } from "lucide-react";
-import { BASE_URL, PAGE_ID, IMAGE_URL } from "../../../config";
+import { BASE_URL, PAGE_ID, IMAGE_URL } from "@/config";
 
 // Inline skeleton component (moved here so external dependency is not required)
 interface SkeletonProps {
@@ -145,7 +145,7 @@ export default function SliderBlockFive({ dataSource }: Props) {
         };
     }, [isAutoPlaying, items.length, scroll, isHovered]);
 
-    
+
 
     if (error) {
         return (
@@ -301,8 +301,8 @@ export default function SliderBlockFive({ dataSource }: Props) {
                                     key={idx}
                                     onClick={() => goToSlide(idx)}
                                     className={`transition-all duration-300 rounded-full ${isActive
-                                            ? "w-12 h-3 bg-white"
-                                            : "w-3 h-3 bg-white/40 hover:bg-white/60"
+                                        ? "w-12 h-3 bg-white"
+                                        : "w-3 h-3 bg-white/40 hover:bg-white/60"
                                         }`}
                                     aria-label={`Go to slide ${idx + 1}`}
                                 />

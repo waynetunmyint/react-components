@@ -17,10 +17,9 @@ import {
     Printer,
     Filter,
 } from "lucide-react";
-import { BASE_URL, PAGE_ID } from "../../../config";
+import { BASE_URL, PAGE_ID } from "@/config";
 import { GetStoredJWT } from "../StorageComps/StorageCompOne";
-import { formatPrice } from "../UniversalComps/Universal_FormatterComp";
-import { convertDateTime } from "../HelperComps/TextCaseComp";
+import { convertDateTime, formatPrice } from "../HelperComps/TextCaseComp";
 import { printSchoolBillInvoice, printSchoolBillReceipt } from "../PrintComps/SchoolBillPrint";
 
 interface Props {

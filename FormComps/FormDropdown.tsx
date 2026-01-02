@@ -1,6 +1,6 @@
 import React from "react";
-import { ChevronDown, CheckCircle2, AlertCircle } from "lucide-react";
-import { IMAGE_URL } from "../../../config";
+import { ChevronDown, CheckCircle2, AlertCircle, X, Search } from "lucide-react";
+import { IMAGE_URL } from "@/config";
 
 interface FormDropdownProps {
   field: any;
@@ -33,9 +33,9 @@ export default function FormDropdown({
 }: FormDropdownProps) {
   const filteredOpts = searchTerm
     ? options.filter((opt) => {
-        const name = (opt.Name ?? opt.Title ?? opt.Label ?? "").toLowerCase();
-        return name.includes(searchTerm.toLowerCase());
-      })
+      const name = (opt.Name ?? opt.Title ?? opt.Label ?? "").toLowerCase();
+      return name.includes(searchTerm.toLowerCase());
+    })
     : options;
 
   return (
@@ -50,11 +50,10 @@ export default function FormDropdown({
         <button
           type="button"
           onClick={() => setPickerOpen && setPickerOpen((p: any) => ({ ...p, [field.fieldName]: true }))}
-          className={`w-full flex justify-between items-center px-4 py-3 rounded-xl transition-all duration-200 ${
-            value
-              ? "border-2 border-blue-500 bg-blue-50 text-gray-900"
-              : "border-2 border-gray-300 bg-white text-gray-500 hover:border-blue-400"
-          } focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
+          className={`w-full flex justify-between items-center px-4 py-3 rounded-xl transition-all duration-200 ${value
+            ? "border-2 border-blue-500 bg-blue-50 text-gray-900"
+            : "border-2 border-gray-300 bg-white text-gray-500 hover:border-blue-400"
+            } focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
         >
           <span className="flex items-center gap-3">
             {(() => {
@@ -148,8 +147,8 @@ export default function FormDropdown({
                       ) : (
                         <div
                           className={`flex items-center gap-3 px-6 py-4 cursor-pointer transition-all ${isSelected
-                              ? "bg-blue-50 text-blue-700 font-semibold"
-                              : "text-gray-800 hover:bg-gray-50"
+                            ? "bg-blue-50 text-blue-700 font-semibold"
+                            : "text-gray-800 hover:bg-gray-50"
                             }`}
                           onClick={() => {
                             onChange(valOpt);

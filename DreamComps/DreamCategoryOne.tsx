@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { IonIcon, IonText } from "@ionic/react";
 import { chevronForwardOutline, sparklesOutline } from "ionicons/icons";
-import { IMAGE_URL } from "../../../config";
+import { IMAGE_URL } from "@/config";
 
 interface Props {
     dataSource: string;

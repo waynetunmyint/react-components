@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { List, LayoutGrid, ArrowRight, X } from "lucide-react";
-import { IMAGE_URL } from "../../../config";
+import { IMAGE_URL } from "@/config";
 import { priceFormatter } from "../HelperComps/TextCaseComp";
 import BlockHeader from "../BlockComps/BlockHeader";
 
@@ -11,6 +11,7 @@ interface Props {
     items?: any[];
     loading?: boolean;
     error?: string | null;
+    customAPI?: string;
 }
 
 export default function BlockOne({

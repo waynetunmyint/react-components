@@ -1,7 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { MapPin, Phone, Mail, Clock, Globe, Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
-import { BASE_URL, IMAGE_URL, PAGE_ID } from "../../../config";
+import { BASE_URL, IMAGE_URL, PAGE_ID } from "@/config";
+
+interface Props { }
 
 export const ContactFooterNine: React.FC<Props> = () => {
   const [data, setData] = useState<any>(null);
@@ -88,7 +90,7 @@ export const ContactFooterNine: React.FC<Props> = () => {
                   </h3>
                 </div>
               </div>
-              
+
               {data.Description && (
                 <p className="text-gray-400 text-base leading-relaxed line-clamp-3">
                   {data.Description}
@@ -195,7 +197,7 @@ export const ContactFooterNine: React.FC<Props> = () => {
               <h3 className="text-2xl font-bold mb-2">Visit Us</h3>
               <p className="text-gray-400 text-sm">Find our location on the map</p>
             </div>
-            
+
             {data.GoogleMapCode ? (
               <div
                 className="w-full h-96 rounded-2xl overflow-hidden shadow-2xl border border-white/10"
@@ -218,7 +220,7 @@ export const ContactFooterNine: React.FC<Props> = () => {
             <p className="text-gray-400 text-sm">
               © {new Date().getFullYear()} {data.Title}. All rights reserved.
             </p>
-            
+
             <div className="flex gap-6 text-sm">
               <a href="/privacy" className="text-gray-400 hover:text-white transition-colors">
                 Privacy Policy

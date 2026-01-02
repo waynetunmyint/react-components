@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { BASE_URL, IMAGE_URL, PAGE_ID, PAGE_TYPE } from "../../../config";
+import { BASE_URL, IMAGE_URL, PAGE_ID, PAGE_TYPE } from "@/config";
 
 interface Props {
     dataSource: string;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { GetStoredJWT } from "../StorageComps/StorageCompOne";
-import { BASE_URL, PAGE_ID } from "../../../config";
+import { BASE_URL, PAGE_ID } from "@/config";
 
 interface BillData {
     Id?: string | number;

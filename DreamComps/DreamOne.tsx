@@ -11,7 +11,7 @@ import {
     IonText
 } from '@ionic/react';
 import { closeOutline, chevronForwardOutline, sparklesOutline } from 'ionicons/icons';
-import { IMAGE_URL } from "../../../config";
+import { IMAGE_URL } from "@/config";
 
 interface Props {
     dataSource: string;

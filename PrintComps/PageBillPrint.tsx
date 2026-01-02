@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { formatNumber } from "../HelperComps/TextCaseComp";
-import { BASE_URL, IMAGE_URL } from "../../../config";
+import { BASE_URL, IMAGE_URL } from "@/config";
 import LoadingComp from "../HelperComps/LoadingComp";
 import { Printer } from "lucide-react";
 
@@ -88,7 +88,7 @@ export default function PageBillPrint({ billId, type }: Props) {
 
     return (
         <div className="bg-white min-h-screen flex flex-col relative font-sans text-[#1f2937] print:p-0 print:m-0 print:h-[297mm] print:w-[210mm]">
-            <style jsx global>{`
+            <style>{`
                 @media print {
                     @page {
                         margin: 0;

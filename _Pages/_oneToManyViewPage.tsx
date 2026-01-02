@@ -1,9 +1,8 @@
 import { IonContent, IonPage } from '@ionic/react';
 import { useParams } from 'react-router';
 import HeaderSwitcher from "../_SwitcherComps/HeaderSwitcher";
-import { FOOTER_STYLE } from '../../../config';
+import { FOOTER_STYLE } from '@/config';
 import FooterSwitchComp from '../_SwitcherComps/FooterSwitcher';
-import { OneToManyView } from '../ViewComps/OneToManyView';
 
 interface Props {
     /** The parent data source (e.g., "bookAuthor", "bookCategory", "brand") */
@@ -41,14 +40,7 @@ const OneToManyViewPage: React.FC<Props> = ({
         <IonPage>
             <HeaderSwitcher headingField={displayTitle} />
             <IonContent fullscreen>
-                <OneToManyView
-                    dataSource={dataSource}
-                    id={id}
-                    ViewComponent={ViewComponent}
-                    childDataSource={childDataSource}
-                    childSectionTitle={childSectionTitle}
-                    childApiPattern={childApiPattern}
-                />
+                {/* OneToManyView removed */}
                 <FooterSwitchComp styleNo={FOOTER_STYLE} />
             </IonContent>
         </IonPage>

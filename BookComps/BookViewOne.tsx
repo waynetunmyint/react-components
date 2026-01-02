@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import { ImageIcon, ExternalLink, ShoppingCart } from "lucide-react";
-import { IMAGE_URL, SHOW_SHOPPING_CART } from "../../../config";
+import { IMAGE_URL, SHOW_SHOPPING_CART } from "@/config";
 import { formatPrice, getImageUrl, handleOpenLink } from "../HelperComps/TextCaseComp";
 import ImageModal from "../ModalComps/ImageModal";
-import { useShoppingCart } from "../ShoppingBookComps/BookCartContext";
+import { useShoppingCart } from "./BookCartContext";
 import { useToast } from "../UIComps/ToastContext";
 
 // Presentational component — parent should pass full `item` object

@@ -1,6 +1,6 @@
 import React from "react";
 import { Loader2, MessageCircle, ChevronDown } from "lucide-react";
-import { IMAGE_URL } from "../../../../config";
+import { IMAGE_URL } from "@/config";
 import { Message } from "./types";
 
 interface MessageListProps {

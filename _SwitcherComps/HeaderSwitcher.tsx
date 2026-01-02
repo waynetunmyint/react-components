@@ -11,7 +11,7 @@ import HeaderSeven from "../HeaderComps/HeaderSeven";
 import HeaderEight from "../HeaderComps/HeaderEight";
 import HeaderNine from "../HeaderComps/HeaderNine";
 import HeaderSixteen from "../HeaderComps/HeaderSixteen";
-import { BASE_URL, PAGE_ID, HEADER_STYLE } from "../../../config";
+import { BASE_URL, PAGE_ID, HEADER_STYLE } from "@/config";
 import { LucideIcon } from "lucide-react";
 
 export interface MenuItem {

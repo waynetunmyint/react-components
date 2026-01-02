@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ContactViewNineOne from "../ContactComps/ContactViewNineOne";
-import { ContactViewOne } from "../ViewComps/Contact_ViewOne";
-import { BASE_URL, PAGE_ID } from "../../../config";
+import { ContactViewOne } from "../ContactComps/ContactViewOne";
+import { BASE_URL, PAGE_ID } from "@/config";
 
 
 interface Props {

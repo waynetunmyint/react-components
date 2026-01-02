@@ -1,11 +1,8 @@
 
 
 import { useParams } from 'react-router';
-import AboutDeveloperComp from '../_appComponents/AboutDeveloperComp';
-import ChatGroupViewHeaderComp from '../_components/Chat_GroupViewHeaderComp';
-import ChatMemberListComp from '../_components/Chat_MemberListComp';
 
-import { IonPage, IonHeader, IonToolbar, IonContent,IonFooter } from '@ionic/react';
+import { IonPage, IonHeader, IonToolbar, IonContent, IonFooter } from '@ionic/react';
 
 
 const Page: React.FC = () => {
@@ -15,14 +12,14 @@ const Page: React.FC = () => {
     <IonPage id="main-content">
       <IonHeader>
         <IonToolbar >
-          <ChatGroupViewHeaderComp chatGroupId={id!} />
+          {/* Header removed */}
         </IonToolbar>
       </IonHeader>
       <IonContent>
-         <ChatMemberListComp />
+        {/* Member list removed */}
       </IonContent>
       <IonFooter>
-        <AboutDeveloperComp />
+        {/* Footer removed */}
       </IonFooter>
     </IonPage>
   );

@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import { ImageIcon, ChevronDown } from "lucide-react";
-import { IMAGE_URL, PAGE_ID } from "../../../config";
-import BookBlockNineOne from "../BlockComps/BookBlockNineOne";
-import BookBlockOne from "../BlockComps/Book_BlockOne";
+import { IMAGE_URL, PAGE_ID } from "@/config";
+// import BookBlockNineOne from "./BookBlockNineOne"; // Missing
+import BookBlockOne from "./BookBlockOne"; // Fixed path
 import { getImageUrl } from "../HelperComps/TextCaseComp";
 import CommonOne from "../BlockComps/CommonOne";
 

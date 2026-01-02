@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BASE_URL, PAGE_ID } from "../../../config";
+import { BASE_URL, PAGE_ID } from "@/config";
 
 /**
  * Standardizes Block names into base dataSource names (e.g. BrandOne -> brand)

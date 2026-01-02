@@ -9,7 +9,7 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 
-import { BASE_URL, PAGE_ID } from "../../../config";
+import { BASE_URL, PAGE_ID } from "@/config";
 import { resizeImage } from "../ImageComps/ImageClientComp";
 import { GetStoredJWT } from "../StorageComps/StorageCompOne";
 import { toCamelCase } from "../HelperComps/TextCaseComp";

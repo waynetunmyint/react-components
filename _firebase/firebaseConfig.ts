@@ -1,70 +1,54 @@
 import { initializeApp, FirebaseOptions, FirebaseApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, Auth } from "firebase/auth";
 import { getEncryptedItem } from "../HelperComps/encryptionHelper";
+import { PAGE_ID } from "@/config";
 
-let firebaseConfig: FirebaseOptions | null = null;
 let app: FirebaseApp | null = null;
 let auth: Auth | null = null;
 let provider: GoogleAuthProvider | null = null;
-let isInitialized = false;
-let initAttempts = 0;
-const MAX_ATTEMPTS = 3;
-const RETRY_DELAY = 1000; // 1 second
 
-const initializeFirebase = (): boolean => {
+export const initializeFirebase = (): FirebaseApp | null => {
+  if (app) return app;
+
   try {
-    const raw = getEncryptedItem("StoredEncryptedPage");
+    const raw = getEncryptedItem(`StoredEncryptedPage_${PAGE_ID}`);
+    if (!raw) return null;
 
-    if (raw) {
-      // raw might be string or object, handle both
-      const page = typeof raw === "string" ? JSON.parse(raw) : raw;
+    const page = typeof raw === "string" ? JSON.parse(raw) : raw;
+    if (!page?.FirebaseConfig) return null;
 
-      if (page.FirebaseConfig) {
-        try {
-          const config = new Function(`return ({${page.FirebaseConfig}})`)();
-          firebaseConfig = config;
-          app = initializeApp(config);
-          auth = getAuth(app);
-          provider = new GoogleAuthProvider();
-          isInitialized = true;
-          console.log('Firebase initialized successfully');
-          return true;
-        } catch (err) {
-          console.error("FirebaseConfig parse error:", err);
-          return false;
-        }
+    let config: FirebaseOptions;
+    // Handle both stringified JSON/JS-Object and object
+    if (typeof page.FirebaseConfig === 'string') {
+      try {
+        // Try strict JSON first
+        config = JSON.parse(page.FirebaseConfig);
+      } catch {
+        // Fallback to evaluating JS object string (original behavior)
+        // This handles cases like: apiKey: "..." (unquoted keys)
+        // Note: The input string might lack outer braces, so we wrap it.
+        // If it already has braces, we might need to adjust, but based on prev code:
+        // `return ({${page.FirebaseConfig}})` suggests it lacks braces.
+        // However, let's try to be smart.
+        const rawConfig = page.FirebaseConfig.trim();
+        const hasBraces = rawConfig.startsWith('{') && rawConfig.endsWith('}');
+        const body = hasBraces ? `return (${rawConfig})` : `return ({${rawConfig}})`;
+        config = new Function(body)();
       }
+    } else {
+      config = page.FirebaseConfig;
     }
-    return false;
+
+    app = initializeApp(config);
+    auth = getAuth(app);
+    provider = new GoogleAuthProvider();
+    console.log('Firebase initialized successfully');
+
+    return app;
   } catch (err) {
-    console.warn("Firebase initialization skipped:", err);
-    return false;
+    console.error("Firebase initialization error:", err);
+    return null;
   }
 };
 
-// Wait for initialization or reload page
-const waitForInitialization = async () => {
-  if (initializeFirebase()) {
-    return;
-  }
-
-  initAttempts++;
-
-  if (initAttempts < MAX_ATTEMPTS) {
-    console.log(`Firebase initialization attempt ${initAttempts}/${MAX_ATTEMPTS}...`);
-    setTimeout(waitForInitialization, RETRY_DELAY);
-  } else {
-    console.warn('Firebase initialization failed after multiple attempts. Reloading page...');
-    window.location.reload();
-  }
-};
-
-// Try to initialize immediately (only on client)
-if (typeof window !== "undefined") {
-  waitForInitialization();
-}
-
-// Export function to reinitialize if needed
-export const reinitializeFirebase = initializeFirebase;
-
-export { auth, provider, isInitialized };
+export { app, auth, provider };

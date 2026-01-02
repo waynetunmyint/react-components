@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { List, LayoutGrid, ArrowRight, X } from "lucide-react";
-import { IMAGE_URL } from "../../../config";
+import { IMAGE_URL } from "@/config";
 import { priceFormatter } from "../HelperComps/TextCaseComp";
 import BlockHeader from "../BlockComps/BlockHeader";
 
@@ -8,6 +8,7 @@ interface Props {
     dataSource: string;
     headingTitle?: string | null;
     subHeadingTitle?: string | null;
+    customAPI?: string;
     items?: any[];
     loading?: boolean;
     error?: string | null;
@@ -17,6 +18,7 @@ export default function CommonOne({
     dataSource,
     headingTitle,
     subHeadingTitle,
+    customAPI,
     items: prefetchedItems,
     loading: prefetchedLoading,
     error: prefetchedError,

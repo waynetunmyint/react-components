@@ -1,4 +1,4 @@
-import { IonContent,  IonPage } from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 import React from 'react';
 import HeaderSwitcher from "../_SwitcherComps/HeaderSwitcher";
 
@@ -8,7 +8,7 @@ const Page: React.FC = () => {
     <IonPage>
 
       <IonContent className="bg-gray-50">
-        <HeaderSwitcher styleNo={8} title="Reward & Store" showRightButtons />
+        <HeaderSwitcher styleNo={8} headingField="Reward & Store" showRightButtons />
         <div className={`min-h-screen px-4 py-5`}>
           {/* Reward Component */}
           {/* <UniversalRewardComp /> */}

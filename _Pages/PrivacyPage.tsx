@@ -1,6 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonSpinner, IonTitle, IonToolbar } from '@ionic/react'
 import React, { useEffect, useState } from 'react'
-import { BASE_URL, PAGE_ID } from '../../../config';
+import { BASE_URL, PAGE_ID } from '@/config';
 import HeaderSwitcher from '../_SwitcherComps/HeaderSwitcher';
 
 export default function PrivacyPolicyPage() {
